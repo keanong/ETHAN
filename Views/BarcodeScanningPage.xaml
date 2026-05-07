@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="ETHAN.Views.BarcodeScanningPage"
+             Title="Scan Barcode" 
+             Shell.BackgroundColor="#000000">
+    <Shell.TitleView>
+        <Grid RowDefinitions="*" ColumnDefinitions="*, *">
+            <HorizontalStackLayout VerticalOptions="Center" BackgroundColor="#000000">
+                <ImageButton x:Name="btnTitle" Source="arrow_left_orange_80.png" Clicked="BackToHome"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></ImageButton>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <Grid x:Name="RootLayout" RowDefinitions="1*,3*,1*">
+
+        <zxing:CameraBarcodeReaderView
+			Grid.Row="0" Grid.RowSpan="3"
+			x:Name="barcodeView"
+			BarcodesDetected="BarcodesDetected"
+			 />
+
+        <Grid
+			Grid.Row="0"
+			BackgroundColor="#aa000000">
+            <!--<Label x:Name="ResultLabel" Grid.Row="2" Text="Top text..." HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />-->
+        </Grid>
+
+        <Grid
+			Grid.Row="3"
+			BackgroundColor="#aa000000"
+			Padding="20"
+			ColumnDefinitions="Auto,*,Auto">
+
+            <Button Text="🔄️" Grid.Column="0" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="SwitchCameraButton_Clicked" IsVisible="False" />
+
+            <zxing:BarcodeGeneratorView
+				x:Name="barcodeGenerator"
+				Grid.Column="1"
+				HorizontalOptions="Center"
+				VerticalOptions="Center"
+				HeightRequest="100"
+				WidthRequest="100"
+				ForegroundColor="DarkBlue"
+				Format="QrCode"
+				Value="Bla"
+                IsVisible="False"
+				BarcodeMargin="1" />
+
+            <Button Text="💡" Grid.Column="2" BackgroundColor="#aa000000" CornerRadius="8" BorderColor="Black" Clicked="TorchButton_Clicked" />
+        </Grid>
+
+    </Grid>
+    
+</ContentPage>

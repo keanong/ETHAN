@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.Testpage2"
+             Title="ETHANs">
+
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding Back}"  />
+    </Shell.BackButtonBehavior>-->
+
+
+    <Shell.TitleView>
+        <!--<HorizontalStackLayout VerticalOptions="Center">
+            <Label FontSize="24" TextColor="White" FontAttributes="Bold" Text="ETHANs" Margin="0, 0, 0, 0"/>
+        </HorizontalStackLayout>-->
+
+        <Grid RowDefinitions="*" ColumnDefinitions="*, *">
+
+            <HorizontalStackLayout VerticalOptions="Center">
+                <Label FontSize="20" TextColor="White" FontAttributes="Bold" Text="ETHANs" Margin="0, 0, 0, 0"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="End" Grid.Column="1">
+                <Label FontSize="16" TextColor="White" FontAttributes="Bold" Text="LOGOUT" Margin="0, 0, 10, 0"/>
+                <Image Source="logout_140" IsVisible="True" HeightRequest="20" Margin="0, 0, 5, 0"  />
+            </HorizontalStackLayout>
+
+
+            <!--<BoxView Color="Green" />
+            <Label Text="Row 0, Column 0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <BoxView Grid.Column="1"
+                 Color="Blue" />
+            <Label Grid.Column="1"
+               Text="Row 0, Column 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />-->
+
+        </Grid>
+
+
+
+    </Shell.TitleView>
+
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <!--<Grid RowDefinitions="2*, *, 100"
+        ColumnDefinitions="*, *">
+            <BoxView Color="Green" />
+            <Label Text="Row 0, Column 0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <BoxView Grid.Column="1"
+                 Color="Blue" />
+            <Label Grid.Column="1"
+               Text="Row 0, Column 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <BoxView Grid.Row="1"
+                 Color="Teal" />
+            <Label Grid.Row="1"
+               Text="Row 1, Column 0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <BoxView Grid.Row="1"
+                 Grid.Column="1"
+                 Color="Purple" />
+            <Label Grid.Row="1"
+               Grid.Column="1"
+               Text="Row1, Column 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <BoxView Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Color="Red" />
+            <Label Grid.Row="2"
+               Grid.ColumnSpan="2"
+               Text="Row 2, Columns 0 and 1"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+        </Grid>-->
+
+
+    </VerticalStackLayout>
+</ContentPage>

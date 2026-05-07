@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.LoginPwdReset"
+             Title="Password Reset"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <ContentPage.Resources>
+        <Style x:Key="txt" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="38"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                Padding="0" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}"
+                        HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <ScrollView Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="10,0,10,10" HorizontalOptions="Fill">
+
+                            <VerticalStackLayout Spacing="10">
+                                <VerticalStackLayout Padding="10">
+                                    <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
+                                    <Label Text="Password Reset" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
+                                    <Label Text="Enter your Username and click Submit." Style="{StaticResource textStyle16BlackBold}" FontFamily="Consolas" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Padding="10" Spacing="5">
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Username" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtSUsername" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="onSUsernameFieldChanged" 
+                                                   HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0"></Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="lblSUsernameInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
+                                FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}" />
+
+                                        <HorizontalStackLayout Grid.Column="1" x:Name="hsSUsername" Margin="0,0,0,0" Spacing="5" IsVisible="False" WidthRequest="82" >
+                                            <Label x:Name="iconSUsername" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                            <Label x:Name="lblSUsername" Text="Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        </HorizontalStackLayout>
+
+                                    </Grid>
+
+                                    <Button x:Name="btnSubmit" Clicked="btnSubmit_Click" Text="Submit" VerticalOptions="CenterAndExpand" 
+                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" />
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </ScrollView>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

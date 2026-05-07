@@ -1,0 +1,3437 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ETHAN</name>
+    </assembly>
+    <members>
+        <member name="T:ETHAN.classes.AddressChild">
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Fulltext">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.fulltext"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Caidx">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.caidx"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Cnidx">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.cnidx"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Name">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.name"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Department">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.department"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Tel">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.tel"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Mobile">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.mobile"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.Active">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.active"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.AddressStructure">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.addressStructure"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.AddressHeader">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.addressHeader"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.CanManageAddressBook">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.canManageAddressBook"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.CanAddAuthShippers">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.canAddAuthShippers"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressChild.ConstactStructure_">
+            <inheritdoc cref="F:ETHAN.classes.AddressChild.constactStructure_"/>
+        </member>
+        <member name="T:ETHAN.classes.AddressHeader">
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Title">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.title"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Children">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.children"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.IsExpanded">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.isExpanded"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Caidx">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.caidx"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.AddressType">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.addressType"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Company">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.company"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Block">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.block"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Street">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.street"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Unit">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.unit"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Building">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.building"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Postalcode">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.postalcode"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.Active">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.active"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.LocationTypeInt">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.locationTypeInt"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.CanManageAddressBook">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.canManageAddressBook"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.CanAddAuthShippers">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.canAddAuthShippers"/>
+        </member>
+        <member name="P:ETHAN.classes.AddressHeader.AddressStructure_">
+            <inheritdoc cref="F:ETHAN.classes.AddressHeader.addressStructure_"/>
+        </member>
+        <member name="T:ETHAN.classes.ChatChild">
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.Fulltext">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.fulltext"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.Reference">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.reference"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.Chatsession">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.chatsession"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.SessionIDXs">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.sessionIDXs"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.StatusGreenVisible">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.statusGreenVisible"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.StatusRedVisible">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.statusRedVisible"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatChild.LockVisible">
+            <inheritdoc cref="F:ETHAN.classes.ChatChild.lockVisible"/>
+        </member>
+        <member name="T:ETHAN.classes.ChatHeader">
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.classes.ChatHeader.Title">
+            <inheritdoc cref="F:ETHAN.classes.ChatHeader.title"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatHeader.Children">
+            <inheritdoc cref="F:ETHAN.classes.ChatHeader.children"/>
+        </member>
+        <member name="P:ETHAN.classes.ChatHeader.IsExpanded">
+            <inheritdoc cref="F:ETHAN.classes.ChatHeader.isExpanded"/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etNormal">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etHalfHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etOneHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etTwoHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etThreeHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etPriority">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etGuaranteed">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etAOH">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etWeekend">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etTwoDays">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etThreeDays">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etRTwoHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etRThreeHour">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.common.eExpressType.etRFourHour">
+            <remarks/>
+        </member>
+        <member name="M:ETHAN.classes.HexEncoding.GetBytes(System.String,System.Int32@)">
+            <summary>
+            Creates a byte array from the hexadecimal string. Each two characters are combined
+            to create one byte. First two hexadecimal characters become first byte in returned array.
+            Non-hexadecimal characters are ignored. 
+            </summary>
+            <param name="hexString">string to convert to byte array</param>
+            <param name="discarded">number of characters in string ignored</param>
+            <returns>byte array, in the same left-to-right order as the hexString</returns>
+        </member>
+        <member name="M:ETHAN.classes.HexEncoding.InHexFormat(System.String)">
+            <summary>
+            Determines if given string is in proper hexadecimal string format
+            </summary>
+            <param name="hexString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ETHAN.classes.HexEncoding.IsHexDigit(System.Char)">
+            <summary>
+            Returns true is c is a hexadecimal digit (A-F, a-f, 0-9)
+            </summary>
+            <param name="c">Character to test</param>
+            <returns>true if hex digit, false if not</returns>
+        </member>
+        <member name="M:ETHAN.classes.HexEncoding.HexToByte(System.String)">
+            <summary>
+            Converts 1 or 2 character string into equivalant byte value
+            </summary>
+            <param name="hex">1 or 2 character string</param>
+            <returns>byte</returns>
+        </member>
+        <member name="F:ETHAN.classes.LocationType.Undefined">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.LocationType.Residential">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.LocationType.Office">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.LocationType.Locker">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.LocationType.Mixed">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.SearchOrigin.Undefined">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.SearchOrigin.OneMap">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.SearchOrigin.Google">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.SearchOrigin.StreetDirectory">
+            <remarks/>
+        </member>
+        <member name="F:ETHAN.classes.SearchOrigin.Datum">
+            <remarks/>
+        </member>
+        <member name="M:ETHAN.Network.NetworkHelper.IsConnected">
+            <summary>
+            Returns true if device has an active internet connection (WiFi or Mobile Data).
+            </summary>
+        </member>
+        <member name="M:ETHAN.Network.NetworkHelper.IsConnectedWifi">
+            <summary>
+            Returns true if device is connected via WiFi.
+            </summary>
+        </member>
+        <member name="M:ETHAN.Network.NetworkHelper.IsConnectedMobile">
+            <summary>
+            Returns true if device is connected via Mobile Data.
+            </summary>
+        </member>
+        <member name="M:ETHAN.Network.NetworkHelper.IsDisconnected">
+            <summary>
+            Returns true if device has NO WiFi and NO Mobile Data.
+            </summary>
+        </member>
+        <member name="T:ETHAN.ProgressDialog.ProgressDialogService">
+            <summary>
+            Implementation of IProgressDialogService for .NET MAUI
+            </summary>
+        </member>
+        <member name="T:ETHAN.ProgressDialog.ProgressDialogServiceExtensions">
+            <summary>
+            Extension method to register the ProgressDialogService
+            </summary>
+        </member>
+        <member name="T:ETHAN.ProgressDialog.IProgressDialogService">
+            <summary>
+            Service for managing progress dialogs in .NET MAUI applications
+            </summary>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.IProgressDialogService.ShowAsync(System.String)">
+            <summary>
+            Shows a progress dialog with a specified message
+            </summary>
+            <param name="message">The message to display in the progress dialog</param>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.IProgressDialogService.ShowAsync(System.String,System.Double)">
+            <summary>
+            Shows a progress dialog with a message and progress percentage
+            </summary>
+            <param name="message">The message to display in the progress dialog</param>
+            <param name="progress">The progress percentage (0-100)</param>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.IProgressDialogService.UpdateProgressAsync(System.Double)">
+            <summary>
+            Updates the progress of the currently displayed dialog
+            </summary>
+            <param name="progress">The new progress percentage (0-100)</param>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.IProgressDialogService.UpdateMessageAsync(System.String)">
+            <summary>
+            Updates the message of the currently displayed dialog
+            </summary>
+            <param name="message">The new message to display</param>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.IProgressDialogService.DismissAsync">
+            <summary>
+            Dismisses the current progress dialog
+            </summary>
+        </member>
+        <member name="M:ETHAN.ProgressDialog.UiPump.Yield">
+            <summary>
+            Forces Android UI thread to complete one full render frame.
+            Required after PushModalAsync / DisplayAlert / overlays.
+            </summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.ChatViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ChatViewModel.Messages">
+            <inheritdoc cref="F:ETHAN.ViewModel.ChatViewModel.messages"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ChatViewModel.IsChatOpen">
+            <inheritdoc cref="F:ETHAN.ViewModel.ChatViewModel.isChatOpen"/>
+        </member>
+        <member name="T:ETHAN.ViewModel.CreateJobVM">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="F:ETHAN.ViewModel.CreateJobVM.backToHomeCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.CreateJobVM.BackToHomeCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.CreateJobVM.BackToHomeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.CreateJobVM.BackToHome"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.CreateJobVM._cfmboxCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.CreateJobVM.cfmboxCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.CreateJobVM.cfmboxCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.CreateJobVM.cfmbox"/>.</summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.HomepageVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.Barcodeval">
+            <inheritdoc cref="F:ETHAN.ViewModel.HomepageVM.barcodeval"/>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM.createJobClickCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.CreateJobClickCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.CreateJobClickCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.CreateJobClick"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM._btnManageJClickCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.btnManageJClickCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.btnManageJClickCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.btnManageJClick"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM._btnTopUpClickCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.btnTopUpClickCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.btnTopUpClickCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.btnTopUpClick"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM._btnChatClickCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.btnChatClickCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.btnChatClickCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.btnChatClick"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM._btnScanClickCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.btnScanClickCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.btnScanClickCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.btnScanClick"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.HomepageVM.logoutCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.HomepageVM.LogoutCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.HomepageVM.LogoutCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.HomepageVM.Logout"/>.</summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.ManageJobPageVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.FromDate">
+            <inheritdoc cref="F:ETHAN.ViewModel.ManageJobPageVM._fromDate"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.ToDate">
+            <inheritdoc cref="F:ETHAN.ViewModel.ManageJobPageVM._toDate"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.SelectedTabIndex">
+            <inheritdoc cref="F:ETHAN.ViewModel.ManageJobPageVM.selectedTabIndex"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.Tabs">
+            <inheritdoc cref="F:ETHAN.ViewModel.ManageJobPageVM.tabs"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.IsRefreshing">
+            <inheritdoc cref="F:ETHAN.ViewModel.ManageJobPageVM.isRefreshing"/>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM.loadTabsCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.LoadTabsCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.LoadTabsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.LoadTabs"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM.refreshTabsCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.RefreshTabsCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.RefreshTabsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.RefreshTabsAsync"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM.loadTabs2Command">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.LoadTabs2Command"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.LoadTabs2Command">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.LoadTabs2(ETHAN.ViewModel.ManageJobPageVM.LoadTabsRequest)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM.clearTabsCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.ClearTabsCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.ClearTabsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.ClearTabs"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM.backToHomeCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.BackToHomeCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.BackToHomeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.BackToHome"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.ManageJobPageVM._cfmboxCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.ManageJobPageVM.cfmboxCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.ManageJobPageVM.cfmboxCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.ManageJobPageVM.cfmbox"/>.</summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.SelectableExpListAddressBookVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.LoadNextPageAsync(System.Int32)">
+            <summary>
+            Simulate getting the next page of data
+            Replace this with your real data fetch logic.
+            </summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.Items">
+            <inheritdoc cref="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.items"/>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.CanLoadMore">
+            <inheritdoc cref="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.canLoadMore"/>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.loadMoreCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.LoadMoreCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.LoadMoreCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.LoadMoreAsync"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.headerTappedCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderTappedCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderTappedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderTapped(ETHAN.classes.AddressHeader)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.headerEditCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderEditCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderEditCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderEdit(ETHAN.classes.AddressHeader)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.headerContactAddCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderContactAddCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderContactAddCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.HeaderContactAdd(ETHAN.classes.AddressHeader)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.childTappedCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildTappedCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildTappedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildTapped(ETHAN.classes.AddressChild)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListAddressBookVM.childEditCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildEditCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildEditCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListAddressBookVM.ChildEdit(ETHAN.classes.AddressChild)"/>.</summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.SelectableExpListChatsVM">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListChatsVM.Items">
+            <inheritdoc cref="F:ETHAN.ViewModel.SelectableExpListChatsVM.items"/>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListChatsVM.headerTappedCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListChatsVM.HeaderTappedCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListChatsVM.HeaderTappedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListChatsVM.HeaderTapped(ETHAN.classes.ChatHeader)"/>.</summary>
+        </member>
+        <member name="F:ETHAN.ViewModel.SelectableExpListChatsVM.childTappedCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.SelectableExpListChatsVM.ChildTappedCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.SelectableExpListChatsVM.ChildTappedCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ETHAN.ViewModel.SelectableExpListChatsVM.ChildTapped(ETHAN.classes.ChatChild)"/>.</summary>
+        </member>
+        <member name="T:ETHAN.ViewModel.TestpageVM">
+            <inheritdoc/>
+        </member>
+        <member name="F:ETHAN.ViewModel.TestpageVM.backToHomeCommand">
+            <summary>The backing field for <see cref="P:ETHAN.ViewModel.TestpageVM.BackToHomeCommand"/>.</summary>
+        </member>
+        <member name="P:ETHAN.ViewModel.TestpageVM.BackToHomeCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:ETHAN.ViewModel.TestpageVM.BackToHome"/>.</summary>
+        </member>
+        <member name="T:ETHAN.Views.BarcodeScanningPage">
+            <summary>
+            sample code from https://github.com/Redth/ZXing.Net.Maui
+            </summary>
+        </member>
+        <member name="M:ETHAN.Views.CreateJob.cvInvP1OnItemTap(System.Object,System.EventArgs)">
+            ======= use cvInvP1OnItemTap instead of cvInvP1OnItemSelected for multiple tap
+             ======= SelectionChanged by default only respond to a single tap, marking an item as selected
+        </member>
+        <member name="M:ETHAN.Views.ManageJobPage.OpenInBrowser(System.String)">
+            Open URL in the device's default browser
+        </member>
+        <member name="M:ETHAN.Views.ManageJobPage.OpenWithBrowser(System.String)">
+            Optional: Use a more advanced in-app browser (like SafariViewController / Chrome Custom Tabs)
+        </member>
+        <member name="M:ETHAN.Views.PrepaidListPage.OpenInBrowser(System.String)">
+            Open URL in the device's default browser
+        </member>
+        <member name="M:ETHAN.XDelSys.ClientFlags.HasFlag(System.Int32,ETHAN.XDelSys.ClientFlags.Flag)">
+            <summary>
+            Has the flag (all bits in AFlags must be inside IntFlag)
+            </summary>
+            <param name="IntFlag"></param>
+            <param name="AFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ETHAN.XDelSys.ClientFlags.HasFlag(System.Int32,ETHAN.XDelSys.ClientFlags.Flag2)">
+            <summary>
+            Has the flag (all bits in AFlags must be inside IntFlag)
+            </summary>
+            <param name="IntFlag"></param>
+            <param name="AFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ETHAN.XDelSys.Common">
+            <summary>
+            taken from XDelSys.HOMES.Common
+            </summary>
+        </member>
+        <member name="F:ETHAN.XDelSys.Common.ACIReport2">
+            <summary>
+            WOPS AM Clear
+            </summary>
+        </member>
+        <member name="F:ETHAN.XDelSys.Common.ACIReport3">
+            <summary>
+            WOPS PM Clear
+            </summary>
+        </member>
+        <member name="F:ETHAN.XDelSys.Common.ACIReport4">
+            <summary>
+            WOPS AOH Clear
+            </summary>
+        </member>
+        <member name="M:ETHAN.XDelSys.Holiday.vGetNextWorkingDay(System.DateTime,System.Boolean,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Gets the next working day, deducts DaysAhead if holiday or Sat/Sun is encountered
+            </summary>
+            <param name="ADateTime"></param>
+            <param name="EnableSaturday"></param>
+            <param name="EnableSunday"></param>
+            <param name="DaysAhead"></param>
+            <param name="IgnoreHolidays">If set to true, DaysAhead will not be deducted when encountering holiday or Sat/Sun</param>
+            <returns>The next working day</returns>
+        </member>
+        <member name="T:ETHAN.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="T:XDelServiceRef.XWSBase">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XWSBase.Status">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XWSBase.Message">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XWSBase.state">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.PrePaidItem">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.ContactIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.InvoiceIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.InvoiceNumber">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.DateIssued">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.Amount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.Status">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.Has_InvoicePDF">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.Has_ReceiptPDF">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.InvoicePDFURL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidItem.ReceiptPDFURL">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.PPStatus">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.PPStatus.ppCanUse">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.PPStatus.ppOnHold">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ChangeSetting">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.ChangeTimeSlot">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.FromDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.ToDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.ChangeAddress">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.Address">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.ChangePUSI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.PUSI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.ChangeDLSI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChangeSetting.DLSI">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.AddressStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.CLIENTIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.ADDRESSTYPE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.ACCOUNT">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.COMPANY">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.BLOCK">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.STREET">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.UNIT">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.BUILDING">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.POSTALCODE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.ACTIVE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.CUSTOMER_NOTES">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.Contacts">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.LAT">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.LNG">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.DISTANCE_TOLERANCE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.FLAG">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.FLAG2">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressStructure.LocationType">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ContactStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.CLIENTADDRESSIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.TITLE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.NAME">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.DEPARTMENT">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.TEL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.FAX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.OTHER">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.MOBILE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.SI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.EMAILADDRESS">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.WEBLOGIN">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.WEBPASSWORD">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.WEBACCESS">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.ACCESS">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.CUSTOMER_NOTES">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.COST_CENTER">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.ACTIVE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.FLAG">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ContactStructure.FLAG2">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Location_Type">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Location_Type.Undefined">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Location_Type.Residential">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Location_Type.Office">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Location_Type.Locker">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Location_Type.Mixed">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.InventoryDetails">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.InventoryIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.Timestamp">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.JobsIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.DeliveryOrder">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.StockMovement">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.Remarks">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.Flag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.Batch_ID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryDetails.StockReferences">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Inventory">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.ClientIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.DateStarted">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.UnitOfMeasure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.CostPerUnit">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.WeightPerUnit">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.BillingSurcharge">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.StockCode">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.Description">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.Barcode">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.Active">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.StockMovement">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.Balance">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.VolumetricInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Inventory.Flag">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Volumetric">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Volumetric.ID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Volumetric.Length_CM">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Volumetric.Breadth_CM">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Volumetric.Height_CM">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Volumetric.Qty">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.InventoryFlag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.None">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.NoReturn">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.DetailsRequired">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_SG_IMSI">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_SG_ICCID">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_IMSI">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_ICCID">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_IMEI">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_10">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_11">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_12">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_01">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_02">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_03">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_04">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_05">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_06">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Testing_Inventory">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Category_07">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Bulky">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Validation_Smartpac">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.InventoryFlag.Non_Quantity_Item">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.JobStatusPair">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobStatusPair.JobsIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobStatusPair.StatusCodeIDX">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ChatConversation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.SessionIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.TimeStamp">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.Direction">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.StaffName">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatConversation.Message">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ChatSession">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.SessionIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.JobsIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.TimeStamp">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.Chat_Status">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.Staff">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.Reference">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSession.Conversation">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Status">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Status.csOpen">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Status.csPrivate">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.Status.csClosed">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DeliveryTimeWindow">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DeliveryTimeWindow.FromTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DeliveryTimeWindow.ToTime">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DHLAccount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DHLAccount.Account">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DHLAccount.Company">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DHLAccount.Requestor">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DHLAccount.RequestorContact">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DHLAccount.AccountType">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eAccountType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eAccountType.atExport">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eAccountType.atImport">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.MessageTemplate">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.MessageTemplate.EventType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.MessageTemplate.Template">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.TEventType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etConsignmentNote">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etPickUp">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etDelivery">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etIncident">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etDigitalArchive">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etInvoice">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etDOReturnSoftCopy">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etCODReturnSoftCopy">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etPrePaidStatement">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etJobAck">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports1">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports2">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports3">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports4">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports5">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports6">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports7">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports8">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports9">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TEventType.etReports10">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Notify">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.Name">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.Destination">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.DestinationType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.NotifyEvents">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.EMailTemplates">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Notify.SMSTemplates">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.TDestinationType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TDestinationType.dtUnknown">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TDestinationType.dtEmail">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TDestinationType.dtMobile">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TDestinationType.dtPhone">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.XDelOnlineSettings">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.JobViewLevel">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.ClientIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.ContactIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.AllowViewScans">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.MaxDays">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.MaxJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanViewJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanEnterJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanEnterIBJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.AllowedExpressTypes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.AvailableExpressTypes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanManageAddressBook">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanEnterJobsInvoices">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanPostForOthers">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanAddAuthShippers">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanAddAuthUsers">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanEnterInternationalJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanPostInternationalForOthers">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanManageInventory">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanSaveJob">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanPostJob">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanAddJobCostCenter">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.ColdItemSupport">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.GraceMinutes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.NotificationList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.DHLAccounts">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.AltHotline">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.Options">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanChangeSlot">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.CanChangeAddress">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelOnlineSettings.AvailableTimeWindows">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.TViewLevel">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TViewLevel.vlClient">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TViewLevel.vlAddress">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TViewLevel.vlContact">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eExpressType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etNormal">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etHalfHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etOneHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etTwoHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etThreeHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etPriority">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etGuaranteed">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etAOH">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etWeekend">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etTwoDays">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etThreeDays">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etRTwoHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etRThreeHour">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eExpressType.etRFourHour">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.OptionsFlag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.None">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.ViewScans">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.ViewJobs">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnterJobs">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.SaveJob">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.PostJob">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.PostForOthers">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.ManageAddressBook">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnterIBJobs">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnterJobsInvoices">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.AddJobCostCenter">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.AddAuthShippers">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.AddAuthUsers">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnterInternationalJobs">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.PostInternationalForOthers">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.ManageInventory">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.ColdItemSupport">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnabledChangeSlot">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.OptionsFlag.EnableChangeAddress">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.StatusCodeStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructure.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructure.StatusCode">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructure.Description">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructure.CodeType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructure.DriverAffected">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eCodeType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctProgressCheckpoints">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctNetworkCompletion">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctServiceIncident">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctTracingCheckpoints">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctBillingIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctMailingIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctDOReturnIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctCODReturnIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctJobEnquiries">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctServiceReversalIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctSchedulingIndicators">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctSystemCodes">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCodeType.ctInternalMeasurements">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eDriverAffected">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eDriverAffected.daNone">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eDriverAffected.daPickup">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eDriverAffected.daDelivery">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eDriverAffected.daBoth">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.StatusCodeStructureEx">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructureEx.BillingType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructureEx.GroupName">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeStructureEx.Remarks">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eBillingType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eBillingType.btNone">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eBillingType.btNormal">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eBillingType.btExtra">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eBillingType.btFOC">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.StatusCodeLibraryEx">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeLibraryEx.English">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.StatusCodeLibraryEx.Chinese">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ZoneExpress">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.ZoneName">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.ExpressType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.Descrption">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.ZoneNameIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.ExpressTypeID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.Flag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ZoneExpress.Expiry">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ZXFlag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_NoException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_1HrException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_2HrException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_3HrException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_4HrException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_5HrException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_AllException">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_PickUp">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_Delivery">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ZXFlag.ZX_Deleted">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ArticleStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ArticleStructure.Posted">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ArticleStructure.Title">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ArticleStructure.Contents">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ArticleStructure.PostType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ArticleStructure.SortOrder">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.TPostType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TPostType.ptUnknown">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TPostType.ptNews">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TPostType.ptPromotions">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TPostType.ptMiscellaneous">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Pagination_Details">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Pagination_Details.page_number">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Pagination_Details.total_results">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Locker_Box_Category_Details">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_category">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_category_quantity">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_length">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_width">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_height">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.locker_box_weight_limit">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Box_Category_Details.pagination_details">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Payment_Option">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Delivery_Feature">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Locker_Station">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_station_id">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_operator_id">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_station_name">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_station_description">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.opening_hours">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.block_number">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.building_name">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.street_name">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.state">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.country_code">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.postal_code">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.latitude">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.longitude">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_station_distance">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_usage_popularity">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.is_return_eligible">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.delivery_feature_available">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.payment_options_supported">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_box_category_details">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.valid_postal_codes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.lsp_user_close">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.lsp_user_open">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.is_otp_returns">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.is_otp_collection">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.is_otp_lsp_user">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.created_date_time">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.updated_date_time">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Locker_Station.locker_disabled">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.InventoryEntry">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.StockCode">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.Reference">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.Description">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.Quantity">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.Flag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.InventoryFlag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.Verified">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryEntry.InventoryDetailIDX">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ItemFlag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.None">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.Returned">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.Verified">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.Inward">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.Outward">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.ItemFlag.Consumed">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.XDelBaseObject">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ExtraCharges">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ExtraCharges.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ExtraCharges.Description">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ExtraCharges.ExtraChargesIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ExtraCharges.Amount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ExtraCharges.Data">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.JobLogObject">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobLogObject.StatusCodeIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobLogObject.TimeStamp">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobLogObject.Remarks">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobLogObject.StatusCode">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobLogObject.StatusDescription">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DOCODObject">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.DOObjectIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.AmountTypeIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.AmountType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.Reference">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.Amount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOCODObject.DeviceReference">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DOObject">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.DOIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.Invoice">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.Amount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.Remarks">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.CODList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DOObject.Flag">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DOFlag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.DOFlag.dfNone">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.DOFlag.dfDisplayOnly">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.JobInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ClientIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ClientInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.AddressIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ContactIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ByContactIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.JobsIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ParentJobsIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.LinkedJobs">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.JobNo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ConsignmentNote">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DOList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.JobLog">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.COD">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.CODCollectAt">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.CODCollected">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ExpressType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.TOSType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ReadyDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PickByDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.FromDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ToDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ExtFromDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ExtDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.StatusDateTime">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PULunch_Avoid">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PULunch_From">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PULunch_To">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLLunch_Avoid">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLLunch_From">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLLunch_To">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.Not_Before">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ExtCount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DeliveryContents">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.SpecialInstructions">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PULocation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PURedirectedLocation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLLocation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLRedirectedLocation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PUSI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DLSI">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.Pieces">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.Weight">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.StatusCodeIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.DNF">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.FLAG">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.FLAG2">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PIN">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ScansURL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.PicturesURL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.SignaturesURL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.CNURL">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.InventoryItems">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.BarcodeTags">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.BarcodeTagsExt">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.ExtraCharges">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.CheckList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.IDVerification">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.LockerStation">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.Volumetric_Info">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.CostCenter">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.MobileStatus">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobInfo.SlotFlag">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ClientInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CLIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CAIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CNIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Account">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Company">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Serving_Entity">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.TakeOverIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.AccountType">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.LoggedInUserName">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Web_UID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.AvailableExpressTypes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CLFlag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CNFlag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Flag">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CLFlag2">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.CNFlag2">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ClientInfo.Flag2">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.TAccountType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TAccountType.atCash">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TAccountType.atCredit">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TAccountType.atFrozen">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.TAccountType.atPrePaid">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eCODCollectAt">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCODCollectAt.ctPickup">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCODCollectAt.ctDelivery">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eCODCollectAt.ctOriginator">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eTOSType">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eTOSType.ttUnknown">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eTOSType.ttEL">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eTOSType.ttTC">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eTOSType.ttRT">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.Favourites">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Favourites.ContactIDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.Favourites.Jobs">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.XOE_ETHAN_Receiver">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.IDX">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.FNAME">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.LNAME">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.MOBILE">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.EMAILADDRESS">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.PASSWORD">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.UID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.TEMP_UID">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XOE_ETHAN_Receiver.ACTIVE">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.PrePaidInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.PrePaidInfo.PrePaidItems">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DateArray">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DateArray.Holidays">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.DecimalReturn">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.DecimalReturn.Value">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.XDelCODStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelCODStructure.CODValue">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelCODStructure.GSTValue">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelCODStructure.RoundingAmount">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.XDelCODStructure.Breakdown">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.InventoryList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.InventoryList.Items">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.JobStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobStructure.JobList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobStructure.JobStatusList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.JobStructure.JobLogs">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.ChatSessions">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.ChatSessions.Sessions">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.AddressBookUpdateStatus">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressBookUpdateStatus.AddressStructure">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressBookUpdateStatus.ContactStructure">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.AddressBook">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.AddressBook.AddressList">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.SettingsInfo">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.XDelOnlineSettings">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.StatusCodes">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.StatusCodeLibrary">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.ZoneExpressList">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.DeliveryContents">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.BankNames">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.Articles">
+            <remarks/>
+        </member>
+        <member name="P:XDelServiceRef.SettingsInfo.Favourites">
+            <remarks/>
+        </member>
+        <member name="T:XDelServiceRef.eInstructions">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiGeneralInstructions">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintLate">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintMissingItem">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintMissort">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintMistag">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintWrongDelivery">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintQualityofCourier">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintQualityofCS">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintCustomerRelated">
+            <remarks/>
+        </member>
+        <member name="F:XDelServiceRef.eInstructions.jiComplaintDoubleExtension">
+            <remarks/>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_InputView.TextColorTo(Microsoft.Maui.Controls.InputView,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.PropertyName">
+            <summary>Name of the Attached Property</summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.IsNullable">
+            <summary>Should generate a nullable type for T</summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.DefaultValue">
+            <summary>The default value for the property</summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.DefaultBindingMode">
+            <summary>The BindingMode to use on SetBinding() if no BindingMode is given. Default is <see cref="!:Microsoft.Maui.Controls.BindableProperty.Default"/></summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.ValidateValueMethodName">
+            <summary>Method name for <see cref="!:Microsoft.Maui.Controls.ValidateValueDelegate"/> to be run when a value is set. Default value is null</summary>
+            <remarks>The referenced method must be <see cref="!:Microsoft.Maui.Controls.ValidateValueDelegate"/></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.PropertyChangedMethodName">
+            <summary>Method name for <see cref="!:Microsoft.Maui.Controls.BindingPropertyChangedDelegate"/> to be run when a value has changed. Default value is null</summary>
+            <remarks>The referenced method must be <see cref="!:Microsoft.Maui.Controls.BindingPropertyChangedDelegate"/></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.PropertyChangingMethodName">
+            <summary>Method name for <see cref="!:Microsoft.Maui.Controls.BindingPropertyChangingDelegate"/> to be run when a value is set. Default value is null</summary>
+            <remarks>The referenced method must be <see cref="!:Microsoft.Maui.Controls.BindingPropertyChangingDelegate"/></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.CoerceValueMethodName">
+            <summary>Method name for <see cref="!:Microsoft.Maui.Controls.CoerceValueDelegate"/> used to coerce the range of a value. Default value is null</summary>
+            <remarks>The referenced method must be <see cref="!:Microsoft.Maui.Controls.CoerceValueDelegate"/></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.DefaultValueCreatorMethodName">
+            <summary>Method name for <see cref="!:Microsoft.Maui.Controls.CreateDefaultValueDelegate"/> used to initialize default value for reference types. Default value is null</summary>
+            <remarks>The referenced method must be <see cref="!:Microsoft.Maui.Controls.CreateDefaultValueDelegate"/></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.BindablePropertyXmlDocumentation">
+            <summary>Custom XML Comments added to BindableProperty</summary>
+            <remarks>Must be the entire XML string, including <c>///</c>
+            </remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.GetterMethodXmlDocumentation">
+            <summary>Custom XML Comments added to <c>Get{PropertyName}(BindableProperty bindable)</c></summary>
+            <remarks>Must be the entire XML string, including <c>///</c></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.SetterMethodXmlDocumentation">
+            <summary>Custom XML Comments added to <c>Set{PropertyName}(BindableProperty bindable, T value)</c></summary>
+            <remarks>Must be the entire XML string, including <c>///</c></remarks>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.BindablePropertyAccessibility">
+            <summary>The access modifier applied to the generated field <see cref="T:Microsoft.Maui.Controls.BindableProperty"/></summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.GetterAccessibility">
+            <summary>The access modifier applied to the generated method <c>Get{PropertyName}(BindableProperty bindable)</c></summary>
+        </member>
+        <member name="P:CommunityToolkit.Maui.AttachedBindablePropertyAttribute`1.SetterAccessibility">
+            <summary>The access modifier applied to the generated method <c>Set{PropertyName}(BindableProperty bindable, T value)</c></summary>
+        </member>
+        <member name="T:CommunityToolkit.Maui.AccessModifier">
+            <summary>Used by CommunityToolkit.Maui source generators to define access modifiers for generated code</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.Public">
+            <summary>Generates <see langword="public"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.Internal">
+            <summary>Generates <see langword="internal"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.ProtectedInternal">
+            <summary>Generates <see langword="protected"/> <see langword="internal"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.Protected">
+            <summary>Generates <see langword="protected"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.PrivateProtected">
+            <summary>Generates <see langword="private"/> <see langword="protected"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.Private">
+            <summary>Generates <see langword="private"/> access modifier</summary>
+        </member>
+        <member name="F:CommunityToolkit.Maui.AccessModifier.None">
+            <summary>Generates no code</summary>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_EntryCell.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_EntryCell">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_EntryCell.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_EntryCell.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Editor">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Editor.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Editor.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Entry">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Entry.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Entry.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Label">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Label.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Label.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Picker">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Picker.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_Picker.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_SearchBar">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_SearchBar.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.LeftToRight.TextAlignmentExtensions_SearchBar.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_EntryCell">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_EntryCell.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_EntryCell.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Editor">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Editor.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Editor.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Entry">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Entry.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Entry.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Label">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Label.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Label.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Picker">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Picker.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_Picker.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_SearchBar">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_SearchBar.TextLeft``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.RightToLeft.TextAlignmentExtensions_SearchBar.TextRight``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Editor.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Entry.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Label.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_Picker.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar">
+            <summary>
+            Extension Methods for <see cref="T:Microsoft.Maui.ITextAlignment"/>
+            </summary>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextJustify``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Justify"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Justify"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextStart``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextCenterHorizontal``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextEnd``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextTop``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Start"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Start"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextCenterVertical``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextBottom``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.End"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.End"/></returns>
+        </member>
+        <member name="M:CommunityToolkit.Maui.Markup.TextAlignmentExtensions_SearchBar.TextCenter``1(``0)">
+            <summary>
+            <see cref="P:Microsoft.Maui.ITextAlignment.VerticalTextAlignment"/> = <see cref="P:Microsoft.Maui.ITextAlignment.HorizontalTextAlignment"/> = <see cref="F:Microsoft.Maui.TextAlignment.Center"/>
+            </summary>
+            <param name="textAlignmentControl"></param>
+            <returns><typeparamref name="TAssignable"/> with added <see cref="F:Microsoft.Maui.TextAlignment.Center"/></returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions">
+            <summary>
+            A helper type with generated registration stubs for types implementing <see cref="T:CommunityToolkit.Mvvm.Messaging.IRecipient`1"/>.
+            </summary>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="M:CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions.CreateAllMessagesRegistrator(ETHAN.Views.LoginForgotPwd)">
+            <summary>
+            Creates a message registration stub for <see cref="T:ETHAN.Views.LoginForgotPwd"/> objects.
+            </summary>
+            <param name="_">Dummy parameter, only used to disambiguate the method signature.</param>
+            <returns>A message registration stub for <see cref="T:ETHAN.Views.LoginForgotPwd"/> objects.</returns>
+        </member>
+        <member name="M:CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions.CreateAllMessagesRegistratorWithToken``1(ETHAN.Views.LoginForgotPwd)">
+            <summary>
+            Creates a message registration stub for <see cref="T:ETHAN.Views.LoginForgotPwd"/> objects.
+            </summary>
+            <typeparam name="TToken">The type of tokens that will be used to register messages.</typeparam>
+            <param name="_">Dummy parameter, only used to disambiguate the method signature.</param>
+            <returns>A message registration stub for <see cref="T:ETHAN.Views.LoginForgotPwd"/> objects.</returns>
+        </member>
+        <member name="M:CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions.CreateAllMessagesRegistrator(ETHAN.Views.LoginReg)">
+            <summary>
+            Creates a message registration stub for <see cref="T:ETHAN.Views.LoginReg"/> objects.
+            </summary>
+            <param name="_">Dummy parameter, only used to disambiguate the method signature.</param>
+            <returns>A message registration stub for <see cref="T:ETHAN.Views.LoginReg"/> objects.</returns>
+        </member>
+        <member name="M:CommunityToolkit.Mvvm.Messaging.__Internals.__IMessengerExtensions.CreateAllMessagesRegistratorWithToken``1(ETHAN.Views.LoginReg)">
+            <summary>
+            Creates a message registration stub for <see cref="T:ETHAN.Views.LoginReg"/> objects.
+            </summary>
+            <typeparam name="TToken">The type of tokens that will be used to register messages.</typeparam>
+            <param name="_">Dummy parameter, only used to disambiguate the method signature.</param>
+            <returns>A message registration stub for <see cref="T:ETHAN.Views.LoginReg"/> objects.</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Fulltext">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Fulltext" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Caidx">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Caidx" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Cnidx">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Cnidx" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Department">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Department" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Mobile">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Mobile" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Active">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Active" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.AddressStructure">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "AddressStructure" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.AddressHeader">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "AddressHeader" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CanManageAddressBook">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CanManageAddressBook" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CanAddAuthShippers">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CanAddAuthShippers" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ConstactStructure_">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ConstactStructure_" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Children">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Children" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsExpanded">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsExpanded" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.AddressType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "AddressType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Company">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Company" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Block">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Block" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Street">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Street" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Unit">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Unit" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Building">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Building" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Postalcode">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Postalcode" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LocationTypeInt">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LocationTypeInt" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.AddressStructure_">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "AddressStructure_" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Reference">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Reference" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Chatsession">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Chatsession" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SessionIDXs">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SessionIDXs" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.StatusGreenVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "StatusGreenVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.StatusRedVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "StatusRedVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LockVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LockVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Messages">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Messages" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsChatOpen">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsChatOpen" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Barcodeval">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Barcodeval" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FromDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FromDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ToDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ToDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedTabIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedTabIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tabs">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tabs" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Items">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Items" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CanLoadMore">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CanLoadMore" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Fulltext">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Fulltext" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Caidx">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Caidx" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Cnidx">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Cnidx" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Department">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Department" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Mobile">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Mobile" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Active">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Active" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.AddressStructure">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "AddressStructure" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.AddressHeader">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "AddressHeader" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CanManageAddressBook">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CanManageAddressBook" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CanAddAuthShippers">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CanAddAuthShippers" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ConstactStructure_">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ConstactStructure_" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Title">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Title" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Children">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Children" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsExpanded">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsExpanded" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.AddressType">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "AddressType" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Company">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Company" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Block">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Block" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Street">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Street" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Unit">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Unit" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Building">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Building" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Postalcode">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Postalcode" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LocationTypeInt">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LocationTypeInt" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.AddressStructure_">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "AddressStructure_" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Reference">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Reference" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Chatsession">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Chatsession" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SessionIDXs">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SessionIDXs" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.StatusGreenVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "StatusGreenVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.StatusRedVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "StatusRedVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LockVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LockVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Messages">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Messages" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsChatOpen">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsChatOpen" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Barcodeval">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Barcodeval" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FromDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FromDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ToDate">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ToDate" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedTabIndex">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedTabIndex" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tabs">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tabs" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsRefreshing">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsRefreshing" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Items">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Items" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CanLoadMore">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CanLoadMore" generated properties.</summary>
+        </member>
+    </members>
+</doc>

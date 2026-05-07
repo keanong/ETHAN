@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="ETHAN.app/ETHAN">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>ETHAN.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>false</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>ETHAN.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>\Users\xdelsingapore\Library\Caches\maui\PairToMac\Builds\ETHAN\223ec6db05f14ebec012575e0902f193ec323ad1e397747a38c23cd930cad5b4\obj\Debug\net10.0-ios\ios-arm64\device-builds\iphone13.2-26.4.2\mtouch-symbols.list</SymbolFile>
+      <DSymName>ETHAN.app.dSYM</DSymName>
+      <SourceProjectPath>C:\Users\kean.ong\Documents\ETHAN</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

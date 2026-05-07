@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="ETHAN" mvid="328b12b0b44c41f0b6ba9c670a6093c4">
+  <java-to-managed>
+    <entry java-name="crc641b341e4fa06bccf8/MainActivity" managed-name="ETHAN.MainActivity, ETHAN" managed-type-token-id="33554550" />
+    <entry java-name="crc641b341e4fa06bccf8/MainApplication" managed-name="ETHAN.MainApplication, ETHAN" managed-type-token-id="33554551" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc641b341e4fa06bccf8/MainActivity" managed-name="ETHAN.MainActivity, ETHAN" managed-type-token-id="33554550" />
+    <entry java-name="crc641b341e4fa06bccf8/MainApplication" managed-name="ETHAN.MainApplication, ETHAN" managed-type-token-id="33554551" />
+  </managed-to-java>
+</api>

@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:classes="clr-namespace:ETHAN.classes"
+             x:Class="ETHAN.Views.ManageJobPage"
+             xmlns:views="clr-namespace:ETHAN.Views"
+             x:DataType="viewmodel:ManageJobPageVM"
+             Title="Manage Job"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.BottomSheet"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:syss="clr-namespace:System;assembly=netstandard"
+             xmlns:dp="clr-namespace:ETHAN.classes.NDatePicker"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:classes="clr-namespace:ETHAN.classes"
+             x:Class="ETHAN.Views.ManageJobPage"
+             xmlns:views="clr-namespace:ETHAN.Views"
+             x:DataType="viewmodel:ManageJobPageVM"
+             Title="Manage Job"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:ETHAN.BS"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:syss="clr-namespace:System;assembly=netstandard"
+             xmlns:dp="clr-namespace:ETHAN.classes.NDatePicker"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <Style x:Key="txt" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="38"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style x:Key="TabButtonStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontAttributes" Value="None"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
+
+        <Style TargetType="Switch" x:Key="sw">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource XDelOrange}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource Gray400}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bb">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                    Value="{StaticResource Gray100}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="{StaticResource XDelOrange}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid x:Name="RootLayout" Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" Padding="0" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTopNavBack" Grid.Column="1" Text="Manage Job" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <AbsoluteLayout Grid.Row="1" x:Name="MainAbsoluteLayout">
+
+                            <Grid RowSpacing="10" Margin="5" BackgroundColor="{StaticResource Gray50}" 
+                          AbsoluteLayout.LayoutFlags="All"
+                          AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" Grid.ColumnSpan="2" ColumnSpacing="5" Padding="0" HorizontalOptions="Fill" ColumnDefinitions="*,*,Auto">
+
+                                    <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="From" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <DatePicker Grid.Row="1" x:Name="dpFrom" Margin="0,-20,0,-20" MinimumDate="2000-01-01" MaximumDate="2999-12-31" Format="dd/MM/yyyy" Date="{x:Static sys:DateTime.Today}" 
+                                            VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource DatepickerStyle}" DateSelected="DpFrom_DateSelected" ></DatePicker>
+                                        </Grid>
+                                    </Border>
+                                    <Label x:Name="lbldpFromSelected" IsVisible="False" Text=""></Label>
+
+                                    <Border Grid.Column="1" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="To" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <DatePicker Grid.Row="1" x:Name="dpTo" Margin="0,-20,0,-20" MinimumDate="2000-01-01" MaximumDate="2999-12-31" Format="dd/MM/yyyy" Date="{x:Static sys:DateTime.Today}"  
+                                            VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource DatepickerStyle}" DateSelected="DpTo_DateSelected" ></DatePicker>
+                                        </Grid>
+                                    </Border>
+                                    <Label x:Name="lbldpToSelected" IsVisible="False" Text=""></Label>
+
+                                    <ImageButton Grid.Column="2" x:Name="btnDTSearch" Source="search_orange_80.png" BackgroundColor="{StaticResource Gray50}"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" 
+                                    Clicked="btnDTSearch_Clicked"></ImageButton>
+
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.ColumnSpan="2" ColumnSpacing="5" Padding="0" ColumnDefinitions="*,*,Auto">
+
+                                    <Border Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource bbtxt}" Padding="0" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Job Ref/Postal/Company/Receiver Name" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtRefNo" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <ImageButton Grid.Column="2" x:Name="btnParSearch" Source="search_orange_80.png" BackgroundColor="{StaticResource Gray50}"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"
+                        Clicked="btnSearch_Clicked"></ImageButton>
+
+                                </Grid>
+
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2" IsVisible="False">
+                                    <VerticalStackLayout>
+                                        <Button x:Name="btnSearch" Text="Search" Clicked="btnSearch_Clicked" Margin="10" Style="{StaticResource bstyleOrange}"/>
+                                    </VerticalStackLayout>
+
+                                </Grid>
+
+                                <Grid Grid.Row="3" Grid.ColumnSpan="2">
+                                    <ScrollView x:Name="TabScroll"
+                        Orientation="Horizontal"
+                        HorizontalScrollBarVisibility="Never"
+                        VerticalScrollBarVisibility="Never">
+                                        <Grid HorizontalOptions="Center">
+                                            <VerticalStackLayout>
+                                                <HorizontalStackLayout x:Name="TabHeaderLayout"
+                                               BindableLayout.ItemsSource="{Binding Tabs}"
+                                               Spacing="20"
+                                               Padding="10,5"
+                                               HeightRequest="47">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate x:DataType="classes:TabItem">
+                                                            <Label Text="{Binding Title}"
+                                           Style="{StaticResource TabButtonStyle}">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="OnTabClicked"/>
+                                                                </Label.GestureRecognizers>
+                                                                <Label.Triggers>
+
+                                                                    <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ManageJobPageVM}}, Path=SelectedTabIndex}"
+                                                         Value="{Binding Source={x:Reference TabHeaderLayout}, Path=BindableLayoutIndex}">
+                                                                        <Setter Property="TextColor" Value="#007AFF"/>
+                                                                        <Setter Property="FontAttributes" Value="Bold"/>
+                                                                    </DataTrigger>
+                                                                </Label.Triggers>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </HorizontalStackLayout>
+
+                                                <BoxView x:Name="TabIndicator"
+                                 HeightRequest="3"
+                                 Color="#007AFF"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="End"/>
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </ScrollView>
+                                </Grid>
+
+                                <CarouselView x:Name="TabCarousel"
+                      Grid.Row="4"
+                      Grid.ColumnSpan="2"
+                      ItemsSource="{Binding Tabs}"
+                      Position="{Binding SelectedTabIndex, Mode=TwoWay}"
+                      PositionChanged="TabCarousel_PositionChanged"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand">
+                                    <CarouselView.ItemTemplate>
+                                        <DataTemplate x:DataType="classes:TabItem">
+                                            <CollectionView x:Name="cvJobs" ItemsSource="{Binding Items}">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate x:DataType="classes:ManageJobSelector">
+                                                        <Border Stroke="Gray" StrokeThickness="1" StrokeShape="RoundRectangle 8" 
+                                            BackgroundColor="White" Margin="5" Padding="15">
+
+                                                            <VerticalStackLayout Padding="0" Spacing="5">
+                                                                <VerticalStackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="tabOnItemTap" />
+                                                                </VerticalStackLayout.GestureRecognizers>
+
+                                                                <Label Text="{Binding JobsIDX}" IsVisible="False" Style="{StaticResource textStyle14BlackBoldForRow}" />
+
+                                                                <HorizontalStackLayout Spacing="5">
+                                                                    <Label Text="Part 1" IsVisible="{Binding ShowP1}" Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                    <Label Text="Part 2" IsVisible="{Binding ShowP2}" Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                </HorizontalStackLayout>
+
+                                                                <HorizontalStackLayout Spacing="5">
+                                                                    <Label Text="Job No." Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                    <Label Text="{Binding JobNo}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </HorizontalStackLayout>
+
+                                                                <HorizontalStackLayout Spacing="5">
+                                                                    <Label Text="Ref No." Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                    <Label Text="{Binding RefNo}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </HorizontalStackLayout>
+
+                                                                <HorizontalStackLayout Spacing="5">
+                                                                    <Label Text="Status" Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                    <Label Text="{Binding Status}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </HorizontalStackLayout>
+
+                                                                <HorizontalStackLayout Spacing="5">
+                                                                    <Label Text="Express Type" Style="{StaticResource textStyle14BlackBoldForRow}" WidthRequest="100" />
+                                                                    <Label Text="{Binding ExpType}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </HorizontalStackLayout>
+
+                                                                <VerticalStackLayout Spacing="2" IsVisible="{Binding ShowDelFrom}">
+                                                                    <Label Text="Delivery From" Style="{StaticResource textStyle14BlackBoldForRow}" />
+                                                                    <Label Text="{Binding FromAdd}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </VerticalStackLayout>
+
+                                                                <VerticalStackLayout Spacing="2">
+                                                                    <Label Text="Delivery To" Style="{StaticResource textStyle14BlackBoldForRow}" />
+                                                                    <Label Text="{Binding ToAdd}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </VerticalStackLayout>
+
+                                                                <VerticalStackLayout Spacing="2">
+                                                                    <Label Text="Receiver" Style="{StaticResource textStyle14BlackBoldForRow}" />
+                                                                    <Label Text="{Binding Receiver}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </VerticalStackLayout>
+
+                                                                <VerticalStackLayout Spacing="2">
+                                                                    <Label Text="Date From" Style="{StaticResource textStyle14BlackBoldForRow}" />
+                                                                    <Label Text="{Binding DateFrom}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </VerticalStackLayout>
+
+                                                                <VerticalStackLayout Spacing="2">
+                                                                    <Label Text="Date To" Style="{StaticResource textStyle14BlackBoldForRow}" />
+                                                                    <Label Text="{Binding DateTo}" Style="{StaticResource textStyle14BlackForRow}" />
+                                                                </VerticalStackLayout>
+
+                                                            </VerticalStackLayout>
+
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+                                </CarouselView>
+
+
+                            </Grid>
+
+                        </AbsoluteLayout>
+
+                    </Grid>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSOptions"
+            SheetHeight="420"
+            HeaderText="OPTIONS"
+            Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+
+                                <VerticalStackLayout Margin="0" Padding="0" HeightRequest="250" HorizontalOptions="FillAndExpand" Spacing="10">
+
+                                    <Label Text="Select an Option to proceed or click Close." HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource textStyle15Black}" />
+
+                                    <BoxView Style="{StaticResource DividerGray50}" />
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeThickness="0" StrokeShape="RoundRectangle 8" 
+                                BackgroundColor="White" HeightRequest="210" VerticalOptions="Center" Padding="0">
+
+                                        <CollectionView x:Name="cvOptions" BackgroundColor="Transparent" ItemSizingStrategy="MeasureAllItems" HorizontalOptions="FillAndExpand" HeightRequest="210">
+                                            <CollectionView.ItemsLayout>
+                                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                                            </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate x:DataType="classes:ManageJobOptionSelector">
+                                                    <VerticalStackLayout>
+                                                        <Grid Padding="0" HeightRequest="64">
+                                                            <Grid.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="cvOptionsOnItemTap" />
+                                                            </Grid.GestureRecognizers>
+
+                                                            <Label Text="{Binding value}" IsVisible="False" Style="{StaticResource textStyle15Black}" 
+                                                       HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                                            <Label Text="{Binding DispText}" Style="{StaticResource textStyle15Black}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                        </Grid>
+
+                                                        <BoxView Style="{StaticResource DividerGray50}" HeightRequest="1" />
+                                                    </VerticalStackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Button x:Name="btnCXBSOptions" Text="Close" Style="{StaticResource bstyleOrange}" Clicked="btnCXBSOption_Clicked" />
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSSS"
+            SheetHeight="420"
+            HeaderText="STOP SHIPMENT"
+            Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="10" HorizontalOptions="FillAndExpand" HeightRequest="400">
+
+                                <Label Text="Enter reason to STOP this shipment." HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource textStyle15Black}" />
+
+                                <BoxView Style="{StaticResource DividerGray50}" />
+
+                                <Border Style="{StaticResource bbtxt}" StrokeThickness="1" Stroke="#E0E0E0" StrokeShape="RoundRectangle 8">
+                                    <Editor x:Name="txtReason" Style="{StaticResource Etxt}" Placeholder="Reason" HeightRequest="200" 
+                                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Start" AutoSize="TextChanges" />
+                                </Border>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Button x:Name="btnCXBSSS" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSSS_Clicked" HorizontalOptions="FillAndExpand" />
+                                    <Button x:Name="btnSaveBSSS" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSSSSave_Clicked" HorizontalOptions="FillAndExpand" />
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSINST"
+            SheetHeight="420"
+            HeaderText="ADD INSTRUCTION"
+            Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="10" HorizontalOptions="FillAndExpand" HeightRequest="400">
+
+                                <Label Text="Enter instruction to this job." HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource textStyle15Black}" />
+
+                                <BoxView Style="{StaticResource DividerGray50}" />
+
+                                <Border Style="{StaticResource bbtxt}" StrokeThickness="1" Stroke="#E0E0E0" StrokeShape="RoundRectangle 8">
+                                    <Editor x:Name="txtIns" Style="{StaticResource Etxt}" Placeholder="Instruction" HeightRequest="200" 
+                                HorizontalTextAlignment="Start" VerticalTextAlignment="Start" VerticalOptions="Start" AutoSize="TextChanges" BackgroundColor="Transparent" Margin="0" />
+                                </Border>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Button x:Name="btnCXBSINST" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSINST_Clicked" HorizontalOptions="FillAndExpand" />
+                                    <Button x:Name="btnSaveBSINST" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSINSTSave_Clicked" HorizontalOptions="FillAndExpand" />
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSSummary"
+            SheetHeight="620"
+            HeaderText="SUMMARY"
+            Theme="Dark">
+
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout x:Name="vsBSSummary" Spacing="16" Padding="5">
+
+                                <ScrollView x:Name="svBSSummary" Orientation="Vertical" HeightRequest="440">
+
+                                    <VerticalStackLayout Spacing="10">
+
+                                        <Label x:Name="lblBSSummaryJobIDX" IsVisible="False"/>
+                                        <Label x:Name="lblBSSummaryJobNoHidden" IsVisible="False"/>
+
+                                        <Label x:Name="lblBSSummaryJobNo" Text="Job No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+
+                                        <Label x:Name="lblBSSummaryRefNo" Text="Ref No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+
+                                        <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                        <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 8" Padding="10">
+                                            <VerticalStackLayout HorizontalOptions="Center">
+                                                <Label Text="Current Status" Style="{StaticResource textStyle18BlackBold}" />
+                                                <Label x:Name="lblBSSummaryStatus" Style="{StaticResource textStyle18OrangeBold}" />
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                        <Border x:Name="bSvc" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 8" Padding="10">
+                                            <VerticalStackLayout Spacing="6">
+                                                <Label Text="Service Type" Style="{StaticResource textStyle16BlackBold}" />
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Service Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                    <Label x:Name="lblBSSummarySvcType" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Express Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                    <Label x:Name="lblBSSummaryExpType" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Content:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                    <Label x:Name="lblBSSummaryContentType" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Total Pieces:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                    <Label x:Name="lblBSSummaryPcs" Style="{StaticResource textStyle15BlackStart}" Text="0"/>
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Total Weight:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                    <Label x:Name="lblBSSummaryWeight" Style="{StaticResource textStyle15BlackStart}" Text="0 kg"/>
+                                                </HorizontalStackLayout>
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                        <Border x:Name="bPUL" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 8" Padding="10">
+                                            <VerticalStackLayout Spacing="6">
+                                                <Label Text="Pick Up Information" Style="{StaticResource textStyle16BlackBold}" />
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryPUCompany" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryPUAddress" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryPUPostal" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Contact Person:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryPUContact" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Tel No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryPUTel" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Mobile No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryPUMobile" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Instruction:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryPUInstruction" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Ready By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryPURdyTime" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryPULunch" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                        <Label x:Name ="lblBSSummaryDLBLOCK" Text="" IsVisible="False"></Label>
+                                        <Label x:Name ="lblBSSummaryDLSTREET" Text="" IsVisible="False"></Label>
+                                        <Label x:Name ="lblBSSummaryDLUNIT" Text="" IsVisible="False"></Label>
+                                        <Label x:Name ="lblBSSummaryDLBUILDING" Text="" IsVisible="False"></Label>
+                                        <Label x:Name ="lblBSSummaryDLLocationType" Text="" IsVisible="False"></Label>
+
+                                        <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 8" Padding="10">
+                                            <VerticalStackLayout Spacing="6">
+                                                <Label Text="Delivery Information" Style="{StaticResource textStyle16BlackBold}" />
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLCompany" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLAddress" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryDLPostal" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Contact Person:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLContact" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Tel No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryDLTel" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Mobile No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryDLMobile" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Instruction:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLInstruction" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Deliver From:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSSummaryDLFrom" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Deliver By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLBy" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSSummaryDLLunch" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <Button x:Name="btnBSSummaryResch" Text="Edit Timing" Style="{StaticResource bstyleOrange}" Margin="0,20,0,0" Clicked="btnBSSummaryResch_Clicked" />
+
+                                                <Button x:Name="btnBSSummaryRedir" Text="Edit Address" Style="{StaticResource bstyleOrange}" Margin="0,20,0,20" Clicked="btnBSSummaryRedir_Clicked" />
+                                            </VerticalStackLayout>
+                                        </Border>
+
+                                    </VerticalStackLayout>
+                                </ScrollView>
+
+                                <BoxView Style="{StaticResource DividerGray50}"/>
+                                <Button x:Name="btnCXBSSummary" Text="Cancel" Style="{StaticResource bstyleOrange}" HorizontalOptions="Center" Clicked="CloseBSSummary_Clicked" />
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSResch"
+            SheetHeight="720"
+            HeaderText="RESCHEDULE DELIVERY"
+            Theme="Dark">
+
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="5" HorizontalOptions="FillAndExpand">
+
+                                <Label x:Name="lblBSReschJobIDX" IsVisible="False" />
+                                <Label x:Name="lblBSReschJobNoHidden" IsVisible="False" />
+
+                                <ScrollView x:Name="svBSResch" Orientation="Vertical" HeightRequest="540">
+                                    <VerticalStackLayout Spacing="10">
+
+                                        <Label x:Name="lblBSReschJobNo" Text="Job No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0" />
+
+                                        <Label x:Name="lblBSReschRefNo" Text="Ref No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0" />
+
+                                        <BoxView Style="{StaticResource DividerGray50}" />
+
+                                        <Border StrokeThickness="1" Stroke="#E0E0E0" BackgroundColor="White" StrokeShape="RoundRectangle 8" Padding="10" HorizontalOptions="FillAndExpand">
+
+                                            <VerticalStackLayout Spacing="6">
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSReschDLCompany" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                                </Grid>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSReschDLAdd" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                    <Label x:Name="lblBSReschDLPostal" Style="{StaticResource textStyle15BlackStart}" />
+                                                </HorizontalStackLayout>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Receiver:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                    <Label Grid.Column="1" x:Name="lblBSReschRecevier" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <BoxView Style="{StaticResource DividerGray50}" />
+
+                                                <Label Text="Current Timing" Style="{StaticResource textStyle15Black}" />
+
+                                                <HorizontalStackLayout>
+                                                    <Label WidthRequest="130" Text="Deliver From:" Style="{StaticResource textStyle15Black}" />
+                                                    <Label x:Name="lblBSReschFrom" Style="{StaticResource textStyle15Black}" />
+                                                </HorizontalStackLayout>
+
+                                                <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                    <Label Text="Deliver By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" x:Name="lblBSReschBy" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+
+                                                <Label Text="Select 1 option listed below." Margin="0,10,0,0" HorizontalOptions="Center" Style="{StaticResource textStyle14Black}" />
+
+                                                <BoxView Style="{StaticResource DividerGray50}" />
+
+                                                <CollectionView x:Name="cvReschSelectors" ItemsLayout="VerticalList"
+                                    SelectionMode="Single" HeightRequest="300">
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate x:DataType="classes:ManageJobReschSelector">
+                                                            <VerticalStackLayout>
+                                                                <VerticalStackLayout.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="cvcvReschSelectorsOnItemTap" />
+                                                                </VerticalStackLayout.GestureRecognizers>
+
+                                                                <Label Text="{Binding dttw}" Style="{StaticResource textStyle15Black}" 
+                                                           HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" 
+                                                           VerticalTextAlignment="Center" HeightRequest="64" />
+
+                                                                <BoxView Style="{StaticResource DividerGray50}" />
+                                                            </VerticalStackLayout>
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+
+                                            </VerticalStackLayout>
+                                        </Border>
+                                    </VerticalStackLayout>
+                                </ScrollView>
+
+                                <BoxView Style="{StaticResource DividerGray50}" />
+
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Button x:Name="btnCXBSResch" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSResch_Clicked" HorizontalOptions="FillAndExpand" />
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+        IsVisible="False"
+        x:Name="BSRedir"
+        SheetHeight="720"
+        Padding="0"
+        HeaderText="DELIVERY ADDRESS INFO"
+        Theme="Dark">
+
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="5">
+
+                                <Label x:Name="lblBSRedirJobIDX" Text="" IsVisible="False"></Label>
+                                <Label x:Name="lblBSRedirJobNoHidden" Text="" IsVisible="False"></Label>
+
+                                <ScrollView Orientation="Vertical" HeightRequest="540" x:Name="svBSRedir">
+                                    <VerticalStackLayout Spacing="5">
+
+                                        <Label x:Name="lblBSRedirJobNo" Style="{StaticResource textStyle15Black}" Text="Job No:" Margin="5,0,0,0" />
+
+                                        <Label x:Name="lblBSRedirRefNo" Style="{StaticResource textStyle15Black}" Text="Ref No:" Margin="5,0,0,0" />
+
+                                        <BoxView Style="{StaticResource DividerGray50}" />
+
+                                        <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Activate to use New Address Info" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" />
+                                            <Switch x:Name="swNewAddress" Toggled="swNewAddressonToggle" Style="{StaticResource sw}" />
+                                        </HorizontalStackLayout>
+
+                                        <Grid ColumnDefinitions="*,*,*" HorizontalOptions="FillAndExpand" ColumnSpacing="5">
+
+                                            <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" Text="Postal*" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                    <Entry Grid.Row="1" x:Name="txtPostal" IsReadOnly="True" Keyboard="Numeric" ReturnType="Done" MaxLength="6" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                        <Entry.Behaviors>
+                                                            <classes:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                        </Entry.Behaviors>
+                                                    </Entry>
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Grid.Column="1" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" Text="Block" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                    <Entry Grid.Row="1" x:Name="txtBlock" IsReadOnly="True" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                        <Entry.Behaviors>
+                                                            <classes:UpperCaseEntryBehavior />
+                                                        </Entry.Behaviors>
+                                                    </Entry>
+                                                </Grid>
+                                            </Border>
+
+
+                                            <Border Grid.Column="2" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" Text="Unit" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                    <Entry Grid.Row="1" x:Name="txtUnit" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                        <Entry.Behaviors>
+                                                            <classes:UpperCaseEntryBehavior />
+                                                        </Entry.Behaviors>
+                                                    </Entry>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Street*" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtStreet" Style="{StaticResource txt}" IsReadOnly="True" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Building Name" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtBldg" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Company Name" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtCompany" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <CollectionView x:Name="cvLocationType" SelectionChanged="cvLocationTypeOnItemSelected" SelectionMode="Single" 
+                                            ItemSizingStrategy="MeasureAllItems" HorizontalOptions="Fill" HeightRequest="55">
+                                            <CollectionView.ItemsLayout>
+                                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                            </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate x:DataType="classes:LocationTypeDisp">
+                                                    <Border Style="{StaticResource bb}" StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black">
+                                                        <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" 
+                                           HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+
+                                        <Label x:Name="lblSelectedLocationType" IsVisible="False" />
+
+                                        <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="#ffffff" />
+
+                                        <HorizontalStackLayout Spacing="10" HorizontalOptions="FillAndExpand">
+                                            <Label x:Name="lblswNewContact" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Text="Activate to use New Contact" />
+                                            <Switch x:Name="swNewContact" IsToggled="False" Toggled="swNewContactonToggle" Style="{StaticResource sw}" />
+                                        </HorizontalStackLayout>
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Contact Name*" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtContactName" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Border Style="{StaticResource bbtxt}" HeightRequest="55" WidthRequest="100">
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" Text="Tel" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                    <Entry Grid.Row="1" x:Name="txtTel" Keyboard="Numeric" MaxLength="8" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                        <Entry.Behaviors>
+                                                            <classes:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                        </Entry.Behaviors>
+                                                    </Entry>
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Style="{StaticResource bbtxt}" HeightRequest="55" WidthRequest="100" >
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" Text="Mobile" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                    <Entry Grid.Row="1" x:Name="txtHp" Keyboard="Numeric" MaxLength="8" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                        <Entry.Behaviors>
+                                                            <classes:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                        </Entry.Behaviors>
+                                                    </Entry>
+                                                </Grid>
+                                            </Border>
+                                        </HorizontalStackLayout>
+
+                                        <Label Margin="10,0,0,0" Text="Please enter at least a Tel or Mobile Number." Style="{StaticResource textStyle15Black}" />
+
+                                        <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="#ffffff" />
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="50">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Instruction" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtInstruction" Style="{StaticResource txt}" 
+                                                       HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                    </VerticalStackLayout>
+                                </ScrollView>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                                    <Button x:Name="btnCXBSRedir" Text="Cancel" Clicked="CloseBSRedir_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                    <Button x:Name="btnSaveBSRedir" Text="Save" Clicked="CloseBSRedirSave_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

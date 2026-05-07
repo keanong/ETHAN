@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.Home_Page"
+             Padding="0">
+
+    <ContentView.Resources>
+        <Style x:Key="txt" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="38"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt2">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt3">
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+    </ContentView.Resources>
+
+    <Grid BackgroundColor="Transparent">
+
+        <!--<Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" Stroke="{StaticResource Gray50}"
+            BackgroundColor="{StaticResource Gray50}" Padding="0"
+                 MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">-->
+
+            <Grid RowDefinitions="Auto,*" BackgroundColor="{StaticResource Gray50}">
+
+                <Grid HeightRequest="60" Padding="15,0" BackgroundColor="{StaticResource Gray50}"
+                    VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto">
+
+                    <Image Source="xdelicon.png" VerticalOptions="Center" HorizontalOptions="Start"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=100}" HeightRequest="{OnIdiom Phone=60, Tablet=100}"/>
+
+                    <Label Grid.Column="1" Text="ETHAN" FontSize="20" FontAttributes="Bold" Margin="10" TextColor="{StaticResource XDelOrange}" 
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+
+                <ImageButton Grid.Column="2" Padding="10,0" Source="logout_140.png" VerticalOptions="Center" HorizontalOptions="Start" Clicked="Logout_Click"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=70}" HeightRequest="{OnIdiom Phone=60, Tablet=70}" />
+                </Grid>
+
+                <ScrollView Margin="0" Grid.Row="1">
+
+                    <VerticalStackLayout Padding="20" Spacing="15">
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 10" Padding="15" Stroke="White">
+
+                            <VerticalStackLayout>
+                                <Label x:Name="lblName" HorizontalOptions="Fill" VerticalOptions="Fill" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border x:Name="bCoy" BackgroundColor="{StaticResource XDelOrange}" StrokeShape="RoundRectangle 10" Padding="15">
+                            <VerticalStackLayout>
+
+                                <Label x:Name="lblCoyName" Style="{StaticResource textStyle16White}" Text="Standard Chartered Bank" HorizontalOptions="Start" VerticalOptions="Start" Margin="10,10,0,0" />
+                                <Label x:Name="lblAcctNoText" Style="{StaticResource textStyle16White}" Text="Account No." HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                                <Label x:Name="lblPrepaidAcctText" Style="{StaticResource textStyle16White}" Text="Pre-Paid Account" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                                <Label x:Name="lblAvailBal" Style="{StaticResource textStyle18WhiteBold}" Text="SGD 9999999.00" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" />
+                                <Label x:Name="lblAvailBalText" Style="{StaticResource textStyle13White}" Text="Available Balance" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,10" />
+
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border x:Name="bTrack" Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                            <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                <Label Grid.Row="0" Grid.Column="0" Text="Track Your Delivery" HorizontalOptions="Fill" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                <Entry Grid.Row="1" Grid.Column="0" x:Name="txtRefNo" Style="{StaticResource txt}" Keyboard="Text" Text="" ReturnType="Done" HorizontalTextAlignment="Center" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="False" />
+                            <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnScan" Source="barcode_80.png" BackgroundColor="Transparent" VerticalOptions="Center" Clicked="btnScan_Click"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+                            </Grid>
+
+                        </Border>
+                        
+                        <Button x:Name="btnCreateJ" Text="Create Job" Style="{StaticResource btnStyle}" 
+                        Clicked="CreateJob_Click"></Button>
+
+                        <Button x:Name="btnManageJ" Text="Manage Job" Style="{StaticResource btnStyle}"  
+                        Clicked="ManageJob_Click"></Button>
+
+                        <Button x:Name="btnInventory" Text="Inventory" Style="{StaticResource btnStyle}"  
+                        Clicked="Inventory_Click"></Button>
+
+                        <Button x:Name="btnTopUp" Text="Prepaid" Style="{StaticResource btnStyle}"  
+                        Clicked="btnTopUp_Click" IsVisible="False"></Button>
+
+                    </VerticalStackLayout>
+
+                </ScrollView>
+
+            </Grid>
+
+        <!--</Border>-->
+    </Grid>
+
+
+
+</ContentView>

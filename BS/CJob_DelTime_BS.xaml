@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             x:Class="ETHAN.BS.CJob_DelTime_BS"
+             BackgroundColor="{StaticResource Gray100}"
+             x:Name="this"
+             Padding="16, 32">
+
+
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+
+        <Frame CornerRadius="20" Padding="5" BorderColor="Transparent">
+            <Grid HorizontalOptions="FillAndExpand" HeightRequest="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <ScrollView Grid.Column="0" x:Name="svl" Orientation="Vertical" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" >
+                    <StackLayout Grid.Column="1" Orientation="Vertical" x:Name="sll" Spacing="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start">
+                        <Label Text="00:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="01:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="02:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="03:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="04:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="05:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="06:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="07:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="08:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="09:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="10:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="11:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="12:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="13:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="14:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="15:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="16:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="17:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="18:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="19:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="20:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="21:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="22:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="23:00" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                </ScrollView>
+
+                <ScrollView Grid.Column="2" x:Name="svr" Orientation="Vertical" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" >
+                    <StackLayout Grid.Column="1" Orientation="Vertical" x:Name="slr" Spacing="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start">
+                        <Label Text="00:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="01:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="02:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="03:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="04:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="05:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="06:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="07:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="08:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="09:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="10:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="11:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="12:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="13:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="14:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="15:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="16:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="17:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="18:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="19:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="20:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="21:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="22:00" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="23:00" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                </ScrollView>
+
+            </Grid>
+        </Frame>
+
+    </StackLayout>
+
+
+
+</the49:BottomSheet>

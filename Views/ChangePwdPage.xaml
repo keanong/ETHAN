@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.ChangePwdPage"
+             Title="ChangePwdPage"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="{StaticResource Gray50}" Padding="0" Stroke="{StaticResource Gray200}" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" 
+            BackgroundColor="{StaticResource Gray50}" WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,Auto, *" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
+                                     WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTitle" Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <ScrollView Padding="10,0" Grid.Row="1" Margin="0" x:Name="svMain" HorizontalOptions="Fill">
+
+                            <VerticalStackLayout Padding="0,10" Spacing="15">
+
+                                <Label HorizontalOptions="Fill" VerticalOptions="Fill" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Password strength:" />
+
+                                <Label HorizontalOptions="Fill" VerticalOptions="Fill" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16Black}" Text="Password must contain the following:" />
+
+                                <HorizontalStackLayout x:Name="hsMinEight" Margin="10,0,0,0" Spacing="5">
+                                    <Label x:Name="iconMinEight" Text="&#x2716;" VerticalOptions="Center" />
+                                    <Label x:Name="lblminEight" Text="Minimum 8 characters" Style="{StaticResource textStyle16Black}" />
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout x:Name="hsLowerC" Margin="10,0,0,0" Spacing="5">
+                                    <Label x:Name="iconLowerC" Text="&#x2716;" VerticalOptions="Center" />
+                                    <Label x:Name="lblLowerC" Text="A lowercase letter" Style="{StaticResource textStyle16Black}"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout x:Name="hsUpperC" Margin="10,0,0,0" Spacing="5">
+                                    <Label x:Name="iconUpperC" Text="&#x2716;" VerticalOptions="Center" />
+                                    <Label x:Name="lblUpperC" Text="A capital (uppercase) letter" Style="{StaticResource textStyle16Black}"/>
+                                </HorizontalStackLayout>
+
+                                <HorizontalStackLayout x:Name="hsNum" Margin="10,0,0,0" Spacing="5">
+                                    <Label x:Name="iconNum" Text="&#x2716;" VerticalOptions="Center" />
+                                    <Label x:Name="lblNum" Text="A number" Style="{StaticResource textStyle16Black}"/>
+                                </HorizontalStackLayout>
+
+
+                                <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                    <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="Old Password" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                        <Entry Grid.Row="1" Grid.Column="0" x:Name="txtOldPwd" Style="{StaticResource txt}" ReturnType="Done" TextChanged="OnPwdFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="True" />
+                                        <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnToggleOldPwd" Source="eye_show_80.png"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" 
+                                                     Clicked="OnTogglePwdClicked" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" />
+                                    </Grid>
+
+                                </Border>
+
+                                <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                    <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="New Password" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                        <Entry Grid.Row="1" Grid.Column="0" x:Name="txtNewPwd" Style="{StaticResource txt}" ReturnType="Done" TextChanged="OnPwdFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="True" />
+                                        <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnToggleNewPwd" Source="eye_show_80.png"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" 
+                                                     Clicked="OnTogglePwdClicked" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" />
+                                    </Grid>
+
+                                </Border>
+
+                                <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                    <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="Confirm New Password" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                        <Entry Grid.Row="1" Grid.Column="0" x:Name="txtCfmNewPwd" Style="{StaticResource txt}" ReturnType="Done" TextChanged="OnPwdFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="True" />
+                                        <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnToggleCfmNewPwd" Source="eye_show_80.png"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" 
+                                                     Clicked="OnTogglePwdClicked" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" />
+                                    </Grid>
+
+                                </Border>
+
+                                <HorizontalStackLayout x:Name="hsPwdMatch" Margin="10,0,0,0" Spacing="5">
+                                    <Label x:Name="iconPwdMatch" Text="&#x2716;" VerticalOptions="Center" />
+                                    <Label x:Name="lblPwdMatch" Text="Please enter and confirm new password" Style="{StaticResource textStyle16Black}" HorizontalOptions="Fill" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                                </HorizontalStackLayout>
+
+
+                                <Grid ColumnDefinitions="*" HorizontalOptions="Fill" ColumnSpacing="5" Margin="10,0,10,10">
+                                    <Button x:Name="btnChangePwd" Text="Change Password" HorizontalOptions="Fill" Style="{StaticResource bstyleOrange}" Clicked="btnChangePwd_Click" />
+                                </Grid>
+
+
+                            </VerticalStackLayout>
+
+                        </ScrollView>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.JobSummary"
+             Title="JobSummary"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" Padding="0" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Fill" VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="Back" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTopNBack" Grid.Column="1" Text="Edit Job" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Back"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <Label x:Name="btnTopNavEditJob" Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" HorizontalOptions="End" 
+                               VerticalTextAlignment="Center" Margin="0,0,25,0" IsVisible="False">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Return"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+
+                            <ScrollView Margin="10,0,10,10">
+
+                                <VerticalStackLayout Spacing="10">
+
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <BoxView Grid.Column="0" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+
+                                        <Label Grid.Column="1" Text="Summary" Style="{StaticResource textStyle22OrangeBold}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                                        <BoxView Grid.Column="2" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,*,*" x:Name="gp1">
+                                        <BoxView Grid.Column="0" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+
+                                        <Label Grid.Column="1" Text="Part 1" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                                        <BoxView Grid.Column="2" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+                                    </Grid>
+
+                                    <Label x:Name="lblBSSummaryJobIDX" IsVisible="False"/>
+                                    <Label x:Name="lblBSSummaryJobNoHidden" IsVisible="False"/>
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout>
+                                            <Label x:Name="lblBSSummaryJobIDXText" Text="Job ID:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+                                            <Label x:Name="lblBSSummaryJobNo" Text="Job No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+                                            <Label x:Name="lblBSSummaryRefNo" Text="Ref No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Service Type" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Service Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummarySvcType" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Express Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryExpType" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Content:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryContentType" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total Pieces:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryPcs" Style="{StaticResource textStyle15BlackStart}" Text="0"/>
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total Weight:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryWeight" Style="{StaticResource textStyle15BlackStart}" Text="0 kg"/>
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Ready By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryPURdyTime" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPULunch" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Deliver From:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLFrom" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto" VerticalOptions="Start">
+                                                <Label Text="Deliver By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Grid Grid.Column="1" RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" x:Name="lblBSSummaryDLBy" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                    <Label Grid.Row="1" x:Name="lblBSSummaryDLBy2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+                                            </Grid>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLLunch" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Pick Up Address Information" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPUCompany" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPUAddress" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryPUPostal" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Contact Person:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPUContact" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Tel No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryPUTel" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Mobile No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryPUMobile" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Instruction:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPUInstruction" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Label x:Name ="lblBSSummaryDLBLOCK" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLSTREET" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLUNIT" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLBUILDING" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLLocationType" Text="" IsVisible="False"></Label>
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Delivery Address Information" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLCompany" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLAddress" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLPostal" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Contact Person:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLContact" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Tel No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLTel" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Mobile No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLMobile" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Instruction:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLInstruction" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Border x:Name="b_payable1" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Amount Payable" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Net Price:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryNetprice" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="7% GST:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryGST" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryTotalAmt" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                    <Grid ColumnDefinitions="*,*,*" x:Name="gp2" IsVisible="False">
+                                        <BoxView Grid.Column="0" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+
+                                        <Label Grid.Column="1" Text="Part 2" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                                        <BoxView Grid.Column="2" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+                                    </Grid>
+
+                                    <Label x:Name="lblBSSummaryJobIDX2" IsVisible="False"/>
+                                    <Label x:Name="lblBSSummaryJobNoHidden2" IsVisible="False"/>
+
+                                    <Border x:Name="b2_1" IsVisible="False" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout>
+                                            <Label x:Name="lblBSSummaryJobIDXText2" Text="Job ID:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+                                            <Label x:Name="lblBSSummaryJobNo2" Text="Job No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+                                            <Label x:Name="lblBSSummaryRefNo2" Text="Ref No:" Style="{StaticResource textStyle15Black}" Margin="5,0,0,0"/>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Border x:Name="b2_2" IsVisible="False" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Service Type" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Service Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummarySvcType2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Express Type:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryExpType2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Content:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryContentType2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total Pieces:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryPcs2" Style="{StaticResource textStyle15BlackStart}" Text="0"/>
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total Weight:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryWeight2" Style="{StaticResource textStyle15BlackStart}" Text="0 kg"/>
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Ready By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryPURdyTime2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryPULunch2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap"/>
+                                            </Grid>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Deliver From:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLFrom2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto" VerticalOptions="Start">
+                                                <Label Text="Deliver By:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start"/>
+                                                <Grid Grid.Column="1" RowDefinitions="*,*">
+                                                    <Label Grid.Row="0" x:Name="lblBSSummaryDLBy3" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                    <Label Grid.Row="1" x:Name="lblBSSummaryDLBy4" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                                </Grid>
+                                            </Grid>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Lunch Time Avoidance:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLLunch2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Label x:Name ="lblBSSummaryDLBLOCK2" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLSTREET2" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLUNIT2" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLBUILDING2" Text="" IsVisible="False"></Label>
+                                    <Label x:Name ="lblBSSummaryDLLocationType2" Text="" IsVisible="False"></Label>
+
+                                    <Border x:Name="b2_3" IsVisible="False" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Delivery Address" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Company:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLCompany2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Address:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLAddress2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Postal:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLPostal2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Contact Person:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLContact2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Tel No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLTel2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Mobile No.:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" />
+                                                <Label x:Name="lblBSSummaryDLMobile2" Style="{StaticResource textStyle15BlackStart}" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid ColumnDefinitions="130,*" RowDefinitions="Auto">
+                                                <Label Text="Instruction:" WidthRequest="130" Style="{StaticResource textStyle15BlackStart}" VerticalOptions="Start" />
+                                                <Label Grid.Column="1" x:Name="lblBSSummaryDLInstruction2" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" />
+                                            </Grid>
+
+                                        </VerticalStackLayout>
+                                    </Border>
+
+                                    <Border x:Name="b_payable2" IsVisible="False" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+
+                                        <VerticalStackLayout Spacing="6">
+                                            <Label Text="Amount Payable" Style="{StaticResource textStyle16BlackBold}" />
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Net Price:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryNetprice2" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="7% GST:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryGST2" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <HorizontalStackLayout>
+                                                <Label Text="Total:" Style="{StaticResource textStyle15BlackStart}" WidthRequest="130"/>
+                                                <Label x:Name="lblBSSummaryTotalAmt2" Style="{StaticResource textStyle15BlackStart}" Text="$0.00" />
+                                            </HorizontalStackLayout>
+
+
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeShape="RoundRectangle 10" Padding="10">
+
+                                        <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                                                <Label x:Name="lblTotaltxt" Margin="1" Style="{StaticResource textStyleSmallBlackBold}" Text="Total" 
+                                            VerticalTextAlignment="End" BackgroundColor="Transparent" />
+                                                <Label x:Name="lblTotalValueCurr" Margin="2,1,1,-1" Style="{StaticResource textStyleDefaultBlackBold}" Text="SGD" 
+                                            VerticalTextAlignment="End" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+                                                <Label x:Name="lblTotalValue" Margin="0,1,1,-1" Style="{StaticResource textStyleDefaultBlackBold}" Text="17000.44" 
+                                            VerticalTextAlignment="End" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+                                                <Label x:Name="lblwgst" Margin="2,1,1,1" Style="{StaticResource textStyleSmallBlackBold}" Text="wGST" 
+                                            VerticalTextAlignment="End" BackgroundColor="Transparent" />
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalOptions="Start">
+                                                <Label x:Name="lblBalancetxt" Margin="1" Style="{StaticResource textStyleSmallGrayBold}" Text="Balance" 
+                                            VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+                                                <Label x:Name="lblCurrencytxt" Margin="2,1,1,1" Style="{StaticResource textStyleSmallGrayBold}" Text="SGD" 
+                                            VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+                                                <Label x:Name="lblBalance" Margin="2,1,1,1" Style="{StaticResource textStyleSmallGrayBold}" Text="9999999.00" 
+                                            VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+
+                                            </HorizontalStackLayout>
+
+                                            <HorizontalStackLayout Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Center">
+
+                                                <Button x:Name="btnProceed" Text="Proceed" Style="{StaticResource bstyleOrangeSmall}" Clicked="btnProceed_Clicked" />
+
+                                            </HorizontalStackLayout>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                </VerticalStackLayout>
+
+                            </ScrollView>
+
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<the49:BottomSheet xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:the49="https://schemas.the49.com/dotnet/2023/maui"
+             x:Class="ETHAN.BS.CJob_Content_BS"
+             BackgroundColor="{StaticResource Gray100}"                   
+             x:Name="this"
+             Padding="16, 32">
+    <the49:BottomSheet.Resources>
+        <!--<Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        </Style>
+
+        <Style TargetType="the49:BottomSheet" x:Key="bsstyle">
+            <Setter Property="BackgroundColor" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="CornerRadius" Value="20"></Setter>
+        </Style>-->
+
+        <ControlTemplate x:Key="FrameRadioTemplate" x:Name="frt">
+
+            <Border 
+                Stroke="{StaticResource XDelOrange}"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 20"
+                BackgroundColor="{StaticResource XDelOrange}"
+                HeightRequest="40"
+                Padding="20,5,20,5"
+                MinimumWidthRequest="100"
+                MaximumWidthRequest="150"
+                HorizontalOptions="Start"
+                VerticalOptions="Center">
+
+                <ContentPresenter>
+                    <ContentPresenter.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="HorizontalOptions" Value="Center"/>
+                            <Setter Property="VerticalOptions" Value="Center"/>
+
+                            <Style.Triggers>
+                                <DataTrigger TargetType="Label"
+                                     Binding="{Binding Path=IsChecked,
+                                                       Source={x:RelativeSource AncestorType={x:Type RadioButton}}}"
+                                     Value="True">
+                                    <Setter Property="TextColor" Value="White"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label"
+                                     Binding="{Binding Path=IsChecked,
+                                                       Source={x:RelativeSource AncestorType={x:Type RadioButton}}}"
+                                     Value="False">
+                                    <Setter Property="TextColor" Value="{StaticResource Gray500}"/>
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                    <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource Yellow200Accent}"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+            </Border>
+
+        </ControlTemplate>
+
+        <!--<Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>-->
+
+    </the49:BottomSheet.Resources>
+
+
+    <VerticalStackLayout Spacing="16">
+        <StackLayout HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="Center" IsVisible="False">
+
+            <Border StrokeShape="RoundRectangle 8" StrokeThickness="0" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="lblv" Text="" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False"/>
+            </Border>
+
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" >
+
+            <Frame CornerRadius="20" Padding="5" BorderColor="Transparent">
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" >
+                    <StackLayout Orientation="Horizontal" x:Name="hsl" Spacing="10" Padding="0">
+
+                        <!--contents are added on the fly-->
+
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+
+        </StackLayout>
+
+        <StackLayout>
+            <!-- Full-width Grid inside StackLayout -->
+            <Grid x:Name="gridLWH" IsVisible="False">
+                <!-- Define the Grid's columns -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <!-- Full width for each column -->
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- First Row with Labels -->
+
+                <!-- Second Row with Entry fields -->
+                <Frame Grid.Row="0" Grid.Column="0" Padding="0" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                    <Entry x:Name="txtLength" TextColor="{StaticResource Black}" Placeholder="Length (cm)" HorizontalTextAlignment="Center" Keyboard="Numeric" MaximumWidthRequest="100" />
+                </Frame>
+
+                <Label Text="x" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource Black}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                <Frame Grid.Row="0" Grid.Column="2" Padding="0" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                    <Entry x:Name="txtWidth" TextColor="{StaticResource Black}" Placeholder="Width (cm)" HorizontalTextAlignment="Center" Keyboard="Numeric"/>
+                </Frame>
+
+                <Label Text="x" Grid.Row="0" Grid.Column="3" TextColor="{StaticResource Black}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                <Frame Grid.Row="0" Grid.Column="4" Padding="0" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                    <Entry x:Name="txtHeight" TextColor="{StaticResource Black}" Placeholder="Height (cm)" HorizontalTextAlignment="Center" Keyboard="Numeric" />
+                </Frame>
+
+            </Grid>
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="Center">
+            <!-- Full-width Grid inside StackLayout -->
+            <Grid x:Name="gridpcs">
+                <!-- Define the Grid's columns -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <!-- Full width for each column -->
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- First Row with Labels -->
+
+                <!-- Second Row with Entry fields -->
+                <Frame Grid.Row="0" Grid.Column="0" Padding="0" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Entry x:Name="txtPcs" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource Black}" Margin="5,0,5,0" HorizontalTextAlignment="Center" Keyboard="Telephone" />
+                        <Label Text="Pcs" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource Gray500}" Margin="0" VerticalTextAlignment="Center"></Label>
+                    </Grid>
+
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="2" Padding="0" Margin="5,0,5,0" HorizontalOptions="FillAndExpand" BorderColor="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Entry x:Name="txtWt" Grid.Row="0" Grid.Column="0" TextColor="{StaticResource Black}" Margin="5,0,5,0" HorizontalTextAlignment="Center" Keyboard="Numeric"  />
+                        <Label Text="Kg" Grid.Row="0" Grid.Column="1" TextColor="{StaticResource Gray500}" Margin="7,0,0,0" VerticalTextAlignment="Center"></Label>
+                    </Grid>
+                </Frame>
+
+            </Grid>
+        </StackLayout>
+
+        <BoxView Style="{StaticResource Divider}" x:Name="divider1" />
+
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnCXSaveContent" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="btnCXSaveContentClick" />
+                <Button x:Name="btnSaveContent" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="btnSaveContentClick" />
+
+
+            </Grid>
+
+        </StackLayout>
+
+    </VerticalStackLayout>
+
+
+</the49:BottomSheet>

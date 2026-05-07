@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.FakeTabBar"
+    x:Name="root">
+
+    <ContentView.Resources>
+        <Style TargetType="ImageButton">
+            <Setter Property="HeightRequest" Value="28" />
+            <Setter Property="WidthRequest" Value="28" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+
+    <Border BackgroundColor="{StaticResource Gray50}" StrokeThickness="0" Padding="0">
+
+        <Grid ColumnDefinitions="*,*,*" Padding="0" Margin="0,5,0,5">
+
+            <!-- Home -->
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="3">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Home_Clicked"/>
+                </VerticalStackLayout.GestureRecognizers>
+                <ImageButton Source="{Binding HomeIcon}" Clicked="Home_Clicked" />
+                <Label Text="Home" FontSize="12" TextColor="{Binding HomeColor, Source={x:Reference root}}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Chat -->
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="3" x:Name="vChat">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Chat_Clicked"/>
+                </VerticalStackLayout.GestureRecognizers>
+                <ImageButton Source="{Binding ChatIcon}" Clicked="Chat_Clicked" />
+                <Label Text="Chat" FontSize="12" TextColor="{Binding ChatColor, Source={x:Reference root}}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Settings -->
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Fill" VerticalOptions="Center" Spacing="3" x:Name="vSets">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Settings_Clicked"/>
+                </VerticalStackLayout.GestureRecognizers>
+                <ImageButton Source="{Binding SettingsIcon}" Clicked="Settings_Clicked" />
+                <Label Text="Settings" FontSize="12" TextColor="{Binding SettingsColor, Source={x:Reference root}}" HorizontalOptions="Center" VerticalOptions="Center" />
+            </VerticalStackLayout>
+            
+        </Grid>
+        
+    </Border>
+    
+</ContentView>

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.LoginReg"
+             Title="Registration"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <ContentPage.Resources>
+        <Style x:Key="txt" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="38"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                Padding="0" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <ScrollView Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="10,0,10,10" HorizontalOptions="Fill">
+
+                            <VerticalStackLayout Spacing="10">
+                                <VerticalStackLayout Padding="10">
+                                    <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
+                                    <Label Text="REGISTRATION" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
+                                    <Label Text="Create an account" Style="{StaticResource textStyle16BlackBold}" FontFamily="Consolas" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Padding="10" Spacing="5">
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="First Name" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtFName" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="onNameFieldChanged" 
+                                                   HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <beh:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="lblFNameInvalid" HorizontalOptions="Center" FontAttributes="Bold" WidthRequest="82" FontFamily="Consolas" 
+                                           VerticalOptions="Center" Text="">
+                                        </Label>
+                                        <Label Grid.Column="1" x:Name="lblFName" Text="✱" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Red}">
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Last Name" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtLName" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="onNameFieldChanged" 
+                                                   HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <beh:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="lblLNameInvalid" HorizontalOptions="Center" FontAttributes="Bold" WidthRequest="82" FontFamily="Consolas" 
+                                           VerticalOptions="Center" Text="">
+                                        </Label>
+                                        <Label Grid.Column="1" x:Name="lblLName" Text="✱" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Red}">
+                                        </Label>
+                                    </Grid>
+
+                                    <Label HorizontalOptions="Fill" VerticalOptions="Start" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16Black}" Text="To have a better tracking experience, kindly enter and verify both your Mobile Number and Email Address" />
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Singapore Mobile Number" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtMobile" Text="" Style="{StaticResource txt}" MaxLength="8" ReturnType="Done" TextChanged="onMobileFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" Keyboard="Numeric"></Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="lblMobileInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
+                                        </Label>
+
+                                        <HorizontalStackLayout Grid.Column="1" x:Name="hsMobile" Margin="0,0,0,0" Spacing="5" IsVisible="False" WidthRequest="82" >
+                                            <Label x:Name="iconMobile" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                            <Label x:Name="lblMobile" Text="Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        </HorizontalStackLayout>
+
+                                        <Label Grid.Column="1" x:Name="lblMCountdown" Text="" IsVisible="false" WidthRequest="82" FontAttributes="Bold" 
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Black}" />
+
+                                        <Label Grid.Column="1" x:Name="btnMobileOTP" HorizontalOptions="Fill" FontAttributes="Bold" 
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82" IsVisible="False">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Get OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="RequestMobileOTP" />
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label Grid.Column="1" x:Name="iconVerifiedMobile" Text="&#x2714;" IsVisible="false" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
+
+                                        <Label Grid.Column="1" x:Name="iconPendingMobile" Text="&#x23F3;" IsVisible="false" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
+
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtMobileOTP" Placeholder="Enter OTP sent via SMS" Text="" Style="{StaticResource txt}" ReturnType="Done" 
+                                                   HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" Keyboard="Numeric"></Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="btnMobileVerify" HorizontalOptions="Center" FontAttributes="Bold" 
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center"  WidthRequest="82">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Verify OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="IsValidMobileOTP" />
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" x:Name="GEmail" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Email Address" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtEmail" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="onEmailFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" Keyboard="Email"></Entry>
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="lblEmailInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
+                                        </Label>
+
+                                        <HorizontalStackLayout Grid.Column="1" x:Name="hsEmail" Margin="0,0,0,0" Spacing="5" IsVisible="False" WidthRequest="82">
+                                            <Label x:Name="iconEmail" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                            <Label x:Name="lblEmail" Text="Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        </HorizontalStackLayout>
+
+                                        <Label Grid.Column="1" x:Name="lblECountdown" Text="" IsVisible="false" WidthRequest="82" FontAttributes="Bold" 
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Black}" />
+
+                                        <Label Grid.Column="1" x:Name="btnEmailOTP" HorizontalOptions="Fill" FontAttributes="Bold" 
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Get OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="RequestEmailOTP" />
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label Grid.Column="1" x:Name="iconVerifiedEmail" Text="&#x2714;" IsVisible="false" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
+
+                                        <Label Grid.Column="1" x:Name="iconPendingEmail" Text="&#x23F3;" IsVisible="false" WidthRequest="82" 
+                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
+
+
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtEmailOTP" Placeholder="Enter OTP sent via Email" Text="" Style="{StaticResource txt}" ReturnType="Done" 
+                                                HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" Keyboard="Numeric" />
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" x:Name="btnEmailVerify" HorizontalOptions="Center" FontAttributes="Bold" 
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Verify OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="IsValidEmailOTP" />
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                    </Grid>
+
+                                    <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16Black}" Text="Password must contain the following:" />
+
+                                    <HorizontalStackLayout x:Name="hsMinEight" Margin="10,0,0,0" Spacing="5">
+                                        <Label x:Name="iconMinEight" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <Label x:Name="lblminEight" Text="Minimum 8 characters" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout x:Name="hsLowerC" Margin="10,0,0,0" Spacing="5">
+                                        <Label x:Name="iconLowerC" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <Label x:Name="lblLowerC" Text="A lowercase letter" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout x:Name="hsUpperC" Margin="10,0,0,0" Spacing="5">
+                                        <Label x:Name="iconUpperC" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <Label x:Name="lblUpperC" Text="A capital (uppercase) letter" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout x:Name="hsNum" Margin="10,0,0,0" Spacing="5">
+                                        <Label x:Name="iconNum" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <Label x:Name="lblNum" Text="A number" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout x:Name="hsPwdMatch" Margin="10,0,0,0" Spacing="5">
+                                        <Label x:Name="iconPwdMatch" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <Label x:Name="lblPwdMatch" Text="Please enter and confirm password" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" 
+                                       HorizontalOptions="Fill" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                                    </HorizontalStackLayout>
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                                <Label Grid.Row="0" Grid.Column="0" Text="Password" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" Grid.Column="0" x:Name="txtPwd" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="OnPwdFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="True" />
+                                                <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnTogglePwd" Source="eye_show_80.png" 
+                                                              WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"
+                                                             BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" Clicked="OnTogglePwdClicked" />
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
+                                        </Label>
+                                    </Grid>
+
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+
+                                            <Grid RowDefinitions="*,*" ColumnDefinitions="*,Auto">
+                                                <Label Grid.Row="0" Grid.Column="0" Text="Confirm Password" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" Grid.Column="0" x:Name="txtCfmPwd" Text="" Style="{StaticResource txt}" ReturnType="Done" TextChanged="OnPwdFieldChanged" HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" IsPassword="True" />
+                                                <ImageButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" x:Name="btnToggleCfmPwd" Source="eye_show_80.png" 
+                                                              WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"
+                                                             BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" Clicked="OnTogglePwdClicked" />
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Label Grid.Column="1" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
+                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
+                                        </Label>
+                                    </Grid>
+
+                                    <Button Margin="0,10,0,0" x:Name="btnRegister" Clicked="btnRegister_Click" Text="Register" VerticalOptions="CenterAndExpand" 
+                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" />
+
+                                    <BoxView Color="Black" Margin="0,10,0,0" HeightRequest="1" HorizontalOptions="Fill" />
+
+                                    <VerticalStackLayout Padding="10">
+                                        <Label HorizontalOptions="Center" FontAttributes="Bold" FontFamily="Consolas">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Already have an account? " TextColor="{StaticResource Gray600}" />
+                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Login" TextColor="Blue" TextDecorations="Underline">
+                                                        <Span.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="LoginClicked" />
+                                                        </Span.GestureRecognizers>
+                                                    </Span>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding IsButtonEnabled}"/>
+                                    </VerticalStackLayout>
+
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </ScrollView>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

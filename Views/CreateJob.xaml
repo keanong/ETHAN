@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ETHAN.Views.CreateJob"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.BottomSheet"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Title="Create Job"
+             Padding="0"
+             SafeAreaEdges="All">-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ETHAN.Views.CreateJob"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:controls="clr-namespace:ETHAN.BS"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Title="Create Job"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <Style TargetType="Border" x:Key="bb">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                    Value="{StaticResource Gray100}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="{StaticResource XDelOrange}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Switch" x:Key="sw">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource XDelOrange}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource Gray400}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="txt" TargetType="Entry">
+            <!--<Setter Property="HeightRequest" Value="38"/>-->
+            <Setter Property="HeightRequest">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="44"/>
+                        <On Platform="Android" Value="38"/>
+                    </OnPlatform>
+                </Setter.Value>
+            </Setter>
+
+            <!-- This removes iOS inner border -->
+            <Setter Property="ClearButtonVisibility" Value="Never"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 20"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt2">
+            <Setter Property="StrokeShape" Value="RoundRectangle 20"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="BackgroundColor" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style x:Key="btnTopNavBackNew" TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource XDelOrange}"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Gray50}"></Setter>
+            <Setter Property="Margin" Value="-20,0,0,0"></Setter>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Pressed">
+                        </VisualState>
+                        <VisualState x:Name="PointerOver">
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                Padding="0" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <!-- Fake Title Bar (outside scrollview) -->
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+          HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
+                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTitle" Grid.Column="1" Text="Create job" FontSize="20" FontAttributes="Bold" 
+                                   TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label x:Name="btnTitle2" Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                                   TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToSummary"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <ScrollView Padding="0,0,0,10" Grid.Row="1" Margin="0" x:Name="svMain" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="Fill" HorizontalScrollBarVisibility="Never">
+
+                            <Grid Margin="0" Padding="0" HorizontalOptions="Fill" BackgroundColor="Transparent" RowSpacing="10" RowDefinitions="*,*,*,*,*,*,*,*,80" 
+                                  ColumnDefinitions="*">
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="1" Margin="5,0,5,0" />
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="2" Margin="5,0,5,0" />
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="3" Margin="5,0,5,0" />
+                                <BoxView x:Name="bvRtnAddress" IsVisible="False" Style="{StaticResource boxStyleWhiteRound}" Grid.Row="4" Margin="5,0,5,0" />
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="5" Margin="5,0,5,0" />
+                                <BoxView x:Name="bvRtnSection" IsVisible="False" Style="{StaticResource boxStyleWhiteRound}" Grid.Row="6" Margin="5,0,5,0" />
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="7" Margin="5,0,5,0" />
+                                <BoxView Style="{StaticResource boxStyleWhiteRound}" Grid.Row="8" Margin="5,0,5,0" />
+
+                                <Grid Grid.Row="0" ColumnDefinitions="*,*,*">
+                                    <BoxView Grid.Column="0" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+
+                                    <Label Grid.Column="1" Text="Create Job" Style="{StaticResource textStyle22OrangeBold}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+                                    <BoxView Grid.Column="2" Style="{StaticResource boxStyleWhite}" HeightRequest="5"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Margin="10,5,10,5" BackgroundColor="Transparent" HorizontalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource textStyle15Black}" Text="One-Way" 
+                                           VerticalOptions="Center" HorizontalOptions="End" BackgroundColor="Transparent" />
+
+                                    <Switch Grid.Row="0" Grid.Column="2" x:Name="swOneTwoWay" Margin="5,0,5,0" VerticalOptions="Center" IsToggled="False" BackgroundColor="Transparent" Toggled="swOneTwoWayonToggle" Style="{StaticResource sw}" />
+
+                                    <Label Grid.Row="0" Grid.Column="3" Style="{StaticResource textStyle15Black}" Text="Two-Way (Sign and Return)" 
+                                           VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Transparent" />
+
+                                    <Label x:Name="lblJobsIDX1" IsVisible="False" />
+                                    <Label x:Name="lblJobsIDX2" IsVisible="False" />
+                                </Grid>
+
+                                <Grid Grid.Row="2" MinimumHeightRequest="100" x:Name="gridColAddress" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.ColumnSpan="9" x:Name="lblPUAddtxt" Style="{StaticResource textStyle16BlackBold}" Text="Collection Address" 
+                                           BackgroundColor="Transparent" />
+
+                                    <Label Grid.Row="1" Grid.ColumnSpan="9" x:Name="lblPUAdd" VerticalOptions="Start" Style="{StaticResource textStyle15Black}" Text="" 
+                                           BackgroundColor="Transparent" />
+
+                                    <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="10" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" ></Image>
+
+                                </Grid>
+
+                                <Grid Grid.Row="3" MinimumHeightRequest="100" x:Name="gridDelAddress" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.ColumnSpan="9" x:Name="lblDLAddtxt" Style="{StaticResource textStyle16BlackBold}" Text="Delivery Address" 
+                                           BackgroundColor="Transparent" />
+
+                                    <Label Grid.Row="1" Grid.ColumnSpan="9" x:Name="lblDLAdd" VerticalOptions="Start" Style="{StaticResource textStyle15Black}" Text="" 
+                                           BackgroundColor="Transparent" />
+
+                                    <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="10" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" ></Image>
+
+                                </Grid>
+
+                                <Grid Grid.Row="4" MinimumHeightRequest="100" x:Name="gridRtnAddress" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent" IsVisible="False">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.ColumnSpan="9" x:Name="lblRTNAddtxt" Style="{StaticResource textStyle16BlackBold}" Text="Return Address" 
+                                           BackgroundColor="Transparent" />
+
+                                    <Label Grid.Row="1" Grid.ColumnSpan="9" x:Name="lblRTNAdd" Style="{StaticResource textStyle15Black}" Text="" 
+                                           VerticalOptions="Start" BackgroundColor="Transparent" />
+
+                                    <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="10" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                </Grid>
+
+                                <Grid Grid.Row="5" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" Grid.ColumnSpan="10" x:Name="gridContent" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" x:Name="lbContenttxt" 
+                        Style="{StaticResource textStyle16BlackBold}" Text="Collection Content" 
+                        BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4" x:Name="lblContent" 
+                        Style="{StaticResource textStyle15Black}" Text="Select" 
+                        HorizontalTextAlignment="End"
+                        BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="0" Grid.Column="10" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="1" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="10" x:Name="gridColInv" IsVisible="true" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" Grid.Column="0" x:Name="lbColInvtxt" 
+                        Style="{StaticResource textStyle16BlackBold}" Text="D.O / Invoice (Optional)" BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="5" x:Name="lblColInv" 
+                            Style="{StaticResource textStyle15Black}" Text="Add/Remove" HorizontalOptions="Fill" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="9" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="3" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="4" Grid.ColumnSpan="10" x:Name="gridColTime" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" x:Name="lbColTimetxt" 
+                    Style="{StaticResource textStyle16BlackBold}" Text="Collection Time" 
+                    BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" Grid.Column="4" x:Name="lblColTime" 
+                        Style="{StaticResource textStyle15Black}" Text="Select" HorizontalOptions="Fill"  
+                        HorizontalTextAlignment="End"
+                        BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="9" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="5" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="6" Grid.ColumnSpan="10" x:Name="gridDelTime" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0" x:Name="lbDelTimetxt" 
+                    Style="{StaticResource textStyle16BlackBold}" Text="Delivery Time" 
+                    BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="4" x:Name="lblDelTime" 
+                    Style="{StaticResource textStyle15Black}" Text="Select" HorizontalOptions="Fill" 
+                    HorizontalTextAlignment="End"
+                    BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="2" Grid.ColumnSpan="1" Grid.Column="9" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="7" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="8" Grid.ColumnSpan="10" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,3,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="38" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" x:Name="lbExpTypetxt" 
+                        Style="{StaticResource textStyle16BlackBold}" Text="Express Type" 
+                        BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" x:Name="lblExpType" 
+                        Style="{StaticResource textStyle15Black}" Text="TBA" 
+                        HorizontalTextAlignment="End"
+                        BackgroundColor="Transparent" />
+
+                                    </Grid>
+
+                                </Grid>
+
+                                <Grid Grid.Row="6" x:Name="gridRtnPortion" BackgroundColor="Transparent" IsVisible="false">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" Grid.ColumnSpan="10" x:Name="gridRtnContent" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" x:Name="lbRtnContenttxt" 
+                        Style="{StaticResource textStyle16BlackBold}" Text="Return Content" 
+                        BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4" x:Name="lblRtnContent" 
+                       Style="{StaticResource textStyle15Black}" Text="Select" 
+                       HorizontalTextAlignment="End"
+                       BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="0" Grid.Column="10" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" ></Image>
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="1" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="2" Grid.ColumnSpan="10"  x:Name="gridRtnInv" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,3,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" Grid.Column="0" x:Name="lbRtnInvtxt" 
+                        Style="{StaticResource textStyle16BlackBold}" Text="D.O / Invoice (Optional)" BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="5" x:Name="lblRtnInv" 
+                            Style="{StaticResource textStyle15Black}" Text="Add/Remove" HorizontalOptions="Fill" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="9" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="3" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="4" Grid.ColumnSpan="10" x:Name="gridRtnTime" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,3,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" x:Name="lbRtnTimetxt" 
+                    Style="{StaticResource textStyle16BlackBold}" Text="Return Time" 
+                    BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="5" Grid.Column="4" x:Name="lblRtnTime" 
+                        Style="{StaticResource textStyle15Black}" Text="Select" HorizontalOptions="Fill"  
+                        HorizontalTextAlignment="End"
+                        BackgroundColor="Transparent" />
+
+                                        <Image Grid.Row="2" Grid.ColumnSpan="1" Grid.Column="9" Source="arrow_right_80.png" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                    </Grid>
+
+                                    <BoxView Grid.Row="5" Style="{StaticResource DividerGray50}"/>
+
+                                    <Grid Grid.Row="6" Grid.ColumnSpan="10" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,3,15,5" BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="38" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"  
+                        Style="{StaticResource textStyle16BlackBold}" Text="Express Type" 
+                        BackgroundColor="Transparent" />
+
+                                        <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" x:Name="lblExpType2" 
+                            Style="{StaticResource textStyle15Black}" Text="TBA" 
+                            HorizontalTextAlignment="End"
+                            BackgroundColor="Transparent" />
+
+                                    </Grid>
+
+                                </Grid>
+
+                                <Grid Grid.Row="7" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="38" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0" x:Name="lbPaymentTypetxt" Style="{StaticResource textStyle16BlackBold}" 
+                                           Text="Payment Type" BackgroundColor="Transparent" />
+
+                                    <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="5" x:Name="lblPaymentType" Style="{StaticResource textStyle15Black}" 
+                                           Text="Via Settings" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+
+                                </Grid>
+
+                                <Grid Grid.Row="8" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Margin="20,5,15,5" BackgroundColor="Transparent">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                                        <Label x:Name="lblTotaltxt" Margin="1" Style="{StaticResource textStyleSmallBlackBold}" Text="Total" 
+                                               VerticalTextAlignment="End" BackgroundColor="Transparent" />
+                                        <Label x:Name="lblTotalValueCurr" Margin="2,1,1,-1" Style="{StaticResource textStyleDefaultBlackBold}" Text="SGD" 
+                                               VerticalTextAlignment="End" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+                                        <Label x:Name="lblTotalValue" Margin="0,1,1,-1" Style="{StaticResource textStyleDefaultBlackBold}" Text="17000.44" 
+                                               VerticalTextAlignment="End" HorizontalTextAlignment="End" BackgroundColor="Transparent" />
+                                        <Label x:Name="lblwgst" Margin="2,1,1,1" Style="{StaticResource textStyleSmallBlackBold}" Text="wGST" 
+                                               VerticalTextAlignment="End" BackgroundColor="Transparent" />
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" HorizontalOptions="Start">
+                                        <Label x:Name="lblBalancetxt" Margin="1" Style="{StaticResource textStyleSmallBlackBold}" Text="Balance" 
+                                               VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+                                        <Label x:Name="lblCurrencytxt" Margin="2,1,1,1" Style="{StaticResource textStyleSmallBlackBold}" Text="SGD" 
+                                               VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+                                        <Label x:Name="lblBalance" Margin="2,1,1,1" Style="{StaticResource textStyleSmallBlackBold}" Text="9999999.00" 
+                                               VerticalTextAlignment="Start" BackgroundColor="Transparent" />
+
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="4" Grid.RowSpan="2" HorizontalOptions="End" VerticalOptions="Center">
+
+                                        <Button x:Name="btnProceed" Text="Proceed" Style="{StaticResource bstyleOrangeSmall}" Clicked="btnProceed_Clicked" />
+
+                                    </HorizontalStackLayout>
+
+                                </Grid>
+
+                            </Grid>
+
+                        </ScrollView>
+
+                    </Grid>
+
+                    <controls:BottomSheet
+                IsVisible="False"
+                x:Name="BSContentType"
+                SheetHeight="420"
+                HeaderText="CONTENT"
+                Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+                            <VerticalStackLayout Spacing="16">
+
+                                <Grid Margin="0" RowDefinitions="*" ColumnDefinitions="*" HorizontalOptions="Fill" HeightRequest="250">
+
+                                    <ScrollView Grid.Row="0" Grid.Column="0" Margin="0" Orientation="Vertical" x:Name="svLWH">
+                                        <StackLayout Spacing="10">
+
+                                            <Grid x:Name="gridColdToggle" IsVisible="True" VerticalOptions="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Switch Grid.Row="0" Grid.Column="0" x:Name="swCold" Margin="0,0,10,0" IsToggled="False" BackgroundColor="Transparent" Toggled="swColdonToggle" Style="{StaticResource sw}"></Switch>
+
+                                                <Label Grid.Row="0" Grid.Column="1" Text="Require Cold Item Handling?" VerticalOptions="Center" HorizontalOptions="Start" Style="{StaticResource textStyle15Black}"></Label>
+
+                                            </Grid>
+
+                                            <CollectionView x:Name="cvContentType" SelectionChanged="cvContentTypeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Label Text="{Binding dispText}" Style="{StaticResource textStyle15Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+                                                                
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Grid x:Name="gridLWH" IsVisible="False" RowSpacing="10" ColumnSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Text="Shipment Dimensions (L x W x H) in cm:" Style="{StaticResource textStyle15Black}"></Label>
+
+                                                <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource bbtxt}">
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="L*" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtLength" Text="1" Keyboard="Numeric" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" DefValue="1" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Label Text="x" Grid.Row="1" Grid.Column="1" Style="{StaticResource textStyle15Black}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                                <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource bbtxt}">
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="W*" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtWidth" Text="1" Keyboard="Numeric" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" IsNumberOnly="True" DefValue="1" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Label Text="x" Grid.Row="1" Grid.Column="3" Style="{StaticResource textStyle15Black}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                                <Border Grid.Row="1" Grid.Column="4" Style="{StaticResource bbtxt}">
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="H*" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtHeight" Text="1" Keyboard="Numeric" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" IsNumberOnly="True" DefValue="1" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                            </Grid>
+
+                                            <Grid x:Name="gridpcs" RowSpacing="10" ColumnSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource bbtxt}" >
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="Pcs*" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtPcs" Keyboard="Numeric" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" IsNumberOnly="True" DefValue="1" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource bbtxt}" >
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="Kg*" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtWt" Keyboard="Numeric" MaxLength="6" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" IsNumberOnly="True" DefValue="1" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Label x:Name="lblWeightRemarksParcel" Text="Please indicate shipment's actual weight if it is heavier than calculated volumetric weight, rounded up to the nearest KG." 
+                                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" TextColor="Red" Margin="5,5,0,0" VerticalTextAlignment="Center" FontSize="16" IsVisible="False"></Label>
+
+                                                <Label x:Name="lblWeightRemarksDoc" Text="Please round up to nearest KG (Up to 3KG)" 
+                                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource textStyle15Black}" Margin="5,5,0,0" VerticalTextAlignment="Center" IsVisible="False" />
+
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </ScrollView>
+
+                                </Grid>
+
+                                <BoxView Style="{StaticResource DividerWhite}"/>
+
+                                <Grid RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+
+                                    <Button x:Name="btnCXSaveContentType" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSContentType_Clicked" />
+                                    <Button x:Name="btnSaveContentType" Grid.Row="0" Grid.Column="1" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSContentTypeSave_Clicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+                IsVisible="False"
+                x:Name="BSInv"
+                SheetHeight="420"
+                HeaderText="D.O / INVOICE"
+                Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="InvBSOnBackgroundClicked"/>
+                                </VerticalStackLayout.GestureRecognizers>
+
+                                <Grid Margin="0" RowDefinitions="*" ColumnDefinitions="*" HorizontalOptions="FillAndExpand" HeightRequest="250">
+
+
+                                    <ScrollView Grid.Row="0" Grid.Column="0" Margin="0" Orientation="Vertical" x:Name="svBSInv">
+
+                                        <StackLayout Spacing="10">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="InvBSOnBackgroundClicked"/>
+                                            </StackLayout.GestureRecognizers>
+
+                                            <Label Text="D.O(s) / Invoice(s) are only for deliveries.
+                                                       Please leave this blank if your job is a collection." 
+                                                       Style="{StaticResource textStyle15Black}" VerticalTextAlignment="Center" />
+
+                                            <BoxView Style="{StaticResource DividerGray50}"/>
+
+                                            <Grid VerticalOptions="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="10"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="InvBSOnBackgroundClicked"/>
+                                                </Grid.GestureRecognizers>
+
+                                                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource bbtxt}">
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="D.O / Inv" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtDOP1" Style="{StaticResource txt}" />
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource bbtxt}">
+
+                                                    <Grid RowDefinitions="*,*" HeightRequest="38">
+                                                        <Label Grid.Row="0" Text="Amount ($)" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                                        <Entry Grid.Row="1" x:Name="txtAmtP1" Text="0.00" Keyboard="Numeric" Style="{StaticResource txt}">
+                                                            <Entry.Behaviors>
+                                                                <beh:NumericEntryBehavior AllowEmpty="False" DefValue="0.00" IsDecimal="True" />
+                                                            </Entry.Behaviors>
+                                                        </Entry>
+                                                    </Grid>
+
+                                                </Border>
+
+                                                <Button x:Name="btnAddInvP1" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Text="Add" Style="{StaticResource bstyleOrange}" 
+                                                         VerticalOptions="Center" Clicked="dbtnAddInvP1_Clicked" />
+
+                                            </Grid>
+
+                                            <Border Padding="0" StrokeShape="RoundRectangle 20" BackgroundColor="White">
+
+                                                <CollectionView x:Name="cvInvP1" ItemSizingStrategy="MeasureAllItems" HorizontalOptions="FillAndExpand" HeightRequest="150">
+                                                    <CollectionView.ItemsLayout>
+                                                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                                                    </CollectionView.ItemsLayout>
+                                                    <CollectionView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid Padding="0">
+                                                                <Grid.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="cvInvP1OnItemTap"></TapGestureRecognizer>
+                                                                </Grid.GestureRecognizers>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="38" />
+                                                                    <RowDefinition Height="1" />
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding DispText}" Style="{StaticResource textStyle15Black}" 
+                                                                    HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" />
+                                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding AmountText}" Style="{StaticResource textStyle15Black}" 
+                                                                    HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                                                                <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="Black" MinimumHeightRequest="1" />
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                                </CollectionView>
+
+                                            </Border>
+
+                                        </StackLayout>
+
+                                    </ScrollView>
+                                </Grid>
+
+                                <BoxView Style="{StaticResource DividerWhite}"/>
+
+                                <Grid RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+
+                                    <Button x:Name="btnCXSaveBSInv" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSInv_Clicked" />
+                                    <Button x:Name="btnSaveBSInv" Grid.Row="0" Grid.Column="1" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSInvSave_Clicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+                IsVisible="False"
+                x:Name="BSCollectionTime"
+                SheetHeight="420"
+                HeaderText="COLLECTION TIME"
+                Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+
+                                <Grid Margin="0" RowDefinitions="*" ColumnDefinitions="*" HorizontalOptions="FillAndExpand" HeightRequest="250">
+
+                                    <ScrollView Grid.Row="0" Grid.Column="0" Margin="0" Orientation="Vertical" x:Name="svColTime">
+                                        <StackLayout Spacing="10">
+
+                                            <Label x:Name="lblCD" Text="Ready Date" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                            <CollectionView x:Name="cvDate" SelectionChanged="cvDateOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label Text="Lunch time to avoid for Collection?" TextColor="Black" Style="{StaticResource textStyle15Black}"
+                                                VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                            <CollectionView x:Name="cvColLunch" SelectionChanged="cvColLunchOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label x:Name="lblReadyTimeV" Text="Ready Time" TextColor="Black" Style="{StaticResource textStyle15Black}"
+                                                VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                            <CollectionView x:Name="cvTime" SelectionChanged="cvTimeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                        </StackLayout>
+                                    </ScrollView>
+
+                                </Grid>
+
+                                <BoxView Style="{StaticResource Divider}" />
+
+                                <Grid RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+
+                                    <Button x:Name="btnCXSaveCollectionTime" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSCollectionTime_Clicked" />
+                                    <Button x:Name="btnSaveCollectionTime" Grid.Row="0" Grid.Column="1" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSCollectionTimeSave_Clicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+                IsVisible="False"
+                x:Name="BSDeliveryTime"
+                SheetHeight="450"
+                HeaderText="DELIVERY TIME"
+                Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+
+                                <Grid Margin="0" RowDefinitions="*" ColumnDefinitions="*" HorizontalOptions="FillAndExpand" HeightRequest="280">
+
+                                    <ScrollView Grid.Row="0" Grid.Column="0" Margin="0" Orientation="Vertical" x:Name="svDelTime">
+                                        <StackLayout Spacing="10">
+
+                                            <Label Text="Delivery From Date" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                            <CollectionView x:Name="cvDFDate" SelectionChanged="cvDFDateOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label Text="Lunch time to avoid for Delivery?" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvDFLunch" SelectionChanged="cvDFLunchOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label x:Name="lblDFTimeV" Text="Delivery From Time" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvDFTime" SelectionChanged="cvDFTimeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label x:Name="lblDBTimeV" Text="Delivery By Time" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvDBTime" SelectionChanged="cvDBTimeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                        </StackLayout>
+
+                                    </ScrollView>
+
+                                </Grid>
+
+                                <BoxView Style="{StaticResource Divider}" />
+
+                                <Grid RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+
+                                    <Button x:Name="btnCXSaveDFTime" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSDeliveryTime_Clicked" />
+                                    <Button x:Name="btnSaveDFTime" Grid.Row="0" Grid.Column="1" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSDeliveryTimeSave_Clicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+                IsVisible="False"
+                x:Name="BSRtnTime"
+                SheetHeight="450"
+                HeaderText="RETURN TIME"
+                Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+
+                                <Grid Margin="0" RowDefinitions="*" ColumnDefinitions="*" HorizontalOptions="FillAndExpand" HeightRequest="280">
+
+                                    <ScrollView Grid.Row="0" Grid.Column="0" Margin="0" Orientation="Vertical" x:Name="svRtnTime">
+
+                                        <StackLayout Spacing="10">
+
+                                            <Label Text="Return From Date" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                            <CollectionView x:Name="cvRFDate" SelectionChanged="cvRtnDateOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label x:Name="lblRtnLunchText" Text="Lunch time to avoid for Return?" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvRFLunch" SelectionChanged="cvRFLunchOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label Text="Return From Time" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvRFTime" SelectionChanged="cvRFTimeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                            <Label Text="Return By Time" TextColor="Black" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" HorizontalOptions="Start" Padding="0"/>
+
+                                            <CollectionView x:Name="cvRBTime" SelectionChanged="cvRBTimeOnItemSelected" SelectionMode="Single" HeightRequest="55">
+                                                <CollectionView.Resources>
+                                                    <Style TargetType="Grid">
+                                                        <Setter Property="VisualStateManager.VisualStateGroups">
+                                                            <VisualStateGroupList>
+                                                                <VisualStateGroup x:Name="CommonStates">
+                                                                    <VisualState x:Name="Normal">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                    <VisualState x:Name="Selected">
+                                                                        <VisualState.Setters>
+                                                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                        </VisualState.Setters>
+                                                                    </VisualState>
+                                                                </VisualStateGroup>
+                                                            </VisualStateGroupList>
+                                                        </Setter>
+                                                    </Style>
+                                                </CollectionView.Resources>
+                                                <CollectionView.ItemsLayout>
+                                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                                </CollectionView.ItemsLayout>
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid BackgroundColor="Transparent" Padding="0">
+                                                            <Border StrokeShape="RoundRectangle 20" Padding="5" Stroke="Black" HeightRequest="50" MinimumWidthRequest="50">
+                                                                <Border.Triggers>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="True">
+                                                                        <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}" />
+                                                                    </DataTrigger>
+                                                                    <DataTrigger TargetType="Border" Binding="{Binding IsSelected}" Value="False">
+                                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                                    </DataTrigger>
+                                                                </Border.Triggers>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="*" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" HorizontalTextAlignment="Center" HeightRequest="55" />
+
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+
+                                        </StackLayout>
+
+                                    </ScrollView>
+
+                                </Grid>
+
+                                <BoxView Style="{StaticResource Divider}" />
+
+                                <Grid RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10">
+
+                                    <Button x:Name="btnCXSaveRtnTime" Grid.Row="0" Grid.Column="0" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="CloseBSRtnTime_Clicked" />
+                                    <Button x:Name="btnSaveRtnTime" Grid.Row="0" Grid.Column="1" Text="Save" Style="{StaticResource bstyleOrange}" Clicked="CloseBSRtnTimeSave_Clicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

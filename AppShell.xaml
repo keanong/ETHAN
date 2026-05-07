@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ETHAN.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ETHAN"
+    xmlns:views="clr-namespace:ETHAN.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="ETHAN">
+
+    <!--Login Page-->
+    <ShellContent 
+        Title="Login" ContentTemplate="{DataTemplate views:Login}" Route="Login"/>
+
+    <!--Home Page-->
+    <!--<ShellContent 
+        Title="Home Page" ContentTemplate="{DataTemplate views:Homepage}" Route="Homepage"/>-->
+    <ShellContent 
+    Title="Home" ContentTemplate="{DataTemplate views:CardShellPage}" Route="CardShellPage"/>
+
+    <!--Main Page--><!--
+    <TabBar>
+        <Tab Title="Hom3" Icon="home.png">
+            <ShellContent Icon="home.png" Title="Home"
+            ContentTemplate="{DataTemplate views:Homepage}" Route="Homepage" />
+
+        </Tab>
+        <Tab Title="S3ttings" Icon="gears">
+            <ShellContent Icon="home.png" Title="Settings"
+            ContentTemplate="{DataTemplate views:Settings}" Route="Settings" />
+        </Tab>
+    </TabBar>-->
+    
+
+</Shell>

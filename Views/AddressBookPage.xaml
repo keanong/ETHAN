@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ETHAN.Views.AddressBookPage"
+             x:Name="ThisPage"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             xmlns:vm="clr-namespace:ETHAN.ViewModel"
+             HideSoftInputOnTapped="True"
+             xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.BottomSheet"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Title="Address Book"
+             Padding="0"
+             SafeAreaEdges="All">-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ETHAN.Views.AddressBookPage"
+             x:Name="ThisPage"
+             xmlns:beh="clr-namespace:ETHAN.classes"
+             xmlns:vm="clr-namespace:ETHAN.ViewModel"
+             HideSoftInputOnTapped="True"
+             xmlns:controls="clr-namespace:ETHAN.BS"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Title="Address Book"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <Style x:Key="txt" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="38"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bb">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                    Value="{StaticResource Gray100}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="{StaticResource XDelOrange}" />
+                                <Setter Property="HeightRequest" Value="50"></Setter>
+                                <Setter Property="MinimumWidthRequest" Value="50"></Setter>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style TargetType="Switch" x:Key="sw">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource XDelOrange}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter Property="ThumbColor" Value="{StaticResource Gray400}" />
+                                <Setter Property="OnColor" Value="{StaticResource Gray300}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+
+        <ControlTemplate x:Key="FrameRadioTemplate">
+            <Border 
+        StrokeThickness="1"
+        StrokeShape="RoundRectangle 5"
+        HorizontalOptions="Start"
+        VerticalOptions="Start">
+                <ContentPresenter>
+                    <ContentPresenter.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="HorizontalOptions" Value="Center"/>
+                            <Setter Property="VerticalOptions" Value="Center"/>
+
+                            <Style.Triggers>
+                                <DataTrigger TargetType="Label"
+                                         Binding="{Binding Path=IsChecked,
+                                                           Source={x:RelativeSource AncestorType={x:Type RadioButton}}}"
+                                         Value="True">
+                                    <Setter Property="TextColor" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Border>
+            <!--</Frame>-->
+        </ControlTemplate>
+
+        <ResourceDictionary>
+            <Style x:Key="SelectedRowStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style x:Key="NormalRowStyle" TargetType="Grid">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid x:Name="RootLayout" Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                Padding="0" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Fill" VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="Back" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTopNBack" Grid.Column="1" Text="Address Book" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Back"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <Button Grid.Column="2" x:Name="btnAddAddress" ImageSource="plus_80.png" BackgroundColor="{StaticResource Gray50}" 
+                        TextColor="{StaticResource Gray600}" Clicked="Add_Address" HorizontalOptions="End" 
+                              VerticalOptions="Center" Padding="0" Margin="0,0,25,0" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></Button>
+                        </Grid>
+
+                        <AbsoluteLayout Grid.Row="1" x:Name="MainAbsoluteLayout">
+
+                            <Grid IgnoreSafeArea="True" RowDefinitions="100,50,50, *" ColumnDefinitions="*" RowSpacing="10" 
+                              AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                                <Label Grid.Row="0" Style="{StaticResource textStyle15Black}" Margin="10,0,10,0" 
+                                   Text="Select the first Alphabet of the Company Name from the dropdown list below to filter the list before entering the keyword. Alternatively, select Name from the dropdown list to display contacts not tagged to any company."></Label>
+
+
+                                <Grid Grid.Row="1" RowDefinitions="*" ColumnDefinitions="100,*" RowSpacing="10" ColumnSpacing="10" Margin="10,0,10,0">
+
+                                    <Border Grid.Column="0" Padding="0" BackgroundColor="White" Stroke="{StaticResource Gray200}" StrokeShape="RoundRectangle 10" HeightRequest="55">
+
+                                        <Picker x:Name="ddlOptions" HorizontalOptions="Fill" HorizontalTextAlignment="Center" ItemsSource="{Binding Options}" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="- SELECT -" 
+                                            ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedOption}" BackgroundColor="White" Margin="8,0" Style="{StaticResource PickertextStyle15Black}" />
+
+                                    </Border>
+
+                                    <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource bbtxt}" HeightRequest="55">
+
+                                        <Grid Grid.Column="1" RowDefinitions="*,*">
+                                            <Label Grid.Row="0" Text="Company/Address keyword" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtKeyword" IsEnabled="False" ReturnType="Done" Style="{StaticResource txt}" 
+                                               HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+
+                                    </Border>
+
+                                </Grid>
+
+                                <Grid Grid.Row="2" RowDefinitions="*" ColumnDefinitions="*,*" RowSpacing="10" ColumnSpacing="10" Margin="10,0,10,0">
+
+                                    <Button Grid.Column="0" x:Name="btnCancel" Text="Cancel" Style="{StaticResource bstyleOrange}" Clicked="btnCancel_Clicked"></Button>
+
+                                    <Button Grid.Column="1" x:Name="btnSearch" Text="Search" Style="{StaticResource bstyleOrange}" Clicked="btnSearch_Clicked"></Button>
+
+                                </Grid>
+
+
+                                <Grid Grid.Row="3" RowDefinitions="*" ColumnDefinitions="*" RowSpacing="10" ColumnSpacing="10" Margin="10,0,10,10">
+                                    <Border Padding="0" StrokeShape="RoundRectangle 10" BackgroundColor="White">
+
+                                        <CollectionView ItemsSource="{Binding Items}" x:Name="cvAddress" SelectionMode="Single" Margin="10">
+
+                                            <CollectionView.Footer>
+                                                <Button Text="Load More" Command="{Binding LoadMoreCommand}" IsVisible="{Binding CanLoadMore}" Style="{StaticResource bstyleOrange}" />
+                                            </CollectionView.Footer>
+
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <VerticalStackLayout Margin="0,5" Spacing="5">
+
+                                                        <Border BackgroundColor="#EEE" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="10" MinimumHeightRequest="80">
+                                                            <Grid ColumnDefinitions="Auto,*,Auto">
+
+                                                                <ImageButton Grid.Column="0" Source="edit_80.png" BackgroundColor="Transparent"
+                                            Command="{Binding BindingContext.HeaderEditCommand, Source={x:Reference cvAddress}}"
+                                            CommandParameter="{Binding .}" VerticalOptions="Center" IsVisible="{Binding CanManageAddressBook}" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+
+                                                                <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" 
+                                               HorizontalOptions="Fill" VerticalOptions="Center" Margin="8,0,8,0">
+                                                                    <Label.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.HeaderTappedCommand, Source={x:Reference cvAddress}}"
+                                                    CommandParameter="{Binding .}" />
+                                                                    </Label.GestureRecognizers>
+                                                                </Label>
+
+                                                                <ImageButton Grid.Column="2" Source="add_user_80.png" BackgroundColor="Transparent" 
+                                            Command="{Binding BindingContext.HeaderContactAddCommand, Source={x:Reference cvAddress}}" 
+                                            CommandParameter="{Binding .}" VerticalOptions="Center" IsVisible="{Binding CanManageAddressBook}" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+                                                            </Grid>
+                                                        </Border>
+
+                                                        <VerticalStackLayout Margin="20,0,0,0" IsVisible="{Binding IsExpanded}" BindableLayout.ItemsSource="{Binding Children}" Spacing="2">
+                                                            <BindableLayout.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border BackgroundColor="#FFF" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 4" Padding="5" MinimumHeightRequest="50">
+                                                                        <Grid ColumnDefinitions="*,Auto">
+                                                                            <Label Text="{Binding Fulltext}" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" HorizontalOptions="Fill" VerticalOptions="Center" Margin="5,0,15,0">
+                                                                                <Label.GestureRecognizers>
+                                                                                    <TapGestureRecognizer
+                                                                Command="{Binding BindingContext.ChildTappedCommand, Source={x:Reference cvAddress}}"
+                                                                CommandParameter="{Binding .}" />
+                                                                                </Label.GestureRecognizers>
+                                                                            </Label>
+
+                                                                            <ImageButton Grid.Column="1" Source="edit_80.png" BackgroundColor="Transparent"
+                                            Command="{Binding BindingContext.ChildEditCommand, Source={x:Reference cvAddress}}"
+                                            CommandParameter="{Binding .}" VerticalOptions="Center" IsVisible="{Binding CanManageAddressBook}" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}" />
+                                                                        </Grid>
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </BindableLayout.ItemTemplate>
+                                                        </VerticalStackLayout>
+
+                                                    </VerticalStackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+
+                                    </Border>
+                                </Grid>
+
+
+                            </Grid>
+
+                        </AbsoluteLayout>
+
+                    </Grid>
+
+                    <controls:BottomSheet
+        IsVisible="False"
+        x:Name="BSContact"
+        SheetHeight="420"
+        HeaderText="EDIT CONTACT INFO"
+        Theme="Dark">
+
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="5">
+
+                                <VerticalStackLayout Spacing="5">
+
+                                    <Label x:Name="lblBSContactCAIDX" Text="" IsVisible="False" TextColor="red"></Label>
+                                    <Label x:Name="lblBSContactCNIDX" Text="" IsVisible="False" TextColor="red"></Label>
+
+
+                                    <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Fill" ColumnSpacing="5" VerticalOptions="Center">
+                                        <Switch Grid.Column="0" x:Name="swContact" Style="{StaticResource sw}" Toggled="swContactonToggle" HorizontalOptions="Start" VerticalOptions="Center" />
+                                        <Label Grid.Column="1" x:Name="lblBSContactActive" Text="Click to Deactivate" Style="{StaticResource textStyle15Black}" 
+                                       VerticalOptions="Center" HorizontalOptions="Center" />
+                                    </Grid>
+
+                                    <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Contact Name*" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtContactName" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Department" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtDept" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <Grid ColumnDefinitions="*,*" HorizontalOptions="Fill" ColumnSpacing="5">
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Tel" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtTel" Style="{StaticResource txt}" Keyboard="Numeric" MaxLength="8" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                    <Entry.Behaviors>
+                                                        <beh:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Grid.Column="1" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Mobile" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtHp" Style="{StaticResource txt}" Keyboard="Numeric" MaxLength="8" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                    <Entry.Behaviors>
+                                                        <beh:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <Grid ColumnDefinitions="*,*" HorizontalOptions="Fill" ColumnSpacing="5">
+                                    <Button Grid.Column="0" x:Name="btnCXBSContact" Text="Cancel" Clicked="btnCXBSContact_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                    <Button Grid.Column="1" x:Name="btnSaveBSContact" Text="Save" Clicked="btnSaveBSContact_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                    <Button Grid.Column="1" x:Name="btnUpdateBSContact" Text="Update" Clicked="btnUpdateBSContact_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                    <controls:BottomSheet
+        IsVisible="False"
+        x:Name="BSADDRESS"
+        SheetHeight="520"
+        Padding="0"
+        HeaderText="EDIT ADDRESS INFO"
+        Theme="Dark">
+
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16" Padding="5">
+
+                                <VerticalStackLayout Spacing="5">
+
+                                    <Label x:Name="lblBSADDRESSCAIDX" Text="" IsVisible="False"></Label>
+
+                                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Fill">
+                                        <Switch x:Name="swAddress" Style="{StaticResource sw}" Toggled="swAddressonToggle" />
+                                        <Label x:Name="lblBSAddressActive" Text="Deactivate" Style="{StaticResource textStyle15Black}" VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+
+                                    <Grid ColumnDefinitions="*,*,*" HorizontalOptions="Fill" ColumnSpacing="5">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Postal*" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtPostal" Keyboard="Numeric" MaxLength="6"  Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                    <Entry.Behaviors>
+                                                        <beh:NumericEntryBehavior AllowEmpty="True" IsNumberOnly="True" />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Grid.Column="1" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Block" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtBlock" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                    <Entry.Behaviors>
+                                                        <beh:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Grid.Column="2" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                                <Label Grid.Row="0" Text="Unit" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtUnit" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                    <Entry.Behaviors>
+                                                        <beh:UpperCaseEntryBehavior />
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                    </Grid>
+
+                                    <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Street" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtStreet" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Building Name" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtBldg" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
+                                            <Label Grid.Row="0" Text="Company Name" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                            <Entry Grid.Row="1" x:Name="txtCompany" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0" ReturnType="Done">
+                                                <Entry.Behaviors>
+                                                    <beh:UpperCaseEntryBehavior />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                        </Grid>
+                                    </Border>
+
+                                    <CollectionView x:Name="cvLocationType" SelectionChanged="cvLocationTypeOnItemSelected" SelectionMode="Single" 
+                                            ItemSizingStrategy="MeasureAllItems" HorizontalOptions="Fill" HeightRequest="55">
+                                        <CollectionView.ItemsLayout>
+                                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource bb}" StrokeShape="RoundRectangle 10" Padding="5" Stroke="Black">
+                                                    <Label Text="{Binding dispText}" Style="{StaticResource textStyle14Black}" 
+                                           HorizontalOptions="Fill" HorizontalTextAlignment="Center" VerticalOptions="Fill" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                    <Label x:Name="lblSelectedLocationType" IsVisible="False" />
+
+                                </VerticalStackLayout>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <Grid ColumnDefinitions="*,*" HorizontalOptions="Fill" ColumnSpacing="5">
+                                    <Button Grid.Column="0" x:Name="btnCXBSADDRESS" Text="Cancel" Clicked="btnCXBSADDRESS_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                    <Button Grid.Column="1" x:Name="btnSaveBSADDRESS" Text="Save" Clicked="btnSaveBSADDRESS_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                    <Button Grid.Column="1" x:Name="btnUpdateBSADDRESS" Text="Update" Clicked="btnUpdateBSADDRESS_Clicked" Style="{StaticResource bstyleOrange}" HorizontalOptions="FillAndExpand" />
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+
+                    </controls:BottomSheet>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.SettingsPage"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Grid x:Name="RootLayout" BackgroundColor="Transparent">
+
+        <!--<Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" Stroke="{StaticResource Gray50}"
+            BackgroundColor="{StaticResource Gray50}" Padding="0"
+                 MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">-->
+
+            <Grid RowDefinitions="Auto,Auto,*" BackgroundColor="{StaticResource Gray50}">
+
+                <Grid HeightRequest="60" Padding="15,0" BackgroundColor="{StaticResource Gray50}"
+                    VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto">
+
+                    <Image Source="xdelicon.png" VerticalOptions="Center" HorizontalOptions="Start"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=100}" HeightRequest="{OnIdiom Phone=60, Tablet=100}"/>
+
+                    <Label Grid.Column="1" Text="ETHAN" FontSize="20" FontAttributes="Bold" Margin="10" TextColor="{StaticResource XDelOrange}" 
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+
+                <ImageButton Grid.Column="2" Padding="10,0" Source="logout_140.png" VerticalOptions="Center" HorizontalOptions="Start" Clicked="Logout_Click"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=70}" HeightRequest="{OnIdiom Phone=60, Tablet=70}" />
+                </Grid>
+
+                <VerticalStackLayout x:Name="vsCoy" Grid.Row="1" Padding="20" Spacing="15">
+
+                    <Border BackgroundColor="{StaticResource XDelOrange}" StrokeShape="RoundRectangle 10" Padding="15">
+                        <VerticalStackLayout>
+
+                            <Label x:Name="lblCoyName" Style="{StaticResource textStyle16White}" Text="Company Name" HorizontalOptions="Start" VerticalOptions="Start" Margin="10,10,0,0" />
+                            <Label x:Name="lblAcctNoText" Style="{StaticResource textStyle16White}" Text="Account No." HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                            <Label x:Name="lblName" Style="{StaticResource textStyle18WhiteBold}" Text="Name" HorizontalOptions="Start" VerticalOptions="Start" Margin="10,0,0,0" />
+                            <Label x:Name="lblUsername" Style="{StaticResource textStyle14White}" Text="Username" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                            
+                        </VerticalStackLayout>
+                    </Border>
+
+                </VerticalStackLayout>
+
+                <ScrollView Margin="0" Grid.Row="2">
+
+                    <VerticalStackLayout Padding="20" Spacing="15">
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 10" Padding="15" Stroke="White">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ChangePwdClick"></TapGestureRecognizer>
+                            </Border.GestureRecognizers>
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle18BlackBold}" Text="Password" />
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                    Style="{StaticResource textStyle14Black}" Text="Change Password" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                        <Border BackgroundColor="White" StrokeShape="RoundRectangle 20" Padding="15" Stroke="White" IsVisible="False">
+
+                            <VerticalStackLayout>
+                                <Label HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Margin="10,0,0,0" 
+                                Style="{StaticResource textStyle16BlackBold}" Text="Hi, Kean Ong Hi" />
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </VerticalStackLayout>
+                    
+                </ScrollView>
+                
+            </Grid>
+            
+        <!--</Border>-->
+        
+    </Grid>
+    
+</ContentView>

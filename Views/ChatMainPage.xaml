@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.ChatMainPage"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False">
+
+    <Grid BackgroundColor="Transparent">
+
+        <Grid RowDefinitions="Auto,Auto,*" BackgroundColor="{StaticResource Gray50}">
+
+                <Grid HeightRequest="60" Padding="15,0" BackgroundColor="{StaticResource Gray50}"
+                    VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto">
+
+                    <Image Source="xdelicon.png" VerticalOptions="Center" HorizontalOptions="Start"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=100}" HeightRequest="{OnIdiom Phone=60, Tablet=100}"/>
+
+                    <Label Grid.Column="1" Text="ETHAN" FontSize="20" FontAttributes="Bold" Margin="10" TextColor="{StaticResource XDelOrange}" 
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+
+                <ImageButton Grid.Column="2" Padding="10,0" Source="logout_140.png" VerticalOptions="Center" HorizontalOptions="Start" Clicked="Logout_Click"
+                     WidthRequest="{OnIdiom Phone=60, Tablet=70}" HeightRequest="{OnIdiom Phone=60, Tablet=70}" />
+                </Grid>
+
+                <StackLayout Grid.Row="1" Padding="20" Spacing="15">
+
+                    <Border Grid.Row="1" BackgroundColor="{StaticResource XDelOrange}" StrokeShape="RoundRectangle 10" Padding="15">
+                        <VerticalStackLayout>
+
+                            <Label x:Name="lblInfo" Style="{StaticResource textStyle16White}" Text="You can only view the last 90 days of chat history." 
+                                   HorizontalOptions="Start" VerticalOptions="Start" Margin="10,0,0,0" />
+                        <ImageButton Padding="0" Source="refresh_80.png" HorizontalOptions="End" Clicked="Refresh_Click"
+                             WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></ImageButton>
+                        </VerticalStackLayout>
+                    </Border>
+
+                </StackLayout>
+
+                <Grid Grid.Row="2" Padding="20" RowDefinitions="*">
+
+                    <Border Padding="0" StrokeShape="RoundRectangle 10" BackgroundColor="White" Stroke="Transparent">
+
+                        <CollectionView ItemsSource="{Binding Items}" x:Name="cvChats" SelectionMode="None" Margin="10" 
+                                    VerticalOptions="Fill" MinimumHeightRequest="1" HorizontalOptions="Fill">
+
+                            <CollectionView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <VerticalStackLayout Margin="0,5" Spacing="5">
+
+                                        <Border BackgroundColor="#EEE" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="10" MinimumHeightRequest="60">
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding BindingContext.HeaderTappedCommand, Source={x:Reference cvChats}}"
+                                                    CommandParameter="{Binding .}" />
+                                            </Border.GestureRecognizers>
+                                            <Grid ColumnDefinitions="*,Auto,Auto">
+                                                <Label Grid.Column="0" Text="{Binding Title}" FontAttributes="Bold" Style="{StaticResource textStyle15BlackStart}" LineBreakMode="WordWrap" 
+                                               HorizontalOptions="Fill" VerticalOptions="Center" Margin="8,0,8,0">
+                                                </Label>
+                                            </Grid>
+                                        </Border>
+
+                                        <VerticalStackLayout Margin="20,0,0,0" IsVisible="{Binding IsExpanded}" BindableLayout.ItemsSource="{Binding Children}" Spacing="2">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BackgroundColor="#FFF" Stroke="LightGray" StrokeThickness="1" StrokeShape="RoundRectangle 4" Padding="5" MinimumHeightRequest="50">
+                                                        <Border.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding BindingContext.ChildTappedCommand, Source={x:Reference cvChats}}"
+                                                                CommandParameter="{Binding .}" />
+                                                        </Border.GestureRecognizers>
+                                                        <Grid ColumnDefinitions="*,Auto,Auto">
+                                                            <Label Text="{Binding Fulltext}" FontAttributes="Bold" Style="{StaticResource textStyle15BlackStart}" 
+                                                                   LineBreakMode="WordWrap" HorizontalOptions="Fill" VerticalOptions="Center" Margin="5,0,15,0" >
+                                                            </Label>
+
+                                                        <Image Grid.Column="1" x:Name="imgLock" Source="lock_green_28.png" IsVisible="{Binding LockVisible}"
+                                           WidthRequest="{OnIdiom Phone=14, Tablet=16}" HeightRequest="{OnIdiom Phone=14, Tablet=16}"></Image>
+                                                        <Image Grid.Column="2" x:Name="imgStatusGreen" Source="dot_green_28.png" IsVisible="{Binding StatusGreenVisible}"
+                                           WidthRequest="{OnIdiom Phone=14, Tablet=16}" HeightRequest="{OnIdiom Phone=14, Tablet=16}"></Image>
+                                                        <Image Grid.Column="2" x:Name="imgStatusRed" Source="dot_red_28.png" IsVisible="{Binding StatusRedVisible}"
+                                           WidthRequest="{OnIdiom Phone=14, Tablet=16}" HeightRequest="{OnIdiom Phone=14, Tablet=16}"></Image>
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </VerticalStackLayout>
+
+                                    </VerticalStackLayout>
+
+                                </DataTemplate>
+
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                    </Border>
+
+                    <Grid VerticalOptions="End" HorizontalOptions="End" Margin="0,0,0,0">
+
+                    <Button x:Name="btnNewChat" Grid.Column="0" ImageSource="chat_new_200.png" BackgroundColor="Transparent" Clicked="NewChat_Click" Margin="0,0,10,10"
+                                           WidthRequest="{OnIdiom Phone=100, Tablet=100}" HeightRequest="{OnIdiom Phone=100, Tablet=100}" />
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+
+    </Grid>
+
+
+</ContentView>

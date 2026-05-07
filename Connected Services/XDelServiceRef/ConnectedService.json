@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://www.xdel.com/xws/xoews.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, XDelServiceRef"
+    ],
+    "targetFramework": "net10.0-android",
+    "typeReuseMode": "None"
+  }
+}

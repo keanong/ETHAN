@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.CardShellPage"
+            Shell.NavBarIsVisible="False"
+             BackgroundColor="Transparent">
+
+    <Grid x:Name="RootLayout">
+
+        <!-- ====== Centered App Card ====== -->
+        <Border x:Name="AppCard" 
+            HorizontalOptions="Center" VerticalOptions="Fill" BackgroundColor="{StaticResource Gray50}" 
+                Stroke="{StaticResource Gray200}" Padding="0" Margin="0">
+
+            <Grid RowDefinitions="Auto,*,Auto">
+
+                <!-- Header (optional) -->
+                <ContentView x:Name="HeaderHost" Grid.Row="0" />
+
+                <!-- Content area -->
+                <ContentView  x:Name="PageHost" Grid.Row="1"
+             HorizontalOptions="Fill"
+             VerticalOptions="Fill"  />
+
+                <!-- Fake TabBar -->
+                <ContentView x:Name="TabBarHost" Grid.Row="2" />
+            </Grid>
+            
+        </Border>
+        
+    </Grid>
+
+</ContentPage>

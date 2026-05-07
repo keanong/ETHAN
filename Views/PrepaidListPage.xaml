@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:classes="clr-namespace:ETHAN.classes"
+             x:Class="ETHAN.Views.PrepaidListPage"
+             xmlns:views="clr-namespace:ETHAN.Views"
+             x:DataType="viewmodel:PrepaidVM"
+             Title="PrepaidListPage"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.BottomSheet"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:syss="clr-namespace:System;assembly=netstandard"
+             xmlns:dp="clr-namespace:ETHAN.classes.NDatePicker"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:classes="clr-namespace:ETHAN.classes"
+             x:Class="ETHAN.Views.PrepaidListPage"
+             xmlns:views="clr-namespace:ETHAN.Views"
+             x:DataType="viewmodel:PrepaidVM"
+             Title="PrepaidListPage"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:ETHAN.BS"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:syss="clr-namespace:System;assembly=netstandard"
+             xmlns:dp="clr-namespace:ETHAN.classes.NDatePicker"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <!-- SAFE AREA CONTAINER -->
+        <Grid x:Name="RootLayout" Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" Padding="0" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,Auto, *" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                          HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTopNavBack" Grid.Column="1" Text="Prepaid Transaction(s)" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <VerticalStackLayout Grid.Row="1" x:Name="MainAbsoluteLayout" Padding="10">
+
+                            <Border BackgroundColor="White" StrokeShape="RoundRectangle 10" Padding="10">
+
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" VerticalOptions="Center">
+                                        <VerticalStackLayout Grid.Column="0">
+
+                                            <Label x:Name="lblAvailBal" Style="{StaticResource textStyle18BlackBold}" Text="SGD 9999999.00" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,0" />
+                                            <Label x:Name="lblAvailBalText" Style="{StaticResource textStyle13Black}" Text="Available Balance" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,10" />
+
+                                        </VerticalStackLayout>
+
+                                        <Button Grid.Column="1" x:Name="btnSOA" Text="Email SOA" HeightRequest="55" Style="{StaticResource bstyleOrange}" HorizontalOptions="Center" Clicked="btnSOA_Clicked" />
+
+                                    </Grid>
+
+                                    <BoxView Style="{StaticResource DividerGray50}" />
+
+                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+
+                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Grid RowDefinitions="*,*">
+                                                <Label Grid.Row="0" Text="Top Up Amount" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                                <Entry Grid.Row="1" x:Name="txtAmt" Keyboard="Numeric" ReturnType="Done" MaxLength="6" Style="{StaticResource txt}" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0">
+                                                    <Entry.Behaviors>
+                                                        <classes:NumericEntryBehavior AllowEmpty="True" IsDecimal="True"/>
+                                                    </Entry.Behaviors>
+                                                </Entry>
+                                            </Grid>
+                                        </Border>
+
+                                        <Button Grid.Column="1" x:Name="btnTopUp" Text="Top Up" HeightRequest="55" Style="{StaticResource bstyleOrange}" HorizontalOptions="Center" Clicked="btnTopUp_Clicked"></Button>
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+
+                            <Grid ColumnSpacing="5" Padding="0" ColumnDefinitions="*,*,Auto" HorizontalOptions="Fill" Margin="0,5,0,0">
+
+                                <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                    <Grid RowDefinitions="*,*">
+                                        <Label Grid.Row="0" Text="From" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                        <DatePicker Grid.Row="1" x:Name="dpFrom" Margin="0,-20,0,-20" MinimumDate="2000-01-01" MaximumDate="2999-12-31" Format="dd/MM/yyyy" Date="{x:Static sys:DateTime.Today}"  
+                                            VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource DatepickerStyle}" DateSelected="DpFrom_DateSelected"></DatePicker>
+                                    </Grid>
+
+                                </Border>
+                                <Label x:Name="lbldpFromSelected" IsVisible="False" Text=""></Label>
+
+                                <Border Grid.Column="1" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                    <Grid RowDefinitions="*,*">
+                                        <Label Grid.Row="0" Text="To" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Gray" />
+                                        <DatePicker Grid.Row="1" x:Name="dpTo" Margin="0,-20,0,-20" MinimumDate="2000-01-01" MaximumDate="2999-12-31" 
+                                        Format="dd/MM/yyyy" Date="{x:Static sys:DateTime.Today}" DateSelected="DpTo_DateSelected"
+                                        VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource DatepickerStyle}"></DatePicker>
+                                    </Grid>
+                                </Border>
+                                <Label x:Name="lbldpToSelected" IsVisible="False" Text=""></Label>
+
+                                <ImageButton Grid.Column="2" x:Name="btnDTSearch" Source="search_orange_80.png" Clicked="btnDTSearch_Clicked"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></ImageButton>
+
+                            </Grid>
+
+                            <Grid ColumnSpacing="5" Padding="0" ColumnDefinitions="*,*,Auto" HorizontalOptions="Fill" Margin="0,5,0,0">
+
+                                <Border Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource bbtxt}" HeightRequest="55">
+                                    <Grid RowDefinitions="*,*">
+                                        <Label Grid.Row="0" Text="Enter 9 digits Invoice Number only" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
+                                        <Entry Grid.Row="1" x:Name="txtRefNo" TextChanged="NumericEntry_TextChanged" Style="{StaticResource txt}" Text="" 
+                                                    HorizontalTextAlignment="Start" HorizontalOptions="Fill" Margin="6,0,0,0"/>
+                                    </Grid>
+                                </Border>
+
+                                <ImageButton Grid.Column="2" x:Name="btnParSearch" Source="search_orange_80.png" Clicked="btnSearch_Clicked"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></ImageButton>
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                        <Border x:Name="b1" Grid.Row="2" Style="{StaticResource boxStyleWhiteRoundDark}" StrokeThickness="0" StrokeShape="RoundRectangle 8" 
+                            VerticalOptions="Start" Padding="0" Margin="10,0,10,10">
+                            <Grid RowDefinitions="Auto,*">
+                                <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" RowDefinitions="*,*" Padding="0" HeightRequest="50" VerticalOptions="Center" Margin="0,10,0,0">
+
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Inv No." Style="{StaticResource TabLabelStyle}" VerticalOptions="Center" HorizontalOptions="Center" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSortByInvoiceClicked"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Text="Date" Style="{StaticResource TabLabelStyle}" VerticalOptions="Center" HorizontalOptions="Center" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSortByDateClicked"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <Label Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Text="Amt" Style="{StaticResource TabLabelStyle}" VerticalOptions="Center" HorizontalOptions="Center" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSortByAmtClicked"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <Label Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Text="Stat" Style="{StaticResource TabLabelStyle}" VerticalOptions="Center" HorizontalOptions="Center" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSortByStatusClicked"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                                    <BoxView Grid.Row="1" Grid.ColumnSpan="10" Style="{StaticResource DividerGray50}" />
+
+                                </Grid>
+
+                                <CollectionView Grid.Row="1" x:Name="cvList" ItemsSource="{Binding Items}" ItemSizingStrategy="MeasureAllItems" 
+                                                BackgroundColor="White" VerticalOptions="Start">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="classes:PrepaidItem">
+                                            <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" RowDefinitions="Auto,*" Padding="0" MinimumHeightRequest="50">
+                                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="{Binding INV}" Style="{StaticResource TabLabelStyle2}" Margin="5,0" />
+                                                <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" HorizontalOptions="Center" Text="{Binding DATEISSUED}"  Style="{StaticResource TabLabelStyle2}" />
+                                                <Label Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="{Binding AMT}" Style="{StaticResource TabLabelStyle2}" />
+                                                <Label Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" HorizontalOptions="Center" Text="{Binding CURR_STATUS}" Style="{StaticResource TabLabelStyle3}" />
+
+                                                <BoxView Grid.Row="1" Grid.ColumnSpan="10" Style="{StaticResource DividerGray50}" />
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="tabOnItemTap" />
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+
+                    <controls:BottomSheet
+            IsVisible="False"
+            x:Name="BSOptions"
+            SheetHeight="420"
+            HeaderText="OPTIONS"
+            Theme="Dark">
+                        <controls:BottomSheet.BottomSheetContent>
+
+                            <VerticalStackLayout Spacing="16">
+
+                                <VerticalStackLayout Margin="0" Padding="0" HeightRequest="250" HorizontalOptions="Fill" Spacing="10">
+
+                                    <Label Text="Select an Option to proceed or click Close." HorizontalOptions="Center" VerticalTextAlignment="Center" Style="{StaticResource textStyle15Black}" />
+
+                                    <BoxView Style="{StaticResource DividerGray50}" />
+
+                                    <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeThickness="0" StrokeShape="RoundRectangle 8" 
+                                BackgroundColor="White" HeightRequest="210" VerticalOptions="Center" Padding="0">
+
+                                        <CollectionView x:Name="cvOptions" BackgroundColor="Transparent" ItemSizingStrategy="MeasureAllItems" HeightRequest="210">
+                                            <CollectionView.ItemsLayout>
+                                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                                            </CollectionView.ItemsLayout>
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate x:DataType="classes:ManageJobOptionSelector">
+                                                    <VerticalStackLayout>
+                                                        <Grid Padding="0" HeightRequest="64">
+                                                            <Grid.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="cvOptionsOnItemTap" />
+                                                            </Grid.GestureRecognizers>
+
+                                                            <Label Text="{Binding value}" IsVisible="False" Style="{StaticResource textStyle15Black}" 
+                                                       HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                                                            <Label Text="{Binding DispText}" Style="{StaticResource textStyle15Black}"
+                                       HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                        </Grid>
+
+                                                        <BoxView Style="{StaticResource DividerGray50}" HeightRequest="1" />
+                                                    </VerticalStackLayout>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </Border>
+                                </VerticalStackLayout>
+
+                                <BoxView Style="{StaticResource DividerWhite}" />
+
+                                <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Button x:Name="btnCXBSOptions" Text="Close" Style="{StaticResource bstyleOrange}" Clicked="btnCXBSOption_Clicked" />
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </controls:BottomSheet.BottomSheetContent>
+                    </controls:BottomSheet>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

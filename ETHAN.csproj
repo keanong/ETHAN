@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ETHAN</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<ApplicationTitle>ETHAN</ApplicationTitle>
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">25.0</SupportedOSPlatformVersion>
+
+		<!-- Android signing -->
+		<AndroidSigningKeyStore>Ethan.keystore</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<!-- iOS Signing -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<CodesignKey>iPhone Developer</CodesignKey>
+		<CodesignProvision>iOS Team Provisioning Profile: com.xdel.ethan</CodesignProvision>
+	</PropertyGroup>
+	<!-- <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<CodesignKey>iPhone Developer</CodesignKey>
+		<CodesignProvision></CodesignProvision>
+		<AutomaticProvisioning>true</AutomaticProvisioning>
+	</PropertyGroup> -->
+	
+
+	<!-- Debug Android -->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<AndroidEnableFastDeployment>true</AndroidEnableFastDeployment>
+		<AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
+		<AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<UseInterpreter>true</UseInterpreter>
+		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	</PropertyGroup>
+
+	<!-- Debug iOS -->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<MtouchLink>None</MtouchLink>
+		<MtouchFastDev>true</MtouchFastDev>
+		<MtouchUseLlvm>false</MtouchUseLlvm>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<UseInterpreter>true</UseInterpreter>
+		<BuildIpa>false</BuildIpa>
+		<MtouchDebug>true</MtouchDebug>
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<!-- Release Android -->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<AndroidEnableFastDeployment>false</AndroidEnableFastDeployment>
+		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	</PropertyGroup>
+
+	<!-- Release iOS -->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<!--<MtouchLink>SdkOnly</MtouchLink>-->
+		<MtouchLink>None</MtouchLink>
+		<MtouchUseLlvm>false</MtouchUseLlvm>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<UseInterpreter>true</UseInterpreter>
+		<MtouchDebug>false</MtouchDebug>
+		<BuildIpa>true</BuildIpa>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
+	  <ProvisioningType>manual</ProvisioningType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Launcher icon and splash screen -->
+		<!--<MauiIcon Include="Resources/AppIcon/test_p.png" ForegroundFile="Resources/AppIcon/test_p.png" Color="#FFFFFF" />-->
+		<!-- <MauiIcon Include="Resources/AppIcon/test_p.png" Color="#FFFFFF" /> -->
+		
+		<!-- Android only - iOS uses custom Assets.xcassets -->
+		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'"
+				  Include="Resources/AppIcon/xdel.png" Color="#FFFFFF" />
+
+		<MauiSplashScreen Include="Resources\Splash\xdel_transparent_512.png" Color="#ffffff" BaseSize="256,256" />
+
+		<!-- Images, fonts, raw assets -->
+		<MauiImage Include="Resources/Images/*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		<MauiFont Include="Resources\Fonts\*" />
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<BundleResource Include="Platforms\iOS\Assets.xcassets\AppIcon.appiconset\Contents.json" />
+		<BundleResource Include="Platforms\iOS\Assets.xcassets\AppIcon.appiconset\Icon-1024.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="BS\CJob_CollectionTime_BS.xaml.cs" />
+	  <Compile Remove="BS\CJob_Content_BS.xaml.cs" />
+	  <Compile Remove="BS\CJob_DelTime_BS.xaml.cs" />
+	  <Compile Remove="BS\Msg_CollectionTime.cs" />
+	  <Compile Remove="BS\Msg_ContentType.cs" />
+	  <Compile Remove="BS\Msg_DeliveryTime.cs" />
+	  <Compile Remove="Views\Address2.xaml.cs" />
+	  <Compile Remove="Views\AddressEditPage.xaml.cs" />
+	  <Compile Remove="Views\ChatPageCV.xaml.cs" />
+	  <Compile Remove="Views\ChatSupportPage.xaml.cs" />
+	  <Compile Remove="Views\CreateJobPage.xaml.cs" />
+	  <Compile Remove="Views\Homepage.xaml.cs" />
+	  <Compile Remove="Views\RadioButtonControlTemplatePage.xaml.cs" />
+	  <Compile Remove="XDelSys\Conn.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiImage Remove="Resources\Images\add_user_100.svg" />
+		<MauiImage Remove="Resources\Images\add_user_200.svg" />
+		<MauiImage Remove="Resources\Images\add_user_64.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_100.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_200.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_24.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_34.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_44.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_64.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_dbl_100.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_dbl_200.svg" />
+		<MauiImage Remove="Resources\Images\arrow_left_dbl_64.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_100.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_200.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_64.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_dbl_100.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_dbl_200.svg" />
+		<MauiImage Remove="Resources\Images\arrow_right_dbl_64.svg" />
+		<MauiImage Remove="Resources\Images\back_arrow.png" />
+		<MauiImage Remove="Resources\Images\back_arrow_white.png" />
+		<MauiImage Remove="Resources\Images\barcode.svg" />
+		<MauiImage Remove="Resources\Images\barcode_24.svg" />
+		<MauiImage Remove="Resources\Images\cat.png" />
+		<MauiImage Remove="Resources\Images\chat_100.svg" />
+		<MauiImage Remove="Resources\Images\chat_200.svg" />
+		<MauiImage Remove="Resources\Images\chat_24.svg" />
+		<MauiImage Remove="Resources\Images\chat_24_orange.svg" />
+		<MauiImage Remove="Resources\Images\chat_64.svg" />
+		<MauiImage Remove="Resources\Images\chat_new_200.svg" />
+		<MauiImage Remove="Resources\Images\chat_new_24.svg" />
+		<MauiImage Remove="Resources\Images\chat_new_64.svg" />
+		<MauiImage Remove="Resources\Images\dog.png" />
+		<MauiImage Remove="Resources\Images\dot_green.svg" />
+		<MauiImage Remove="Resources\Images\dot_red.svg" />
+		<MauiImage Remove="Resources\Images\edit_100.svg" />
+		<MauiImage Remove="Resources\Images\edit_200.svg" />
+		<MauiImage Remove="Resources\Images\edit_64.svg" />
+		<MauiImage Remove="Resources\Images\edit_black_100.svg" />
+		<MauiImage Remove="Resources\Images\edit_black_200.svg" />
+		<MauiImage Remove="Resources\Images\edit_black_64.svg" />
+		<MauiImage Remove="Resources\Images\elephant.png" />
+		<MauiImage Remove="Resources\Images\excel_100.svg" />
+		<MauiImage Remove="Resources\Images\excel_200.svg" />
+		<MauiImage Remove="Resources\Images\excel_64.svg" />
+		<MauiImage Remove="Resources\Images\eye_off_100.svg" />
+		<MauiImage Remove="Resources\Images\eye_off_200.svg" />
+		<MauiImage Remove="Resources\Images\eye_off_24.svg" />
+		<MauiImage Remove="Resources\Images\eye_off_64.svg" />
+		<MauiImage Remove="Resources\Images\eye_on_100.svg" />
+		<MauiImage Remove="Resources\Images\eye_on_200.svg" />
+		<MauiImage Remove="Resources\Images\eye_on_24.svg" />
+		<MauiImage Remove="Resources\Images\eye_on_64.svg" />
+		<MauiImage Remove="Resources\Images\gear_fill.svg" />
+		<MauiImage Remove="Resources\Images\heart_fill.svg" />
+		<MauiImage Remove="Resources\Images\house_100.svg" />
+		<MauiImage Remove="Resources\Images\house_200.svg" />
+		<MauiImage Remove="Resources\Images\house_24.svg" />
+		<MauiImage Remove="Resources\Images\house_24_orange.svg" />
+		<MauiImage Remove="Resources\Images\house_64.svg" />
+		<MauiImage Remove="Resources\Images\house_door_fill.svg" />
+		<MauiImage Remove="Resources\Images\journal_check.svg" />
+		<MauiImage Remove="Resources\Images\left_arrow.svg" />
+		<MauiImage Remove="Resources\Images\lock_black_100.svg" />
+		<MauiImage Remove="Resources\Images\lock_black_200.svg" />
+		<MauiImage Remove="Resources\Images\lock_black_64.svg" />
+		<MauiImage Remove="Resources\Images\lock_green.svg" />
+		<MauiImage Remove="Resources\Images\lock_orange_100.svg" />
+		<MauiImage Remove="Resources\Images\lock_orange_200.svg" />
+		<MauiImage Remove="Resources\Images\lock_orange_64.svg" />
+		<MauiImage Remove="Resources\Images\logout.svg" />
+		<MauiImage Remove="Resources\Images\logout_100.svg" />
+		<MauiImage Remove="Resources\Images\logout_200.svg" />
+		<MauiImage Remove="Resources\Images\logout_64.svg" />
+		<MauiImage Remove="Resources\Images\monkey.png" />
+		<MauiImage Remove="Resources\Images\plus_100.svg" />
+		<MauiImage Remove="Resources\Images\plus_200.svg" />
+		<MauiImage Remove="Resources\Images\plus_64.svg" />
+		<MauiImage Remove="Resources\Images\plus_square_fill.svg" />
+		<MauiImage Remove="Resources\Images\question_circle.svg" />
+		<MauiImage Remove="Resources\Images\refresh_200.svg" />
+		<MauiImage Remove="Resources\Images\refresh_24.svg" />
+		<MauiImage Remove="Resources\Images\refresh_64.svg" />
+		<MauiImage Remove="Resources\Images\right_arrow.svg" />
+		<MauiImage Remove="Resources\Images\search.svg" />
+		<MauiImage Remove="Resources\Images\search_orange_100.svg" />
+		<MauiImage Remove="Resources\Images\search_orange_200.svg" />
+		<MauiImage Remove="Resources\Images\search_orange_64.svg" />
+		<MauiImage Remove="Resources\Images\setting_100.svg" />
+		<MauiImage Remove="Resources\Images\setting_200.svg" />
+		<MauiImage Remove="Resources\Images\setting_24.svg" />
+		<MauiImage Remove="Resources\Images\setting_24_orange.svg" />
+		<MauiImage Remove="Resources\Images\setting_64.svg" />
+		<MauiImage Remove="Resources\Images\trash_fill.svg" />
+		<MauiImage Remove="Resources\Images\verified_200.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="BS\CJob_CollectionTime_BS.xaml" />
+	  <MauiXaml Remove="BS\CJob_Content_BS.xaml" />
+	  <MauiXaml Remove="BS\CJob_DelTime_BS.xaml" />
+	  <MauiXaml Remove="Views\Address2.xaml" />
+	  <MauiXaml Remove="Views\AddressEditPage.xaml" />
+	  <MauiXaml Remove="Views\ChatPageCV.xaml" />
+	  <MauiXaml Remove="Views\ChatSupportPage.xaml" />
+	  <MauiXaml Remove="Views\CreateJobPage.xaml" />
+	  <MauiXaml Remove="Views\Homepage.xaml" />
+	  <MauiXaml Remove="Views\RadioButtonControlTemplatePage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Platforms\Android\Resources\xml\file_paths.xml" />
+		<None Remove="Resources\AppIcon\appicon.svg" />
+		<None Remove="Resources\AppIcon\appiconfg.svg" />
+		<None Remove="Resources\AppIcon\ic_launcher_adaptive_round_128128.png" />
+		<None Remove="Resources\AppIcon\test.svg" />
+		<None Remove="Resources\AppIcon\xdelicon1024_.png" />
+		<None Remove="Resources\AppIcon\xdelicon1024_s.svg" />
+		<None Remove="Resources\AppIcon\xdelicon140.png" />
+		<None Remove="Resources\AppIcon\xdelicon180 - Copy.png" />
+		<None Remove="Resources\AppIcon\xdelicon180.png" />
+		<None Remove="Resources\AppIcon\xdelicon180.svg" />
+		<None Remove="Resources\AppIcon\x.png" />
+		<None Remove="Resources\AppIcon\test_p.png" />
+		<None Remove="Resources\Images\add_user_100.svg" />
+		<None Remove="Resources\Images\add_user_200.svg" />
+		<None Remove="Resources\Images\add_user_64.svg" />
+		<None Remove="Resources\Images\arrow_left_100.svg" />
+		<None Remove="Resources\Images\arrow_left_200.svg" />
+		<None Remove="Resources\Images\arrow_left_24.svg" />
+		<None Remove="Resources\Images\arrow_left_34.svg" />
+		<None Remove="Resources\Images\arrow_left_44.svg" />
+		<None Remove="Resources\Images\arrow_left_64.svg" />
+		<None Remove="Resources\Images\arrow_left_dbl_100.svg" />
+		<None Remove="Resources\Images\arrow_left_dbl_200.svg" />
+		<None Remove="Resources\Images\arrow_left_dbl_64.svg" />
+		<None Remove="Resources\Images\arrow_right_100.svg" />
+		<None Remove="Resources\Images\arrow_right_200.svg" />
+		<None Remove="Resources\Images\arrow_right_64.svg" />
+		<None Remove="Resources\Images\arrow_right_dbl_100.svg" />
+		<None Remove="Resources\Images\arrow_right_dbl_200.svg" />
+		<None Remove="Resources\Images\arrow_right_dbl_64.svg" />
+		<None Remove="Resources\Images\back_arrow.png" />
+		<None Remove="Resources\Images\back_arrow_white.png" />
+		<None Remove="Resources\Images\barcode.svg" />
+		<None Remove="Resources\Images\barcode_24.svg" />
+		<None Remove="Resources\Images\cat.png" />
+		<None Remove="Resources\Images\chat_100.svg" />
+		<None Remove="Resources\Images\chat_200.svg" />
+		<None Remove="Resources\Images\chat_24.svg" />
+		<None Remove="Resources\Images\chat_24_orange.svg" />
+		<None Remove="Resources\Images\chat_64.svg" />
+		<None Remove="Resources\Images\chat_new_200.svg" />
+		<None Remove="Resources\Images\chat_new_24.svg" />
+		<None Remove="Resources\Images\chat_new_64.svg" />
+		<None Remove="Resources\Images\dog.png" />
+		<None Remove="Resources\Images\dot_green.svg" />
+		<None Remove="Resources\Images\dot_red.svg" />
+		<None Remove="Resources\Images\edit_100.svg" />
+		<None Remove="Resources\Images\edit_200.svg" />
+		<None Remove="Resources\Images\edit_64.svg" />
+		<None Remove="Resources\Images\edit_black_100.svg" />
+		<None Remove="Resources\Images\edit_black_200.svg" />
+		<None Remove="Resources\Images\edit_black_64.svg" />
+		<None Remove="Resources\Images\elephant.png" />
+		<None Remove="Resources\Images\excel_100.svg" />
+		<None Remove="Resources\Images\excel_200.svg" />
+		<None Remove="Resources\Images\excel_64.svg" />
+		<None Remove="Resources\Images\eye_off_100.svg" />
+		<None Remove="Resources\Images\eye_off_200.svg" />
+		<None Remove="Resources\Images\eye_off_24.svg" />
+		<None Remove="Resources\Images\eye_off_64.svg" />
+		<None Remove="Resources\Images\eye_on_100.svg" />
+		<None Remove="Resources\Images\eye_on_200.svg" />
+		<None Remove="Resources\Images\eye_on_24.svg" />
+		<None Remove="Resources\Images\eye_on_64.svg" />
+		<None Remove="Resources\Images\gear_fill.svg" />
+		<None Remove="Resources\Images\heart_fill.svg" />
+		<None Remove="Resources\Images\house_100.svg" />
+		<None Remove="Resources\Images\house_200.svg" />
+		<None Remove="Resources\Images\house_24.svg" />
+		<None Remove="Resources\Images\house_24_orange.svg" />
+		<None Remove="Resources\Images\house_64.svg" />
+		<None Remove="Resources\Images\house_door_fill.svg" />
+		<None Remove="Resources\Images\journal_check.svg" />
+		<None Remove="Resources\Images\left_arrow.svg" />
+		<None Remove="Resources\Images\lock_black_100.svg" />
+		<None Remove="Resources\Images\lock_black_200.svg" />
+		<None Remove="Resources\Images\lock_black_64.svg" />
+		<None Remove="Resources\Images\lock_green.svg" />
+		<None Remove="Resources\Images\lock_orange_100.svg" />
+		<None Remove="Resources\Images\lock_orange_200.svg" />
+		<None Remove="Resources\Images\lock_orange_64.svg" />
+		<None Remove="Resources\Images\logout.svg" />
+		<None Remove="Resources\Images\logout_100.svg" />
+		<None Remove="Resources\Images\logout_200.svg" />
+		<None Remove="Resources\Images\logout_64.svg" />
+		<None Remove="Resources\Images\monkey.png" />
+		<None Remove="Resources\Images\plus_100.svg" />
+		<None Remove="Resources\Images\plus_200.svg" />
+		<None Remove="Resources\Images\plus_64.svg" />
+		<None Remove="Resources\Images\plus_square_fill.svg" />
+		<None Remove="Resources\Images\question_circle.svg" />
+		<None Remove="Resources\Images\refresh_200.svg" />
+		<None Remove="Resources\Images\refresh_24.svg" />
+		<None Remove="Resources\Images\refresh_64.svg" />
+		<None Remove="Resources\Images\right_arrow.svg" />
+		<None Remove="Resources\Images\search.svg" />
+		<None Remove="Resources\Images\search_orange_100.svg" />
+		<None Remove="Resources\Images\search_orange_200.svg" />
+		<None Remove="Resources\Images\search_orange_64.svg" />
+		<None Remove="Resources\Images\setting_100.svg" />
+		<None Remove="Resources\Images\setting_200.svg" />
+		<None Remove="Resources\Images\setting_24.svg" />
+		<None Remove="Resources\Images\setting_24_orange.svg" />
+		<None Remove="Resources\Images\setting_64.svg" />
+		<None Remove="Resources\Images\trash_fill.svg" />
+		<None Remove="Resources\Images\verified_200.svg" />
+		<None Remove="Resources\Splash\splash.svg" />
+		<None Remove="Resources\Splash\xdel_transparent_1024x1024.png" />
+		<None Remove="Resources\Splash\xdel_transparent_1024x525.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Project references -->
+		<!--<ProjectReference Include="..\Maui.Controls.BottomSheet-main\src\Maui.Controls.BottomSheet\Maui.Controls.BottomSheet.csproj" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Packages -->
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="14.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="epj.Expander.Maui" Version="1.0.3" />
+		<PackageReference Include="MiniExcel" Version="1.41.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<!--<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.4" />-->
+		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.*" />
+		<!--<PackageReference Include="The49.Maui.BottomSheet" Version="8.0.3" />-->
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- System.ServiceModel dependencies -->
+		<PackageReference Include="System.ServiceModel.Duplex" Version="4.10.*" />
+		<PackageReference Include="System.ServiceModel.Http" Version="4.10.*" />
+		<PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.*" />
+		<PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
+		<PackageReference Include="System.ServiceModel.Federation" Version="4.10.*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<BundleResource Include="Platforms\iOS\Resources\Icon-60@2x.png" />
+		<BundleResource Include="Platforms\iOS\Resources\Icon-60@3x.png" />
+		<BundleResource Include="Platforms\iOS\Resources\Icon-76@2x.png" />
+		<BundleResource Include="Platforms\iOS\Resources\Icon-83.5@2x.png" />
+		<BundleResource Include="Platforms\iOS\Resources\Icon-1024.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="BS\BottomSheet.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

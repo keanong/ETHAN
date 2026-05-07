@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.ChatPage"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <Grid>
+
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+
+            <Label x:Name="lblSessionIDX" IsVisible="False" Text="" />
+            <Label x:Name="lblChatStatus" IsVisible="False" Text="" />
+
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" Padding="0" Stroke="{StaticResource Gray200}" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="FillAndExpand" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- Internal layout of the card -->
+                <Grid RowDefinitions="Auto,*,Auto" BackgroundColor="Transparent">
+
+                    <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                      HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                        <ImageButton Source="arrow_left_80.png" Clicked="Back" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                     WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                        <Label x:Name="btnTopNBack" Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                           TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Back"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                    <CollectionView Grid.Row="1" x:Name="ChatListView" ItemsSource="{Binding Messages}" ItemsUpdatingScrollMode="KeepLastItemInView"
+                    VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="{StaticResource Gray50}" SelectionMode="None" Margin="10">
+
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <Grid Padding="5" ColumnDefinitions="*,Auto">
+                                    <Border Stroke="{Binding BubbleColor}" BackgroundColor="{Binding BubbleColor}" 
+                                    StrokeThickness="1" Padding="12" HorizontalOptions="{Binding BubblePosition}" 
+                                    MaximumWidthRequest="260" MinimumWidthRequest="{Binding MinWidthRequest}" StrokeShape="RoundRectangle 12">
+
+                                        <VerticalStackLayout>
+
+                                            <Label Text="{Binding StaffName}" IsVisible="{Binding ShowName}" TextColor="{StaticResource XDelOrange}" FontSize="16" FontAttributes="Bold" HorizontalOptions="Start" />
+
+                                            <Label Text="{Binding Text}" TextColor="{Binding MessageTextColor}" FontSize="{Binding Fontsize}" FontAttributes="Bold" HorizontalOptions="{Binding TextPosition}" />
+
+                                            <Label Text="{Binding Time}" IsVisible="{Binding ShowTime}" TextColor="{Binding MessageTextColor}" FontSize="13" HorizontalOptions="End" />
+
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                </Grid>
+
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+
+                    </CollectionView>
+
+
+                    <Grid Grid.Row="2" BackgroundColor="White" Padding="10" ColumnDefinitions="*,Auto" VerticalOptions="End" x:Name="gridEntry" IsVisible="{Binding IsChatOpen}">
+
+                        <Entry x:Name="MessageEntry" Placeholder="Type a message..." FontSize="14" TextColor="{StaticResource Gray900}"
+                    PlaceholderColor="{StaticResource Gray400}" BackgroundColor="White" HeightRequest="44" ClearButtonVisibility="WhileEditing"
+                    ReturnType="Send" Completed="OnSendClicked" />
+
+                        <Button Grid.Column="1" x:Name="btnSend" Text="Send" FontSize="14" Padding="15,0" BackgroundColor="{StaticResource XDelOrange}"
+                    TextColor="White" CornerRadius="10" HeightRequest="44" Clicked="OnSendClicked" />
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

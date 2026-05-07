@@ -1,0 +1,369 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+		<!--<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>-->
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net9.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ETHAN</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>ETHAN</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<!--<ApplicationId>com.companyname.ethan</ApplicationId>-->
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<!--<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>-->
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">25.0</SupportedOSPlatformVersion>
+		<!--<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
+		<AndroidSigningKeyStore>Ethan.keystore</AndroidSigningKeyStore>
+		<PackageIcon>ic_launcher_adaptive_round_128128.png</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
+		<ApplicationVersion>103</ApplicationVersion>
+		<AndroidEnableFastDeployment>true</AndroidEnableFastDeployment>
+		<AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
+		<AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+		<AndroidLinkMode>None</AndroidLinkMode>
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+		<UseInterpreter>true</UseInterpreter>
+		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+	  <ApplicationId>com.xdel.ethan</ApplicationId>
+	  <ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
+	  <ApplicationVersion>103</ApplicationVersion>
+
+		<!-- Debugging Speed Optimizations -->
+		<MtouchLink>None</MtouchLink>
+		<!-- Disable linker for faster builds -->
+		<MtouchFastDev>true</MtouchFastDev>
+		<!-- Enable FastDev incremental deploy -->
+		<MtouchUseLlvm>false</MtouchUseLlvm>
+		<!-- Disable LLVM compiler (slow) -->
+		<RunAOTCompilation>false</RunAOTCompilation>
+		<!-- Skip AOT compilation -->
+		<UseInterpreter>true</UseInterpreter>
+		<!-- Use IL interpreter for faster hot reload -->
+		<BuildIpa>false</BuildIpa>
+		<!-- Don’t build an IPA for debug -->
+		<MtouchDebug>true</MtouchDebug>
+		<!-- Ensures symbols and debugging info -->
+		<Optimize>false</Optimize>
+		<!-- Keeps IL readable for debugger -->
+	</PropertyGroup>
+
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.xdel.ethan</ApplicationId>
+	  <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>101</ApplicationVersion>
+	</PropertyGroup>-->
+
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.xdel.ethan</ApplicationId>
+	  <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>101</ApplicationVersion>
+	</PropertyGroup>-->
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
+		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
+		<DebugSymbols>False</DebugSymbols>
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
+		<ApplicationVersion>103</ApplicationVersion>
+		<AndroidEnableFastDeployment>false</AndroidEnableFastDeployment>
+		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
+		<ApplicationId>com.xdel.ethan</ApplicationId>
+		<ApplicationDisplayVersion>1.0.3</ApplicationDisplayVersion>
+		<ApplicationVersion>103</ApplicationVersion>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<MtouchUseLlvm>true</MtouchUseLlvm>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<UseInterpreter>false</UseInterpreter>
+		<BuildIpa>true</BuildIpa>
+	</PropertyGroup>
+
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>com.xdel.ethan</ApplicationId>
+	  <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>101</ApplicationVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>com.xdel.ethan</ApplicationId>
+	  <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>101</ApplicationVersion>
+	</PropertyGroup>-->
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<!--<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />-->
+		<MauiIcon Include="Resources\appicon\xdelicon1024.png" ForegroundFile="Resources\appicon\xdelicon1024.png" Color="#FFFFFF" />
+
+		<!-- Splash Screen -->
+		<!--<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />-->
+
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<!--<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+		<MauiIcon Include="Resources\AppIcon\xdelicon180.svg" ForegroundScale="0.65" Color="#ffffff" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+		<MauiIcon Include="Resources\AppIcon\xdelicon180.svg" Color="#ffffff" />
+	</ItemGroup>-->
+
+	<!--<ItemGroup Condition="$(TargetFramework.Contains('-android'))">
+		<MauiSplashScreen Include="Resources\Splash\xdel_transparent_1024x1024.png"
+						  Color="#000000"
+						  ForegroundScale="0.65" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-ios'))">
+		<MauiSplashScreen Include="Resources\Splash\xdel_transparent_1024x1024.png"
+						  Color="#000000"
+						  ForegroundScale="0.65" />
+	</ItemGroup>-->
+	
+	<ItemGroup>
+		<MauiSplashScreen Include="Resources\Splash\xdel_transparent_512.png" Color="#ffffff" BaseSize="256,256" />
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<Compile Remove="BS\CJob_CollectionTime_BS.xaml.cs" />
+		<Compile Remove="BS\CJob_Content_BS.xaml.cs" />
+		<Compile Remove="BS\CJob_DelTime_BS.xaml.cs" />
+		<Compile Remove="BS\Msg_CollectionTime.cs" />
+		<Compile Remove="BS\Msg_ContentType.cs" />
+		<Compile Remove="BS\Msg_DeliveryTime.cs" />
+		<Compile Remove="DatePickerEntryBehavior.cs" />
+		<Compile Remove="PageExtensionsGlobal.cs" />
+		<Compile Remove="ViewModel\TestpageVM.cs" />
+		<Compile Remove="Views\ChatPageCV.xaml.cs" />
+		<Compile Remove="Views\ChatSupportPage.xaml.cs" />
+		<Compile Remove="Views\DatePickerPopup.xaml.cs" />
+		<Compile Remove="Views\SimpleDatePicker.xaml.cs" />
+		<Compile Remove="Views\Testpage.xaml.cs" />
+		<Compile Remove="Views\Testpage2.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\right_arrow.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Remove="BS\CJob_CollectionTime_BS.xaml" />
+		<MauiXaml Remove="BS\CJob_Content_BS.xaml" />
+		<MauiXaml Remove="BS\CJob_DelTime_BS.xaml" />
+		<MauiXaml Remove="Views\ChatPageCV.xaml" />
+		<MauiXaml Remove="Views\ChatSupportPage.xaml" />
+		<MauiXaml Remove="Views\DatePickerPopup.xaml" />
+		<MauiXaml Remove="Views\SimpleDatePicker.xaml" />
+		<MauiXaml Remove="Views\Testpage.xaml" />
+		<MauiXaml Remove="Views\Testpage2.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="global.json" />
+		<None Remove="Resources\appicon\xdelicon180 - Copy.png" />
+		<None Remove="Resources\Images\barcode.svg" />
+		<None Remove="Resources\Images\gear_fill.svg" />
+		<None Remove="Resources\Images\heart_fill.svg" />
+		<None Remove="Resources\Images\house_door_fill.svg" />
+		<None Remove="Resources\Images\journal_check.svg" />
+		<None Remove="Resources\Images\logout.svg" />
+		<None Remove="Resources\Images\plus_square_fill.svg" />
+		<None Remove="Resources\Images\right_arrow.png" />
+		<None Remove="Resources\Images\search.svg" />
+		<None Remove="Resources\Images\trash_fill.svg" />
+		<None Remove="Resources\Images\xdelicon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Core" Version="12.2.0" />
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="6.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="epj.Expander.Maui" Version="1.0.3" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.110" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.3" />
+		<PackageReference Include="MiniExcel" Version="1.41.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+		<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
+		<PackageReference Include="System.ServiceModel.Federation" Version="8.1.2" />
+		<PackageReference Include="System.ServiceModel.Http" Version="8.1.2" />
+		<PackageReference Include="System.ServiceModel.NetNamedPipe" Version="8.1.2" />
+		<PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.2" />
+		<PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
+		<PackageReference Include="The49.Maui.BottomSheet" Version="8.0.3" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Maui.Controls.BottomSheet-main\src\Maui.Controls.BottomSheet\Maui.Controls.BottomSheet.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="ProgressDialog\ProgressPopup.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AddressEditPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AddressPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Address2.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\AddressBookPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\BarcodeScanningPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\BottomSheetDatePicker.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CardShellPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ChangePwdPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ChatMainPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ChatPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CreateJob.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CreateJobPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\FakeTabBar.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Homepage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Home_Page.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\InventoryPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\JobSummary.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Login.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\LoginForgotPwd.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\LoginPwdReset.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\LoginReg.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\ManageJobPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\PrepaidListPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\RadioButtonControlTemplatePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Settings.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\SettingsPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\WebViewPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Resources\appicon\ic_launcher_adaptive_round_128128.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Views\AddressBookPage.xaml.cs">
+			<DependentUpon>AddressBookPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\AddressPage.xaml.cs">
+			<DependentUpon>AddressPage.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="BS\" />
+	</ItemGroup>
+
+</Project>

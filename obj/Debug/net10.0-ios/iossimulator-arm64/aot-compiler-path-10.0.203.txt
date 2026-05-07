@@ -1,0 +1,1 @@
+\Users\xdelsingapore\Library\Caches\maui\PairToMac\SDKs\dotnet\packs\Microsoft.NETCore.App.Runtime.AOT.osx-arm64.Cross.iossimulator-arm64\10.0.7\Sdk\..\tools\mono-aot-cross

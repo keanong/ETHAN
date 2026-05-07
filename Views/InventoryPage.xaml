@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
+             xmlns:classes="clr-namespace:ETHAN.classes"
+             x:Class="ETHAN.Views.InventoryPage"
+             x:DataType="viewmodel:InventoryPageVM"
+             Title="InventoryPage"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Shell.NavBarIsVisible="False"
+             HideSoftInputOnTapped="True"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False"  />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+
+        <Style x:Key="TabButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontAttributes" Value="None"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="10,0"/>
+        </Style>
+
+        <Style x:Key="TabLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontAttributes" Value="None"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="TabLabelStyle2" TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontAttributes" Value="None"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="VerticalTextAlignment" Value="Start" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            <Setter Property="VerticalOptions" Value="Start"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <!-- SAFE AREA CONTAINER -->
+        <Grid x:Name="RootLayout" Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" Padding="0" 
+                      MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
+
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" HorizontalOptions="Fill" VerticalOptions="Start" ColumnDefinitions="Auto,*,Auto" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTopNBack" Grid.Column="1" Text="Inventory" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <ImageButton Grid.Column="2" x:Name="btnExport" Source="excel_80.png" Clicked="btnExport_Clicked" HorizontalOptions="End"
+                                           WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"
+                                VerticalOptions="Center" Padding="0" Margin="0,0,25,0"></ImageButton>
+                        </Grid>
+
+                        <Grid Grid.Row="1" IgnoreSafeArea="True">
+                            <Border Style="{StaticResource boxStyleWhiteRoundDark}" StrokeThickness="0" StrokeShape="RoundRectangle 8" 
+    BackgroundColor="White" VerticalOptions="Start" Padding="0" Margin="5,0,5,10">
+                                <Grid RowDefinitions="Auto,*">
+                                    <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" RowDefinitions="*,*" Padding="1" HeightRequest="50" Margin="0,10,0,0">
+                                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="SN" Style="{StaticResource TabLabelStyle}" Margin="5,0"></Label>
+                                        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="StockCode" Style="{StaticResource TabLabelStyle}" HorizontalOptions="Start" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnSortByStockCodeClicked"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Text="Desc" Style="{StaticResource TabLabelStyle}" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnSortByDescriptionClicked"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Text="Bal" Style="{StaticResource TabLabelStyle}" HorizontalOptions="Center" >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnSortByBalanceClicked"/>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+
+                                        <BoxView Grid.Row="1" Grid.ColumnSpan="10" Style="{StaticResource DividerGray50}" />
+
+                                    </Grid>
+
+                                    <CollectionView Grid.Row="1" x:Name="cvInventory" ItemsSource="{Binding Items}" ItemSizingStrategy="MeasureAllItems" BackgroundColor="White" VerticalOptions="Start">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="classes:InventoryItem">
+                                                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" RowDefinitions="Auto,*" Padding="0" MinimumHeightRequest="50">
+                                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SN}" Style="{StaticResource TabLabelStyle2}" Margin="5,0" />
+                                                    <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding StockCode}"  Style="{StaticResource TabLabelStyle2}" />
+                                                    <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding Description}" Style="{StaticResource TabLabelStyle2}" />
+                                                    <Label Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Text="{Binding Balance}" Style="{StaticResource TabLabelStyle2}" HorizontalOptions="Center" />
+
+                                                    <BoxView Grid.Row="1" Grid.ColumnSpan="10" Style="{StaticResource DividerGray50}" />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </Grid>
+
+                            </Border>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
