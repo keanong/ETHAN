@@ -1,0 +1,52 @@
+# Visual Studio cache/options directory
+.vs/
+
+# Build output directories
+bin/
+obj/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# macOS
+.DS_Store
+
+# Node.js (if any JS tooling is used)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Published output
+publish/
+PublishProfiles/
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+*.env.local
+appsettings.Development.json
+appsettings.Local.json
+
+# Test results
+TestResults/
+coverage/

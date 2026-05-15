@@ -1,7 +1,7 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
-    "net10.0-android36.0": {
+    "net10.0-android": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -651,7 +651,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -736,7 +736,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -3073,7 +3073,7 @@
         }
       }
     },
-    "net10.0-android36.0/android-arm64": {
+    "net10.0-android/android-arm64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -3723,7 +3723,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -3808,7 +3808,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -6139,7 +6139,7 @@
         }
       }
     },
-    "net10.0-android36.0/android-x64": {
+    "net10.0-android/android-x64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -6789,7 +6789,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -6874,7 +6874,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -9205,7 +9205,7 @@
         }
       }
     },
-    "net10.0-android36.0/ios-arm64": {
+    "net10.0-android/ios-arm64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -9855,7 +9855,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -9940,7 +9940,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -12271,7 +12271,7 @@
         }
       }
     },
-    "net10.0-ios26.2": {
+    "net10.0-ios": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -12888,7 +12888,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -12973,7 +12973,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -13191,7 +13191,7 @@
         }
       }
     },
-    "net10.0-ios26.2/android-arm64": {
+    "net10.0-ios/android-arm64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -13808,7 +13808,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -13893,7 +13893,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -14105,7 +14105,7 @@
         }
       }
     },
-    "net10.0-ios26.2/android-x64": {
+    "net10.0-ios/android-x64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -14722,7 +14722,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -14807,7 +14807,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -15019,7 +15019,7 @@
         }
       }
     },
-    "net10.0-ios26.2/ios-arm64": {
+    "net10.0-ios/ios-arm64": {
       "CommunityToolkit.Maui/14.0.0": {
         "type": "package",
         "dependencies": {
@@ -15636,7 +15636,7 @@
           "buildTransitive/Microsoft.Maui.Resizetizer.targets": {}
         }
       },
-      "Microsoft.NET.ILLink.Tasks/10.0.7": {
+      "Microsoft.NET.ILLink.Tasks/10.0.8": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
@@ -15721,7 +15721,7 @@
           }
         }
       },
-      "System.Security.Cryptography.Pkcs/9.0.15": {
+      "System.Security.Cryptography.Pkcs/9.0.16": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Security.Cryptography.Pkcs.dll": {
@@ -17383,10 +17383,10 @@
         "microsoft.maui.resizetizer.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/10.0.7": {
-      "sha512": "AA/yhzFHNtQZXLdqjzujPy25G8EWwGWsAnxOE2zYSBoT/8QHP6ketN3CToD3DFreO653ipUwnKHo22B8AlBMCw==",
+    "Microsoft.NET.ILLink.Tasks/10.0.8": {
+      "sha512": "dVbSXGIFNR5nZcv2tOLoWI+a9T4jtFd77IYjuND+QVe360qWgAF7H0WtoopYhRw/+SgpGUTyrkrh+65+ClNnfw==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/10.0.7",
+      "path": "microsoft.net.illink.tasks/10.0.8",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -17399,7 +17399,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.10.0.7.nupkg.sha512",
+        "microsoft.net.illink.tasks.10.0.8.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net/ILLink.Tasks.deps.json",
         "tools/net/ILLink.Tasks.dll",
@@ -17549,10 +17549,10 @@
         "system.private.servicemodel.nuspec"
       ]
     },
-    "System.Security.Cryptography.Pkcs/9.0.15": {
-      "sha512": "ZqPer8QiXxMHnXbgaJkWlD6kit8biD09lWmYP2NM+pfoaGwLneVCa4WnOVUJnAoZQrNKO/zryC68H2+G8xQbNA==",
+    "System.Security.Cryptography.Pkcs/9.0.16": {
+      "sha512": "mlwy/8G+YZaxXUWtQKrtxDwHwUMekmBTzmMNdgiKCVr8trg+Km3bZ20/twk8dKOOwf6wzs63mfNhe6ZQPnpgRg==",
       "type": "package",
-      "path": "system.security.cryptography.pkcs/9.0.15",
+      "path": "system.security.cryptography.pkcs/9.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -17577,7 +17577,7 @@
         "runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.xml",
         "runtimes/win/lib/net9.0/System.Security.Cryptography.Pkcs.dll",
         "runtimes/win/lib/net9.0/System.Security.Cryptography.Pkcs.xml",
-        "system.security.cryptography.pkcs.9.0.15.nupkg.sha512",
+        "system.security.cryptography.pkcs.9.0.16.nupkg.sha512",
         "system.security.cryptography.pkcs.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -20540,12 +20540,12 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net10.0-android36.0": [
+    "net10.0-android": [
       "CommunityToolkit.Maui >= 14.0.0",
       "CommunityToolkit.Maui.Markup >= 7.0.0",
       "CommunityToolkit.Mvvm >= 8.4.0",
       "Microsoft.Maui.Controls >= 10.0.41",
-      "Microsoft.NET.ILLink.Tasks >= 10.0.7",
+      "Microsoft.NET.ILLink.Tasks >= 10.0.8",
       "MiniExcel >= 1.41.4",
       "Newtonsoft.Json >= 13.0.4",
       "System.Security.Cryptography.Pkcs >= 9.0.*",
@@ -20557,12 +20557,12 @@
       "ZXing.Net.Maui.Controls >= 0.4.0",
       "epj.Expander.Maui >= 1.0.3"
     ],
-    "net10.0-ios26.2": [
+    "net10.0-ios": [
       "CommunityToolkit.Maui >= 14.0.0",
       "CommunityToolkit.Maui.Markup >= 7.0.0",
       "CommunityToolkit.Mvvm >= 8.4.0",
       "Microsoft.Maui.Controls >= 10.0.41",
-      "Microsoft.NET.ILLink.Tasks >= 10.0.7",
+      "Microsoft.NET.ILLink.Tasks >= 10.0.8",
       "MiniExcel >= 1.41.4",
       "Newtonsoft.Json >= 13.0.4",
       "System.Security.Cryptography.Pkcs >= 9.0.*",
@@ -20607,12 +20607,12 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net10.0-android36.0": {
+        "net10.0-android": {
           "framework": "net10.0-android36.0",
           "targetAlias": "net10.0-android",
           "projectReferences": {}
         },
-        "net10.0-ios26.2": {
+        "net10.0-ios": {
           "framework": "net10.0-ios26.2",
           "targetAlias": "net10.0-ios",
           "projectReferences": {}
@@ -20628,10 +20628,10 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
-      "net10.0-android36.0": {
+      "net10.0-android": {
         "framework": "net10.0-android36.0",
         "targetAlias": "net10.0-android",
         "dependencies": {
@@ -20654,7 +20654,7 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.7, )",
+            "version": "[10.0.8, )",
             "autoReferenced": true
           },
           "MiniExcel": {
@@ -20720,7 +20720,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -20996,7 +20996,7 @@
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
       },
-      "net10.0-ios26.2": {
+      "net10.0-ios": {
         "framework": "net10.0-ios26.2",
         "targetAlias": "net10.0-ios",
         "dependencies": {
@@ -21019,7 +21019,7 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[10.0.7, )",
+            "version": "[10.0.8, )",
             "autoReferenced": true
           },
           "MiniExcel": {
@@ -21085,7 +21085,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

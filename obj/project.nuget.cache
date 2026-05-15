@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "U8a1wjZtDs8=",
+  "dgSpecHash": "wEWmqyz1xyQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\kean.ong\\Documents\\ETHAN\\ETHAN.csproj",
   "expectedPackageFiles": [
@@ -36,11 +36,11 @@
     "C:\\Users\\kean.ong\\.nuget\\packages\\microsoft.maui.essentials\\10.0.41\\microsoft.maui.essentials.10.0.41.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\microsoft.maui.graphics\\10.0.41\\microsoft.maui.graphics.10.0.41.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\microsoft.maui.resizetizer\\10.0.41\\microsoft.maui.resizetizer.10.0.41.nupkg.sha512",
-    "C:\\Users\\kean.ong\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.7\\microsoft.net.illink.tasks.10.0.7.nupkg.sha512",
+    "C:\\Users\\kean.ong\\.nuget\\packages\\microsoft.net.illink.tasks\\10.0.8\\microsoft.net.illink.tasks.10.0.8.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\miniexcel\\1.41.4\\miniexcel.1.41.4.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\system.private.servicemodel\\4.10.3\\system.private.servicemodel.4.10.3.nupkg.sha512",
-    "C:\\Users\\kean.ong\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.15\\system.security.cryptography.pkcs.9.0.15.nupkg.sha512",
+    "C:\\Users\\kean.ong\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.16\\system.security.cryptography.pkcs.9.0.16.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\system.security.cryptography.xml\\6.0.1\\system.security.cryptography.xml.6.0.1.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\system.servicemodel.duplex\\4.10.3\\system.servicemodel.duplex.4.10.3.nupkg.sha512",
     "C:\\Users\\kean.ong\\.nuget\\packages\\system.servicemodel.federation\\4.10.3\\system.servicemodel.federation.4.10.3.nupkg.sha512",
