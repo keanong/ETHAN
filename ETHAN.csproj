@@ -99,8 +99,7 @@
 		<!-- <MauiIcon Include="Resources/AppIcon/test_p.png" Color="#FFFFFF" /> -->
 		
 		<!-- Android only - iOS uses custom Assets.xcassets -->
-		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'"
-				  Include="Resources/AppIcon/xdel.png" Color="#FFFFFF" />
+		<MauiIcon Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" Include="Resources/AppIcon/xdel.png" Color="#FFFFFF" />
 
 		<MauiSplashScreen Include="Resources\Splash\xdel_transparent_512.png" Color="#ffffff" BaseSize="256,256" />
 

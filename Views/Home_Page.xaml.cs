@@ -112,7 +112,7 @@ public partial class Home_Page : ContentView
                 lblAvailBal.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
                 lblAvailBalText.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
                 btnTopUp.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
-                bTrack.IsVisible = true;
+                bTrack.IsVisible = false;
             }
             else if (mode.Equals("r") && logininfo != null && logininfo.clientInfo != null)
             {

@@ -74,7 +74,7 @@ public partial class BarcodeScanningPage : ContentPage
             // Small delay to ensure resources are released
             await Task.Delay(50);
 
-            MainThread.BeginInvokeOnMainThread(async () =>
+            /*MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     try
                     {
@@ -89,7 +89,25 @@ public partial class BarcodeScanningPage : ContentPage
                         string s = ex.Message;
                     }
                 }
-            );
+            );*/
+
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                try
+                {
+                    logininfo = AppSession.logininfo;
+                    BindingContext = null;
+                    await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
+                        {
+                            { "LOGININFO", logininfo },
+                            { "BARCODE", v }
+                        });
+                } catch (Exception ex)
+                {
+                    string s = ex.Message;
+                }
+            }
+                                    );
 
         }
         catch (InvalidOperationException ex)
@@ -129,15 +147,7 @@ public partial class BarcodeScanningPage : ContentPage
     {
         try
         {
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                    {
-                        { "LOGININFO", logininfo },
-                        { "BARCODE", null }
-                    });
-            }
-            );
+            BackToHomePage();
         }
         catch (Exception ex)
         {
@@ -148,17 +158,24 @@ public partial class BarcodeScanningPage : ContentPage
 
     void BackToHome(System.Object sender, System.EventArgs e)
     {
+        BackToHomePage();
+    }
+
+
+    async void BackToHomePage()
+    {
         try
         {
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Shell.Current.GoToAsync("///Homepage", new Dictionary<string, object>
-                    {
-                        { "LOGININFO", logininfo },
-                        { "BARCODE", null }
-                    });
+                logininfo = AppSession.logininfo;
+                BindingContext = null;
+                await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
+                        {
+                            { "BARCODE", null }
+                        });
             }
-           );
+                                    );
         }
         catch (Exception ex)
         {

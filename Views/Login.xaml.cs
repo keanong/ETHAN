@@ -212,8 +212,62 @@ this.HideSoftInputOnTapped = false;
 
     protected override bool OnBackButtonPressed()
     {
-        Application.Current.Quit();
+        //Application.Current.Quit();
+        _ = HideOtpOrQuit();
         return true;
+    }
+
+    private async Task HideOtpOrQuit()
+    {
+        bool GSv = GSOTP.IsVisible;
+        bool GMv = GMOTP.IsVisible;
+        bool GEv = GEOTP.IsVisible;
+        try
+        {
+            if (GSv || GMv || GEv)
+            {
+                if (GSv)
+                {
+                    await AppSession.SetLOGIN_SUIDX("");
+                    await AppSession.SetAPP_UID("");
+                    await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
+                    ShowSenderLogin(true);
+                } else
+                {
+                    await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
+                    await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
+
+                    SecureStorage.Remove("LOGIN_EUIDX");
+                    SecureStorage.Remove("LOGIN_MOTP_SESSIONID");
+                    SecureStorage.Remove("LOGIN_MOTP_VERIFIED");
+                    SecureStorage.Remove("LOGIN_EOTP_SESSIONID");
+                    SecureStorage.Remove("LOGIN_EOTP_VERIFIED");
+
+                    await AppSession.SetLOGIN_EUIDX("");
+                    await AppSession.SetTEMP_UID("");
+                    await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
+                    ShowReceiverLogin(true);
+                }
+            } else
+            {
+                Application.Current.Quit();
+            }
+        } catch (Exception e)
+        {
+            string s = e.Message;
+        }
+    }
+
+    private async void CXOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            HideOtpOrQuit();
+        } catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+        
     }
 
     private async void ReceiverLoginBtn_Click(object sender, EventArgs e)

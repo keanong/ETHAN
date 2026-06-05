@@ -46,7 +46,7 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
         try
         {
             // Ignore if another page is currently shown
-            if (Shell.Current?.CurrentPage is CardShellPage || Shell.Current?.CurrentPage is Login)
+            if (Shell.Current?.CurrentPage is CardShellPage || Shell.Current?.CurrentPage is Login || Shell.Current?.CurrentPage is BarcodeScanningPage)
             {
                 //do nothing
             } else if (Shell.Current?.CurrentPage is not CardShellPage)

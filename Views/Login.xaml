@@ -151,9 +151,9 @@
                                         <Button x:Name="SenderLoginBtn" Clicked="SenderLoginBtn_Click" Text="Login" VerticalOptions="CenterAndExpand" 
                                 Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" />
 
-                                        <Grid ColumnDefinitions="*,Auto" x:Name="GSOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="false">
+                                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,10,*" x:Name="GSOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="false">
 
-                                            <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Border Grid.Row="0" x:Name="borderOTP" Style="{StaticResource bbtxt}" HeightRequest="55">
 
                                                 <Grid RowDefinitions="*,*">
                                                     <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -163,7 +163,7 @@
 
                                             </Border>
 
-                                            <Label Grid.Column="1" x:Name="btnSenderVerify" HorizontalOptions="Center" FontAttributes="Bold" 
+                                            <Label Grid.Row="0" Grid.Column="1" x:Name="btnSenderVerify" HorizontalOptions="Center" FontAttributes="Bold" 
                                            FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center"  WidthRequest="82">
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -175,6 +175,9 @@
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
+
+                                            <Button Grid.Row="2" x:Name="SenderOTPCXBtn" Clicked="CXOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" WidthRequest="{Binding Width, Source={x:Reference borderOTP}}" />
 
                                         </Grid>
 
@@ -351,9 +354,9 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <Grid ColumnDefinitions="*,Auto" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+                                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,10,*" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
 
-                                            <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Border Grid.Row="0" x:Name="GMOTPborderOTP" Style="{StaticResource bbtxt}" HeightRequest="55">
 
                                                 <Grid RowDefinitions="*,*">
                                                     <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -363,7 +366,7 @@
 
                                             </Border>
 
-                                            <Label Grid.Column="1" x:Name="btnMobileVerify" HorizontalOptions="Center" FontAttributes="Bold" 
+                                            <Label Grid.Row="0" Grid.Column="1" x:Name="btnMobileVerify" HorizontalOptions="Center" FontAttributes="Bold" 
                                            FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center"  WidthRequest="82">
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -376,11 +379,14 @@
                                                 </Label.FormattedText>
                                             </Label>
 
+                                            <Button Grid.Row="2" x:Name="GMOTPCXBtn" Clicked="CXOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" WidthRequest="{Binding Width, Source={x:Reference GMOTPborderOTP}}" />
+
                                         </Grid>
 
-                                        <Grid ColumnDefinitions="*,Auto" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+                                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,10,*" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
 
-                                            <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                            <Border Grid.Row="0" x:Name="GEOTPborderOTP" Style="{StaticResource bbtxt}" HeightRequest="55">
 
                                                 <Grid RowDefinitions="*,*">
                                                     <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -390,7 +396,7 @@
 
                                             </Border>
 
-                                            <Label Grid.Column="1" x:Name="btnEmailVerify" HorizontalOptions="Center" FontAttributes="Bold" 
+                                            <Label Grid.Row="0" Grid.Column="1" x:Name="btnEmailVerify" HorizontalOptions="Center" FontAttributes="Bold" 
                                            FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82">
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -402,6 +408,9 @@
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
+
+                                            <Button Grid.Row="2" x:Name="GEOTPCXBtn" Clicked="CXOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" WidthRequest="{Binding Width, Source={x:Reference GEOTPborderOTP}}" />
 
                                         </Grid>
 

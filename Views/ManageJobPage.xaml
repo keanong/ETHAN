@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
-             xmlns:classes="clr-namespace:ETHAN.classes"
-             x:Class="ETHAN.Views.ManageJobPage"
-             xmlns:views="clr-namespace:ETHAN.Views"
-             x:DataType="viewmodel:ManageJobPageVM"
-             Title="Manage Job"
-             BackgroundColor="Transparent"
-             Shell.BackgroundColor="Transparent"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.BottomSheet"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:syss="clr-namespace:System;assembly=netstandard"
-             xmlns:dp="clr-namespace:ETHAN.classes.NDatePicker"
-             xmlns:beh="clr-namespace:ETHAN.classes"
-             Shell.NavBarIsVisible="False"
-             HideSoftInputOnTapped="True"
-             Padding="0"
-             SafeAreaEdges="All">-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:ETHAN.ViewModel"
@@ -669,7 +649,7 @@
                                 </ScrollView>
 
                                 <BoxView Style="{StaticResource DividerGray50}"/>
-                                <Button x:Name="btnCXBSSummary" Text="Cancel" Style="{StaticResource bstyleOrange}" HorizontalOptions="Center" Clicked="CloseBSSummary_Clicked" />
+                                <Button x:Name="btnCXBSSummary" Text="Close" Style="{StaticResource bstyleOrange}" HorizontalOptions="Center" Clicked="CloseBSSummary_Clicked" />
 
                             </VerticalStackLayout>
 
