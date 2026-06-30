@@ -149,7 +149,7 @@
 
                                     </Grid>
 
-                                    <Button Margin="0,5,0,0" x:Name="btnUpdate" Text="Update Mobile Number" VerticalOptions="Center" 
+                                    <Button Margin="0,5,0,0" x:Name="btnUpdate" Text="Update Mobile Number" Clicked="btnUpdate_Click" VerticalOptions="Center" 
                                     Style="{StaticResource bstyleDisabled}" HorizontalOptions="Fill" />
 
                                 </VerticalStackLayout>

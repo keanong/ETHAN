@@ -749,7 +749,7 @@ public partial class ChangeMobilePage : ContentPage, IRecipient<AppSleepMessage>
             await AppSession.SetFORGOT_MOTP_SESSIONIDAsync(sessionid.ToString());
 
             await closeProgress_dialog();
-            await ShowAlertSafe("", "Your One-Time-Pin (OTP) Email sent!");
+            await ShowAlertSafe("", "Your One-Time-Pin (OTP) SMS sent!");
             await UiPump.Yield();
 
             setMobileRuleStatus(true, false);

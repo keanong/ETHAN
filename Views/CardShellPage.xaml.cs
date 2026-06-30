@@ -154,14 +154,6 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
 
         if (!_pages.TryGetValue(tab, out var page))
         {
-
-            /*page = tab switch
-            {
-                "Home" => new Home_Page(),
-                "Chat" => new ChatMainPage(),
-                "Settings" => new SettingsPage(),
-                _ => new Home_Page(),
-            };*/
             page = tab switch
             {
                 "Home" => _services.GetRequiredService<Home_Page>(),
@@ -177,7 +169,6 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
 
         if (page is Home_Page hp)
         {
-            //hp.LOGININFO = _loginInfo;
             hp.BARCODE = _barcode;
         }
             
@@ -187,8 +178,8 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
                 //cm.LOGININFO = _loginInfo;
         }
 
-        //if (page is SettingsPage sp)
-            //sp.LOGININFO = _loginInfo;
+        if (page is SettingsPage sp)
+            sp.Reload();
 
         /*//Call Refresh() whenever switching to Chat
         if (page is ChatMainPage chatPage)

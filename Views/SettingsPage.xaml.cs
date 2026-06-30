@@ -41,7 +41,7 @@ public partial class SettingsPage : ContentView, IRecipient<AppResumeMessage>
         if (Parent != null)
         {
             WeakReferenceMessenger.Default.Register<AppResumeMessage>(this);
-            Reload();
+            //Reload();
         }
         else
         {
@@ -59,7 +59,7 @@ public partial class SettingsPage : ContentView, IRecipient<AppResumeMessage>
         });
     }
 
-    void Reload()
+    public void Reload()
     {
         try
         {

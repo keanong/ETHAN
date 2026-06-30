@@ -16,6 +16,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
     private readonly IProgressDialogService _progressService;
     private bool _loadedOnce = false;
+    private LoginInfo? logininfo;
 
     private CancellationTokenSource? _ctsM;
     private CancellationTokenSource? _ctsE;
@@ -795,16 +796,35 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     private async Task GetMobileOTP()
     {
         Guid sessionid = Guid.Empty;
+        long EIDX = 0;
         long eridx = 0;
         string TEMP_UID = "";
+        string WEB_UID = "";
         XOE_ETHAN_Receiver x = new XOE_ETHAN_Receiver();
         string MOBILE = txtMobile.Text.Trim().ToString();
         try
         {
+            logininfo = AppSession.logininfo;
+            
+            if (logininfo == null 
+                || (logininfo.ETHAN_Receiver == null) 
+                || (logininfo != null && logininfo.ETHAN_Receiver != null && logininfo.ETHAN_Receiver.IDX == 0)
+                || (logininfo != null && logininfo.ETHAN_Receiver != null && string.IsNullOrEmpty(logininfo.ETHAN_Receiver.UID)))
+            {
+                await ShowAlertSafe("", "Unable to get OTP. Please log out and log in again.");
+                return;
+            }
+
+            x = logininfo!.ETHAN_Receiver!;
+            WEB_UID = x!.UID;
+            EIDX = x.IDX;
 
             await showProgress_Dialog("Processing...");
 
-            x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(MOBILE, "");
+            //pass webuid, eridx, mobile or email to check if mobile or email exists n belong to eridx,
+            //n return XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync
+            x = await xs.XOE_MobileEmailUserMatchAsync(WEB_UID, EIDX, "", MOBILE);
+            //x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(MOBILE, "");
             if (x == null || x.Status != 0)
             {
                 await closeProgress_dialog();
@@ -818,6 +838,13 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             {
                 await closeProgress_dialog();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\neridx not found.");
+                return;
+            }
+
+            if (eridx != EIDX)
+            {
+                await closeProgress_dialog();
+                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\nVerification fails.");
                 return;
             }
 
@@ -873,16 +900,35 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     private async Task GetEmailOTP()
     {
         Guid sessionid = Guid.Empty;
+        long EIDX = 0;
         long eridx = 0;
         string TEMP_UID = "";
+        string WEB_UID = "";
         XOE_ETHAN_Receiver x = new XOE_ETHAN_Receiver();
         string EMAIL = txtEmail.Text.Trim().ToString();
         try
         {
+            logininfo = AppSession.logininfo;
+
+            if (logininfo == null
+                || (logininfo.ETHAN_Receiver == null)
+                || (logininfo != null && logininfo.ETHAN_Receiver != null && logininfo.ETHAN_Receiver.IDX == 0)
+                || (logininfo != null && logininfo.ETHAN_Receiver != null && string.IsNullOrEmpty(logininfo.ETHAN_Receiver.UID)))
+            {
+                await ShowAlertSafe("", "Unable to get OTP. Please log out and log in again.");
+                return;
+            }
+
+            x = logininfo!.ETHAN_Receiver!;
+            WEB_UID = x!.UID;
+            EIDX = x.IDX;
 
             await showProgress_Dialog("Processing...");
 
-            x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync("", EMAIL);
+            //pass webuid, eridx, mobile or email to check if mobile or email exists n belong to eridx,
+            //n return XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync
+            x = await xs.XOE_MobileEmailUserMatchAsync(WEB_UID, EIDX, EMAIL, "");
+            //x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync("", EMAIL);
             if (x == null || x.Status != 0)
             {
                 await closeProgress_dialog();
@@ -896,6 +942,13 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             {
                 await closeProgress_dialog();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\neridx not found.");
+                return;
+            }
+
+            if (eridx != EIDX)
+            {
+                await closeProgress_dialog();
+                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\nVerification fails.");
                 return;
             }
 
