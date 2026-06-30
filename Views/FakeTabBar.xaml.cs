@@ -19,32 +19,17 @@ public partial class FakeTabBar : ContentView
         }
     }
 
-    //public string ChatIcon { get; set; } = "chat_24";
     public string ChatIcon { get; set; } = "chat_50";
-    //public string SettingsIcon { get; set; } = "setting_24";
-    public string SettingsIcon { get; set; } = "gears_50";
 
-    /*public FakeTabBar(bool showChat, bool showSets)
-	{
-		InitializeComponent();
-        BindingContext = this;
-        vChat.IsVisible = showChat;
-        vSets.IsVisible = showSets;
-    }*/
+    public string SettingsIcon { get; set; } = "gears_50";
 
     public FakeTabBar(bool showSets)
     {
         InitializeComponent();
         BindingContext = this;
-        vSets.IsVisible = showSets;
+        //vSets.IsVisible = showSets;
     }
 
-    //private void ResetIcons()
-    //{
-    //    HomeIcon = "house_24";
-    //    ChatIcon = "chat_24";
-    //    SettingsIcon = "setting_24";
-    //}
     private void ResetIcons()
     {
         HomeIcon = "home_50.png";

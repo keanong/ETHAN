@@ -8,8 +8,6 @@ using XDelServiceRef;
 namespace ETHAN.Views;
 public partial class LoginPwdReset : ContentPage
 {
-
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
     //private ProgressDialogService _progressService;
     private readonly IProgressDialogService _progressService;
@@ -152,7 +150,6 @@ public partial class LoginPwdReset : ContentPage
 
     void setSUsernameRuleStatus(bool isValid, bool isOnAppearing)
     {
-        lblSUsernameInvalid.IsVisible = isValid;
         hsSUsername.IsVisible = (!isOnAppearing && !isValid);
     }
 
@@ -191,13 +188,6 @@ public partial class LoginPwdReset : ContentPage
     {
         try
         {
-            //await MainThread.InvokeOnMainThreadAsync(async () =>
-            //{
-            //    await _progressService.ShowAsync(msg);
-            //});
-
-            //await Task.Delay(50);
-
             await _progressService.ShowAsync(msg);
             await Task.Yield();
             await Task.Delay(100);
@@ -212,11 +202,6 @@ public partial class LoginPwdReset : ContentPage
     {
         try
         {
-            //await MainThread.InvokeOnMainThreadAsync(async () =>
-            //{
-            //    await _progressService.DismissAsync();
-            //});
-
             await _progressService.DismissAsync();
             await Task.Yield();
         }

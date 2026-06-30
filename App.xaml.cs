@@ -27,6 +27,12 @@ namespace ETHAN
             await AppSession.InitializeAsync();
         }
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+            WeakReferenceMessenger.Default.Send(new AppResumeMessage(true));
+        }
+
     }
 
     public class AppSleepMessage : ValueChangedMessage<bool>

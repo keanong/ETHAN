@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using XDelServiceRef;
-using System.Runtime.Serialization;
 
 namespace ETHAN.classes
 {
@@ -75,12 +75,8 @@ namespace ETHAN.classes
         {
             try
             {
-                /*SecureStorage.RemoveAll();
-                await Shell.Current.GoToAsync("Login");*/
-
                 try
                 {
-                    //XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
                     XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
         string mode = AppSession.LoginMode;
                     LoginInfo? logininfo = AppSession.logininfo;
@@ -113,8 +109,6 @@ namespace ETHAN.classes
             string ets = "TBA";
             try
             {
-                //string et = vm.BSDeliveryTimeopened ? vm.exp1 : vm.exp2; ;
-
                 switch (et)
                 {
                     case "etNormal":
@@ -235,7 +229,6 @@ namespace ETHAN.classes
 
         public static XDelServiceRef.StatusCodeStructure[] getAllStatusCodes(string uid, long[]? selectedidx, string mode)
         {
-            //XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
             XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
             XDelServiceRef.StatusCodeStructure[] statuscodeStruct = null;
             try
@@ -451,6 +444,61 @@ namespace ETHAN.classes
             // Build PIN from first N digits
             return string.Concat(pool.Take(Digits));
         }
+
+        public static string MaskEmail(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email))
+                    return email;
+
+                var atIndex = email.IndexOf('@');
+                if (atIndex < 0)
+                    return email;
+
+                var localPart = email[..atIndex];       // e.g. "x12345y"
+                var domainPart = email[atIndex..];      // e.g. "@abc.com"
+
+                if (localPart.Length <= 2)
+                    return email; // too short to mask meaningfully
+
+                var first = localPart[0];               // 'x'
+                var last = localPart[^1];              // 'y'
+                var mask = new string('*', localPart.Length - 2);
+
+                return $"{first}{mask}{last}{domainPart}";
+            } catch (Exception e)
+            {
+                string s = e.Message;
+                return email;
+            }
+        }
+
+        public static string MaskMobile(string mobile)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(mobile))
+                    return mobile;
+
+                ////Takes the last 4 characters using the ^4.. range operator
+                ////Fills the remaining length with *
+                ////Works for any length input, not just 8-digit numbers.
+                if (mobile.Length < 4)
+                    return new string('*', mobile.Length);
+
+                var visible = mobile[^4..];                        // last 4 digits: "2560"
+                var mask = new string('*', mobile.Length - 4);  // "****"
+
+                return $"{mask}{visible}";
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return mobile;
+            }
+        }
+
     }
 
 }

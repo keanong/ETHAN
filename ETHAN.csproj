@@ -47,6 +47,7 @@
 		<RunAOTCompilation>false</RunAOTCompilation>
 		<UseInterpreter>true</UseInterpreter>
 		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<!-- Debug iOS -->
@@ -394,6 +395,15 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="BS\BottomSheet.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChangeEmailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChangeMobilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ChangeRPwdPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

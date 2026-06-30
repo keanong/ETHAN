@@ -211,10 +211,20 @@ namespace XDelServiceRef
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
         System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_2FA_Status_By_SessionIDAsync(string UID, long ACL_CONTACTIDX, long AETHAN_USERIDX, System.Guid ASESSIONID, int AIS_USED);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_MobileEmailUserMatch", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
+        System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_MobileEmailUserMatchAsync(string UID, long EIDX, string AEmail, string AMobile);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_Get_ETHAN_ReceiverIDX_By_MobileEmail", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
         System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(string AMobile, string AEmail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_Get_ETHAN_Receiver", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
+        System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_Get_ETHAN_ReceiverAsync(string UID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_Verify_OTP", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -235,6 +245,11 @@ namespace XDelServiceRef
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
         System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_ETHAN_Receiver_PasswordAsync(string UID, long AIDX, string ANewPassword);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_Update_ETHAN_Receiver_Mobile_Email", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
+        System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_ETHAN_Receiver_Mobile_EmailAsync(string TEMP_UID, long EIDX, string AEmail, string AMobile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_Update_ETHAN_Receiver", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -4012,6 +4027,8 @@ namespace XDelServiceRef
         
         private string[] valid_postal_codesField;
         
+        private string[] locker_station_typeField;
+        
         private System.Nullable<System.DateTime> lsp_user_closeField;
         
         private System.Nullable<System.DateTime> lsp_user_openField;
@@ -4309,7 +4326,21 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=20)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=20)]
+        public string[] locker_station_type
+        {
+            get
+            {
+                return this.locker_station_typeField;
+            }
+            set
+            {
+                this.locker_station_typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=21)]
         public System.Nullable<System.DateTime> lsp_user_close
         {
             get
@@ -4323,7 +4354,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=21)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=22)]
         public System.Nullable<System.DateTime> lsp_user_open
         {
             get
@@ -4337,7 +4368,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=22)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
         public bool is_otp_returns
         {
             get
@@ -4351,7 +4382,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=23)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
         public bool is_otp_collection
         {
             get
@@ -4365,7 +4396,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=24)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=25)]
         public bool is_otp_lsp_user
         {
             get
@@ -4379,7 +4410,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=25)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=26)]
         public System.Nullable<System.DateTime> created_date_time
         {
             get
@@ -4393,7 +4424,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=26)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=27)]
         public System.Nullable<System.DateTime> updated_date_time
         {
             get
@@ -4407,7 +4438,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=27)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=28)]
         public bool locker_disabled
         {
             get
@@ -7274,9 +7305,19 @@ namespace XDelServiceRef
             return base.Channel.XOE_Update_2FA_Status_By_SessionIDAsync(UID, ACL_CONTACTIDX, AETHAN_USERIDX, ASESSIONID, AIS_USED);
         }
         
+        public System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_MobileEmailUserMatchAsync(string UID, long EIDX, string AEmail, string AMobile)
+        {
+            return base.Channel.XOE_MobileEmailUserMatchAsync(UID, EIDX, AEmail, AMobile);
+        }
+        
         public System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(string AMobile, string AEmail)
         {
             return base.Channel.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(AMobile, AEmail);
+        }
+        
+        public System.Threading.Tasks.Task<XDelServiceRef.XOE_ETHAN_Receiver> XOE_Get_ETHAN_ReceiverAsync(string UID)
+        {
+            return base.Channel.XOE_Get_ETHAN_ReceiverAsync(UID);
         }
         
         public System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Verify_OTPAsync(string UID, long ACL_CONTACTIDX, long AETHAN_USERIDX, System.Guid ASessionID, string OTP)
@@ -7297,6 +7338,11 @@ namespace XDelServiceRef
         public System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_ETHAN_Receiver_PasswordAsync(string UID, long AIDX, string ANewPassword)
         {
             return base.Channel.XOE_Update_ETHAN_Receiver_PasswordAsync(UID, AIDX, ANewPassword);
+        }
+        
+        public System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_ETHAN_Receiver_Mobile_EmailAsync(string TEMP_UID, long EIDX, string AEmail, string AMobile)
+        {
+            return base.Channel.XOE_Update_ETHAN_Receiver_Mobile_EmailAsync(TEMP_UID, EIDX, AEmail, AMobile);
         }
         
         public System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_Update_ETHAN_ReceiverAsync(string UID, XDelServiceRef.XOE_ETHAN_Receiver AER)

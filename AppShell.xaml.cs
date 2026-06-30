@@ -31,6 +31,9 @@ namespace ETHAN
             Routing.RegisterRoute("PrepaidListPage", typeof(PrepaidListPage));
             Routing.RegisterRoute("ChatPage", typeof(ChatPage));
             Routing.RegisterRoute("ChangePwdPage", typeof(ChangePwdPage));
+            Routing.RegisterRoute("ChangeRPwdPage", typeof(ChangeRPwdPage));
+            Routing.RegisterRoute("ChangeMobilePage", typeof(ChangeMobilePage));
+            Routing.RegisterRoute("ChangeEmailPage", typeof(ChangeEmailPage));
         }
     }
 }

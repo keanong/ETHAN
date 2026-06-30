@@ -11,7 +11,7 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace ETHAN.Views;
 
-public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, IRecipient<AppResumeMessage>
+public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, IRecipient<AppResumeMessage>
 {
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
     private readonly IProgressDialogService _progressService;
@@ -21,9 +21,9 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
     private CancellationTokenSource? _ctsE;
 
 
-    public LoginForgotPwd(IProgressDialogService progressService)
-	{
-		InitializeComponent();
+    public ChangeRPwdPage(IProgressDialogService progressService)
+    {
+        InitializeComponent();
         _progressService = progressService;
         Shell.SetTabBarIsVisible(this, false);
     }
@@ -311,7 +311,24 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             await AppSession.SetFORGOT_MOTP_VERIFIED("");
             await AppSession.SetFORGOT_EOTP_VERIFIED("");
 
-            await Shell.Current.GoToAsync("//Login");
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                BindingContext = null;
+                string v = string.Empty;
+                /*await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
+                    {
+                        { "LOGININFO", logininfo },
+                        { "BARCODE", null },
+                        { "DEFAULTTAB", "Settings" },
+                    });*/
+                await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
+                    {
+                        { "BARCODE", null },
+                        { "DEFAULTTAB", "Settings" },
+                    });
+            }
+            );
+
         }
         catch (Exception e)
         {
@@ -395,7 +412,8 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             iconVerifiedMobile.IsVisible = false;
             hsMobile.IsVisible = false;
             //lblMobileInvalid.IsVisible = false;
-        } else
+        }
+        else
         {
             txtMobile.Text = "";
             txtMobileOTP.Text = "";
@@ -726,7 +744,7 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             bool hasVMOTP = iconVerifiedMobile.IsVisible;
             bool hasVEOTP = iconVerifiedEmail.IsVisible;
 
-            
+
             if (!string.IsNullOrEmpty(me) && me.Equals("m"))
                 ok = hasMobile && hasVMOTP && mobileOk && hasPwd && hasCfm && minEightOk && lowerOk && upperOk && numOk && matchOk;
             else
@@ -828,7 +846,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             setMobileRuleStatus(true, false);
             showGMOTP();
             btnMobileOTP.IsVisible = false;
-            //iconPendingMobile.IsVisible = true;
             txtMobile.InputTransparent = true;
             txtMobileOTP.Focus();
             DisableTabs(true);
@@ -907,7 +924,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             setEmailRuleStatus(true, false);
             showGEOTP();
             btnEmailOTP.IsVisible = false;
-            //iconPendingEmail.IsVisible = true;
             txtEmail.InputTransparent = true;
             txtEmailOTP.Focus();
             DisableTabs(true);
@@ -1303,5 +1319,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         return MainThread.InvokeOnMainThreadAsync(() =>
             DisplayAlertAsync(title, message, button));
     }
+
 
 }

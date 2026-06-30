@@ -31,12 +31,8 @@
     <Grid>
         <!-- SAFE AREA CONTAINER -->
         <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
-            <!--<Grid x:Name="RootLayout" BackgroundColor="Transparent">-->
             <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
                 Padding="0" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
-                <!--<Border x:Name="AppContainer" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
-                WidthRequest="{OnIdiom Phone=400, Tablet=400}"  Padding="0">-->
-
                 <!-- This Grid acts as a z-stack -->
                 <Grid>
 
@@ -58,18 +54,18 @@
 
                         <ScrollView Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="10,0,10,10" HorizontalOptions="Fill">
 
-                            <VerticalStackLayout Spacing="10">
+                            <VerticalStackLayout Padding="22" Spacing="10">
                                 <VerticalStackLayout Padding="10">
                                     <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
                                     <Label Text="Password Reset" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
                                     <Label Text="Enter your Username and click Submit." Style="{StaticResource textStyle16BlackBold}" FontFamily="Consolas" />
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout Padding="10" Spacing="5">
+                                <VerticalStackLayout Spacing="10">
 
-                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">
+                                    <Grid RowDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill">
 
-                                        <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
+                                        <Border Grid.Row="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
 
                                             <Grid RowDefinitions="*,*" HorizontalOptions="Fill">
                                                 <Label Grid.Row="0" Text="Username" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -79,18 +75,14 @@
 
                                         </Border>
 
-                                        <Label Grid.Column="1" x:Name="lblSUsernameInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
-                                FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}" />
-
-                                        <HorizontalStackLayout Grid.Column="1" x:Name="hsSUsername" Margin="0,0,0,0" Spacing="5" IsVisible="False" WidthRequest="82" >
-                                            <Label x:Name="iconSUsername" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
-                                            <Label x:Name="lblSUsername" Text="Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
+                                        <HorizontalStackLayout Grid.Row="1" x:Name="hsSUsername" Margin="0,0,0,0" Spacing="5" IsVisible="False" WidthRequest="82" >
+                                            <Label x:Name="lblSUsername" Text="&#x2716; Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         </HorizontalStackLayout>
 
                                     </Grid>
 
                                     <Button x:Name="btnSubmit" Clicked="btnSubmit_Click" Text="Submit" VerticalOptions="CenterAndExpand" 
-                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,0,0,10" />
+                                Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,0" />
 
                                 </VerticalStackLayout>
 

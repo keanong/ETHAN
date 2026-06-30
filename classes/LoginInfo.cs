@@ -21,6 +21,8 @@ namespace ETHAN.classes
 
         public XDelServiceRef.XDelOnlineSettings? xdelOnlineSettings { get; set; }
 
+        public XOE_ETHAN_Receiver ETHAN_Receiver { get; set; }
+
         public LoginInfo() { }
     }
 }

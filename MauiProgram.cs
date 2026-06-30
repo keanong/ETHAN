@@ -27,77 +27,76 @@ namespace ETHAN
     {
         public static MauiApp CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
-            //builder.UseMauiApp<App>().UseBarcodeReader() // Make sure to add this line
-            //.UseBottomSheet().UseMauiCommunityToolkitMarkup().ConfigureFonts(fonts =>
-            //{
-            //    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-            //    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            //}).UseMauiCommunityToolkit().UseProgressDialogService_().UseExpander();
-
-            builder.UseMauiApp<App>().UseBarcodeReader() // Make sure to add this line
-            .UseMauiCommunityToolkitMarkup().ConfigureFonts(fonts =>
+            try
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).UseMauiCommunityToolkit().UseProgressDialogService_().UseExpander();
+                var builder = MauiApp.CreateBuilder();
+                //builder.UseMauiApp<App>().UseBarcodeReader() // Make sure to add this line
+                //.UseBottomSheet().UseMauiCommunityToolkitMarkup().ConfigureFonts(fonts =>
+                //{
+                //    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                //    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                //}).UseMauiCommunityToolkit().UseProgressDialogService_().UseExpander();
+
+                builder.UseMauiApp<App>().UseBarcodeReader() // Make sure to add this line
+                .UseMauiCommunityToolkitMarkup().ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                }).UseMauiCommunityToolkit().UseProgressDialogService_().UseExpander();
 
 
-            // enable animations for Android & iOS
-            Expander.EnableAnimations();
+                // enable animations for Android & iOS
+                Expander.EnableAnimations();
 
-            //#if DEBUG
-            //            builder.Logging.AddDebug();
-            //#endif
+                //#if DEBUG
+                //            builder.Logging.AddDebug();
+                //#endif
 
-            ////AddSingleton creates one copy and keep tat memory
-            ////AddTransient creates one n destroy and a new one will be created every single time
-            //builder.Services.AddSingleton<Homepage>();
-            //builder.Services.AddSingleton<HomepageVM>();
-            //builder.Services.AddTransient<Homepage>();
-            builder.Services.AddTransient<Home_Page>();
-            builder.Services.AddTransient<HomepageVM>();
-            builder.Services.AddTransient<CreateJob>();
-            builder.Services.AddSingleton<CreateJobVM>();
-            builder.Services.AddTransient<AddressPage>();
-            //builder.Services.AddTransient<Address2>();
-            builder.Services.AddTransient<AddressBookPage>();
-            //builder.Services.AddTransient<AddressEditPage>();
-            builder.Services.AddTransient<ManageJobPage>();
-            builder.Services.AddTransient<ManageJobPageVM>();
-            builder.Services.AddTransient<InventoryPage>();
-            builder.Services.AddTransient<InventoryPageVM>();
-            builder.Services.AddTransient<PrepaidListPage>();
+                ////AddSingleton creates one copy and keep tat memory
+                ////AddTransient creates one n destroy and a new one will be created every single time
+                
 
-            builder.Services.AddTransient<CardShellPage>();
-            builder.Services.AddTransient<Home_Page>();
-            builder.Services.AddTransient<ChatMainPage>();
-            builder.Services.AddTransient<SettingsPage>();
+                builder.Services.AddTransient<Home_Page>();
+                builder.Services.AddTransient<HomepageVM>();
+                builder.Services.AddTransient<CreateJob>();
+                builder.Services.AddSingleton<CreateJobVM>();
+                builder.Services.AddTransient<AddressPage>();
+                builder.Services.AddTransient<AddressBookPage>();
+                builder.Services.AddTransient<ManageJobPage>();
+                builder.Services.AddTransient<ManageJobPageVM>();
+                builder.Services.AddTransient<InventoryPage>();
+                builder.Services.AddTransient<InventoryPageVM>();
+                builder.Services.AddTransient<PrepaidListPage>();
 
-            builder.Services.AddSingleton<ISoapService, SoapService>();
-            builder.Services.AddTransient<ChatViewModel>();
-            builder.Services.AddTransient<ChatPage>();
-            //builder.Services.AddSingleton<IProgressDialogServiceNew, ProgressDialogServiceNew>();
-            builder.Services.AddSingleton<IProgressDialogService, ProgressDialogService_>();
+                builder.Services.AddTransient<CardShellPage>();
+                builder.Services.AddTransient<Home_Page>();
+                builder.Services.AddTransient<ChatMainPage>();
+                builder.Services.AddTransient<SettingsPage>();
 
-            //Enforce dd/MM/yyyy and 24-hour invariant culture globally
-            var culture = new CultureInfo("en-GB"); // en-GB uses dd/MM/yyyy format
-            CultureInfo.DefaultThreadCurrentCulture = culture;
-            CultureInfo.DefaultThreadCurrentUICulture = culture;
+                builder.Services.AddSingleton<ISoapService, SoapService>();
+                builder.Services.AddTransient<ChatViewModel>();
+                builder.Services.AddTransient<ChatPage>();
+                //builder.Services.AddSingleton<IProgressDialogServiceNew, ProgressDialogServiceNew>();
+                builder.Services.AddSingleton<IProgressDialogService, ProgressDialogService_>();
+
+                //Enforce dd/MM/yyyy and 24-hour invariant culture globally
+                var culture = new CultureInfo("en-GB"); // en-GB uses dd/MM/yyyy format
+                CultureInfo.DefaultThreadCurrentCulture = culture;
+                CultureInfo.DefaultThreadCurrentUICulture = culture;
 
 #if ANDROID
-builder.ConfigureLifecycleEvents(events =>
-{
-    events.AddAndroid(android =>
-    {
-        android.OnCreate((activity, _) =>
-        {
-            activity.Window.SetSoftInputMode(
-                SoftInput.AdjustResize
-            );
-        });
-    });
-});
+                builder.ConfigureLifecycleEvents(events =>
+                {
+                    events.AddAndroid(android =>
+                    {
+                        android.OnCreate((activity, _) =>
+                        {
+                            activity.Window.SetSoftInputMode(
+                                SoftInput.AdjustResize
+                            );
+                        });
+                    });
+                });
 #endif
 
 #if IOS
@@ -132,7 +131,12 @@ builder.ConfigureMauiHandlers(handlers =>
 });
 #endif
 
-            return builder.Build();
+                return builder.Build();
+            } catch (Exception e)
+            {
+                String s = e.Message;
+                throw;
+            }
         }
     }
 }

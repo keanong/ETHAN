@@ -13,19 +13,10 @@ namespace ETHAN.Views;
 
 public partial class ChangePwdPage : ContentPage
 {
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
-    //private ProgressDialogService _progressService;
     private readonly IProgressDialogService _progressService;
 
     private LoginInfo? logininfo;
-    /*public LoginInfo? LOGININFO
-    {
-        set
-        {
-            logininfo = value;
-        }
-    }*/
 
     public ChangePwdPage(IProgressDialogService progressService)
 	{

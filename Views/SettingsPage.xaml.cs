@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using ETHAN.classes;
 using ETHAN.Network;
 using XDelServiceRef;
@@ -6,7 +7,7 @@ namespace ETHAN.Views;
 
 //[QueryProperty(nameof(LOGININFO), "LOGININFO")] // Add a QueryProperty to handle the navigation parameter
 
-public partial class SettingsPage : ContentView
+public partial class SettingsPage : ContentView, IRecipient<AppResumeMessage>
 {
     private LoginInfo? logininfo;
     /*public LoginInfo? LOGININFO
@@ -22,7 +23,6 @@ public partial class SettingsPage : ContentView
         }
     }*/
 
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
 
     public SettingsPage()
@@ -35,8 +35,28 @@ public partial class SettingsPage : ContentView
     {
         base.OnParentSet();
 
+        /*if (Parent != null)
+            Reload();*/
+
         if (Parent != null)
+        {
+            WeakReferenceMessenger.Default.Register<AppResumeMessage>(this);
             Reload();
+        }
+        else
+        {
+            WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
+        }
+    }
+
+    public void Receive(AppResumeMessage message)
+    {
+        if (!message.Value) return;
+
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            Reload();
+        });
     }
 
     void Reload()
@@ -57,12 +77,31 @@ public partial class SettingsPage : ContentView
     {
         try
         {
+            string maskemail = "";
+            string maskmobile = "";
+            string mode = AppSession.LoginMode;
+            bool isSender = mode.Equals("s");
             if (logininfo != null && logininfo.clientInfo != null)
             {
-                lblName.Text = logininfo.clientInfo.LoggedInUserName;
-                lblCoyName.Text = logininfo.clientInfo.Company;
-                lblAcctNoText.Text = logininfo.clientInfo.Account.ToString();
-            } else
+                ClientInfo c = logininfo.clientInfo;
+                XOE_ETHAN_Receiver ER = logininfo.ETHAN_Receiver;
+
+                lblCoyName.IsVisible = isSender;
+                lblAcctNoText.IsVisible = isSender;
+                bMobile.IsVisible = !isSender && ER != null && !string.IsNullOrEmpty(ER.MOBILE);
+                bEmail.IsVisible = !isSender && ER != null && !string.IsNullOrEmpty(ER.EMAILADDRESS);
+
+                lblName.Text = c.LoggedInUserName;
+                lblCoyName.Text = isSender ? c.Company : "";
+                lblAcctNoText.Text = isSender ? c.Account.ToString() : "";
+
+                if (bEmail.IsVisible && ER != null)
+                    lblEmail.Text = "Email\n" + common.MaskEmail(ER.EMAILADDRESS);
+
+                if (bMobile.IsVisible && ER != null)
+                    lblMobile.Text = "Mobile Number\n" + common.MaskMobile(ER.MOBILE);
+            }
+            else
             {
                 vsCoy.IsVisible = false;
             }
@@ -158,16 +197,57 @@ public partial class SettingsPage : ContentView
     {
         try
         {
-            /*await Shell.Current.GoToAsync("ChangePwdPage", new Dictionary<string, object>
-                    {
-                        { "vmm", null },
-                        {"LOGININFO",  logininfo}
-                    });*/
-            await Shell.Current.GoToAsync("ChangePwdPage", new Dictionary<string, object>
+            string mode = AppSession.LoginMode;
+            bool isSender = mode.Equals("s");
+            await Shell.Current.GoToAsync(isSender ? "ChangePwdPage" : "ChangeRPwdPage", new Dictionary<string, object>
                     {
                         { "vmm", null }
                     });
         } catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    async void ChangeMobileClick(object sender, TappedEventArgs e)
+    {
+        try
+        {
+            await AppSession.SetFORGOT_EUIDX("");
+            await AppSession.SetTEMP_UID("");
+            await AppSession.SetFORGOT_MOTP_SESSIONIDAsync("");
+            await AppSession.SetFORGOT_EOTP_SESSIONIDAsync("");
+            await AppSession.SetFORGOT_MOTP_VERIFIED("");
+            await AppSession.SetFORGOT_EOTP_VERIFIED("");
+
+            await Shell.Current.GoToAsync("ChangeMobilePage", new Dictionary<string, object>
+                    {
+                        { "vmm", null }
+                    });
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    async void ChangeEmailClick(object sender, TappedEventArgs e)
+    {
+        try
+        {
+            await AppSession.SetFORGOT_EUIDX("");
+            await AppSession.SetTEMP_UID("");
+            await AppSession.SetFORGOT_MOTP_SESSIONIDAsync("");
+            await AppSession.SetFORGOT_EOTP_SESSIONIDAsync("");
+            await AppSession.SetFORGOT_MOTP_VERIFIED("");
+            await AppSession.SetFORGOT_EOTP_VERIFIED("");
+
+            await Shell.Current.GoToAsync("ChangeEmailPage", new Dictionary<string, object>
+                    {
+                        { "vmm", null }
+                    });
+        }
+        catch (Exception ex)
         {
             string s = ex.Message;
         }

@@ -12,11 +12,9 @@ using System.Runtime.CompilerServices;
 
 namespace ETHAN.Views;
 
-public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
+public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecipient<AppResumeMessage>
 {
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
-    //private ProgressDialogService_ _progressService;
     private readonly IProgressDialogService _progressService;
     private bool _loadedOnce = false;
 
@@ -59,9 +57,12 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
                 _loadedOnce = true;
 
                 WeakReferenceMessenger.Default.Register<AppSleepMessage>(this);
+                WeakReferenceMessenger.Default.Register<AppResumeMessage>(this);
 
-                setNameRuleStatus(true, lblFNameInvalid, lblFName, true);
-                setNameRuleStatus(true, lblLNameInvalid, lblLName, true);
+                //setNameRuleStatus(true, lblFNameInvalid, lblFName, true);
+                //setNameRuleStatus(true, lblLNameInvalid, lblLName, true);
+                setNameRuleStatus(true, null, lblFName, true);
+                setNameRuleStatus(true, null, lblLName, true);
 
                 setMobileRuleStatus(true, true);
                 setEmailRuleStatus(true, true);
@@ -72,7 +73,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
                 SetRuleStatus(false, iconNum, lblNum);
 
                 ValidateButton();
-                //setMobileOTPRuleStatus(true, true);
 
                 iconPwdMatch.Text = "\u2716";
                 iconPwdMatch.Style = (Style)Application.Current!.Resources["textStyle16Red"];
@@ -107,20 +107,10 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
 
     private async Task StartOtpUiUpdateAsync()
     {
-        //await Task.Delay(250); // allow Shell/UI to settle
         try
         {
             Guid motp = Guid.Empty;
             Guid eotp = Guid.Empty;
-
-            /*await Task.Run(async () =>
-            {
-                motp = await GetStoredGuidAsync("MOTP_SESSIONID");
-                eotp = await GetStoredGuidAsync("EOTP_SESSIONID");
-                SecureStorage.Remove("FORGOT_EUIDX");
-                SecureStorage.Remove("FORGOT_MOTP_SESSIONID");
-                SecureStorage.Remove("FORGOT_EOTP_SESSIONID");
-            });*/
 
             motp = await GetStoredGuid(AppSession.REG_MOTP_SESSIONID);
             eotp = await GetStoredGuid(AppSession.REG_EOTP_SESSIONID);
@@ -173,6 +163,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         StopECountdown();
 
         WeakReferenceMessenger.Default.Unregister<AppSleepMessage>(this);
+        WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
     }
 
     public void Receive(AppSleepMessage message)
@@ -183,6 +174,104 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             StopECountdown();
         }
             
+    }
+
+    public void Receive(AppResumeMessage message)
+    {
+        if (message.Value)
+        {
+            // App came back to foreground — put your logic here
+            // Example: restart OTP countdown UI update
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                RestoreMobileOtpState();
+                RestoreEmailOtpState();
+            });
+        }
+    }
+
+    private void RestoreMobileOtpState()
+    {
+        try
+        {
+            bool otpWasSent = !string.IsNullOrWhiteSpace(AppSession.REG_MOTP_SESSIONID)
+                              && Guid.TryParse(AppSession.REG_MOTP_SESSIONID, out var g)
+                              && g != Guid.Empty;
+
+            bool otpVerified = !string.IsNullOrWhiteSpace(AppSession.MOTP_VERIFIED);
+
+            if (otpVerified)
+            {
+                btnMobileOTP.IsVisible = false;
+                txtMobile.InputTransparent = true;
+            }
+
+            if (!otpVerified && !otpWasSent)
+                ValidateMobileRule();
+
+            if (!otpWasSent)
+                return; // OTP was never sent or already cleared — nothing to restore
+
+            // Mobile tab is active — restore its locked state
+            // txtMobile keeps its text already (page is still alive, not re-created)
+
+            txtMobile.InputTransparent = true;     // mobile field stays locked
+            btnMobileOTP.IsVisible = false;         // "Get OTP" stays hidden
+            hsMobile.IsVisible = false;
+
+            iconVerifiedMobile.IsVisible = otpVerified;
+
+            GMOTP.IsVisible = true;                 // OTP entry row stays visible
+
+            // Refocus OTP entry so keyboard comes up ready
+            txtMobileOTP.Focus();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"RestoreMobileOtpState error: {ex.Message}");
+        }
+    }
+
+    private void RestoreEmailOtpState()
+    {
+        try
+        {
+            bool otpWasSent = !string.IsNullOrWhiteSpace(AppSession.REG_EOTP_SESSIONID)
+                              && Guid.TryParse(AppSession.REG_EOTP_SESSIONID, out var g)
+                              && g != Guid.Empty;
+
+            bool otpVerified = !string.IsNullOrWhiteSpace(AppSession.EOTP_VERIFIED);
+
+            if (otpVerified)
+            {
+                btnEmailOTP.IsVisible = false;
+                txtEmail.InputTransparent = true;
+            }
+
+            if (!otpVerified && !otpWasSent)
+                ValidateEmailRule();
+
+            if (!otpWasSent)
+                return; // OTP was never sent or already cleared — nothing to restore
+
+            // Email tab is active — restore its locked state
+            // txtEmail keeps its text already (page is still alive, not re-created)
+
+            txtEmail.InputTransparent = true;     // Email field stays locked
+            btnEmailOTP.IsVisible = false;         // "Get OTP" stays hidden
+            hsEmail.IsVisible = false;
+
+            iconVerifiedEmail.IsVisible = otpVerified;
+
+            GEOTP.IsVisible = true;                 // OTP entry row stays visible
+
+            // Refocus OTP entry so keyboard comes up ready
+            txtEmailOTP.Focus();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"RestoreMobileOtpState error: {ex.Message}");
+        }
     }
 
     void BackToHome(System.Object sender, System.EventArgs e)
@@ -354,12 +443,14 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (ent == txtFName)
             {
                 fnameOk = !string.IsNullOrEmpty(txt);
-                setNameRuleStatus(fnameOk, lblFNameInvalid, lblFName, false);
+                //setNameRuleStatus(fnameOk, lblFNameInvalid, lblFName, false);
+                setNameRuleStatus(fnameOk, null, lblFName, false);
             }
             if (ent == txtLName)
             {
                 lnameOk = !string.IsNullOrEmpty(txt);
-                setNameRuleStatus(lnameOk, lblLNameInvalid, lblLName, false);
+                //setNameRuleStatus(lnameOk, lblLNameInvalid, lblLName, false);
+                setNameRuleStatus(lnameOk, null, lblLName, false);
             }
         } catch (Exception e)
         {
@@ -371,7 +462,8 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            lblinvalid.IsVisible = isValid;
+            if (lblinvalid != null)
+                lblinvalid.IsVisible = isValid;
             lbl.IsVisible = !isValid;
         } catch (Exception e)
         {
@@ -405,11 +497,9 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            //hsMobile.IsVisible = !isValid;
-            lblMobileInvalid.IsVisible = (isOnAppearing && isValid);
+            //lblMobileInvalid.IsVisible = (isOnAppearing && isValid);
             hsMobile.IsVisible = (!isOnAppearing && !isValid);
             btnMobileOTP.IsVisible = (!isOnAppearing && isValid);
-            //GMOTP.IsVisible = (!isOnAppearing && isValid);
         }
         catch (Exception e)
         {
@@ -422,7 +512,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         Guid stored_MOTP_SESSIONID = Guid.Empty;
         try
         {
-            //var value = await SecureStorage.GetAsync("MOTP_SESSIONID");
             var value = AppSession.REG_MOTP_SESSIONID;
 
             if (!string.IsNullOrWhiteSpace(value) && Guid.TryParse(value, out var parsed))
@@ -432,7 +521,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         }
         catch (Exception ex)
         {
-            // iOS can throw if keychain access fails
+            //// iOS can throw if keychain access fails
             System.Diagnostics.Debug.WriteLine($"SecureStorage error: {ex.Message}");
         }
 
@@ -451,12 +540,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         string? stored_MOTP_VERIFIED = null;
         try
         {
-            //stored_MOTP_VERIFIED = await SecureStorage.GetAsync("MOTP_VERIFIED");
             stored_MOTP_VERIFIED = AppSession.MOTP_VERIFIED;
         }
         catch (Exception ex)
         {
-            // iOS can throw if keychain access fails
+            //// iOS can throw if keychain access fails
             System.Diagnostics.Debug.WriteLine($"SecureStorage error: {ex.Message}");
         }
 
@@ -477,7 +565,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         Guid stored_EOTP_SESSIONID = Guid.Empty;
         try
         {
-            //var value = await SecureStorage.GetAsync("EOTP_SESSIONID");
             var value = AppSession.REG_EOTP_SESSIONID;
 
             if (!string.IsNullOrWhiteSpace(value) && Guid.TryParse(value, out var parsed))
@@ -487,7 +574,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         }
         catch (Exception ex)
         {
-            // iOS can throw if keychain access fails
+            //// iOS can throw if keychain access fails
             System.Diagnostics.Debug.WriteLine($"SecureStorage error: {ex.Message}");
         }
 
@@ -527,11 +614,9 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            //hsEmail.IsVisible = !isValid;
-            lblEmailInvalid.IsVisible = (isOnAppearing && isValid);
+            //lblEmailInvalid.IsVisible = (isOnAppearing && isValid);
             hsEmail.IsVisible = (!isOnAppearing && !isValid);
             btnEmailOTP.IsVisible = (!isOnAppearing && isValid);
-            //GEOTP.IsVisible = (!isOnAppearing && isValid);
         }
         catch (Exception e)
         {
@@ -554,10 +639,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             bool hasVMOTP = iconVerifiedMobile.IsVisible;
             bool hasVEOTP = iconVerifiedEmail.IsVisible;
 
-            /*btnRegister.IsVisible = hasFName && hasLName && fnameOk && lnameOk &&
-                hasMobile && hasVMOTP && hasEmail && hasVEOTP && mobileOk && emailOk &&
-                hasPwd && hasCfm && minEightOk && lowerOk && upperOk && numOk && matchOk;*/
-
             ok = hasFName && hasLName && fnameOk && lnameOk &&
                 hasMobile && hasVMOTP && hasEmail && hasVEOTP && mobileOk && emailOk &&
                 hasPwd && hasCfm && minEightOk && lowerOk && upperOk && numOk && matchOk;
@@ -576,8 +657,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         if (string.IsNullOrEmpty(email))
             return false;
-
-        //return new EmailAddressAttribute().IsValid(email);
 
         ////IsRealWorldEmail
         return Regex.IsMatch(email,
@@ -622,13 +701,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             };
 
             await showProgress_Dialog("Processing...");
-            //await UiPump.Yield();
 
             var xbReg = await xs.XOE_HasRegistered_MobileEmailAsync(er.MOBILE, "");
             if (xbReg == null || xbReg.Status == -1)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbReg?.Message ?? "Error Processing.");
                 return;
             }
@@ -637,7 +714,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (xbPend == null || xbPend.Status == -1)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbPend?.Message ?? "Error Processing.");
                 return;
             }
@@ -646,7 +722,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (x4 == null || x4.Status != 0)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", x4?.Message ?? "Error Processing.");
                 return;
             }
@@ -656,7 +731,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (eridx == 0)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\neridx not found.");
                 return;
             }
@@ -664,7 +738,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (string.IsNullOrEmpty(TEMP_UID))
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\nTEMP_UID not found.");
                 return;
             }
@@ -673,26 +746,21 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (sessionid == Guid.Empty)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP). Please try again.");
                 return;
             }
-            //sessionid = Guid.NewGuid();
 
-            /*await SecureStorage.SetAsync("PENDING_EUIDX", eridx.ToString());
-            await SecureStorage.SetAsync("MOTP_SESSIONID", sessionid.ToString());*/
             await AppSession.SetPENDING_EUIDXAsync(eridx.ToString());
             await AppSession.SetTEMP_UID(TEMP_UID);
             await AppSession.SetREG_MOTP_SESSIONIDAsync(sessionid.ToString());
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", "Your One-Time-Pin (OTP) SMS sent!");
 
             setMobileRuleStatus(true, false);
             showGMOTP();
             btnMobileOTP.IsVisible = false;
-            iconPendingMobile.IsVisible = true;
+            //iconPendingMobile.IsVisible = true;
             txtMobile.InputTransparent = true;
             txtMobileOTP.Focus();
         }
@@ -700,7 +768,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = e.Message;
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", e.Message);
         }
     }
@@ -722,7 +789,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         string TEMP_UID = "";
         try
         {
-            //var stored = await SecureStorage.GetAsync("PENDING_EUIDX");
             var stored = AppSession.PENDING_EUIDX;
             if (string.IsNullOrEmpty(stored) || !long.TryParse(stored, out var eridx) || eridx == 0)
             {
@@ -735,7 +801,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (string.IsNullOrEmpty(TEMP_UID))
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\nTEMP_UID not found.");
                 return;
             }
@@ -751,13 +816,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             };
 
             await showProgress_Dialog("Processing...");
-            //await UiPump.Yield();
 
             var xbReg = await xs.XOE_HasRegistered_MobileEmailAsync("", er.EMAILADDRESS);
             if (xbReg == null || xbReg.Status == -1)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbReg?.Message ?? "Error Processing.");
                 return;
             }
@@ -766,7 +829,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (xbPend == null || xbPend.Status == -1)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbPend?.Message ?? "Error Processing.");
                 return;
             }
@@ -775,7 +837,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (x4 == null || x4.Status != 0)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", x4?.Message ?? "Error Processing.");
                 return;
             }
@@ -784,25 +845,21 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             if (sessionid == Guid.Empty)
             {
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP). Please try again.");
                 return;
             }
-            //var sessionid = Guid.NewGuid();
 
-            //await SecureStorage.SetAsync("EOTP_SESSIONID", sessionid.ToString());
             await AppSession.SetREG_EOTP_SESSIONIDAsync(sessionid.ToString());
             await AppSession.SetTEMP_UID(TEMP_UID);
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", "Your One-Time-Pin (OTP) Email sent!");
             await UiPump.Yield();
 
             setEmailRuleStatus(true, false);
             showGEOTP();
             btnEmailOTP.IsVisible = false;
-            iconPendingEmail.IsVisible = true;
+            //iconPendingEmail.IsVisible = true;
             txtEmail.InputTransparent = true;
             txtEmailOTP.Focus();
         }
@@ -810,12 +867,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = e.Message;
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", e.Message);
         }
     }
 
-    async void IsValidMobileOTP_(object sender, EventArgs e)
+    /*async void IsValidMobileOTP_(object sender, EventArgs e)
     {
         try
         {
@@ -827,7 +883,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = ex.Message;
         }
-    }
+    }*/
 
     async void IsValidMobileOTP(object sender, EventArgs e)
     {
@@ -846,7 +902,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
 
         try
         {
-            //var stored = await SecureStorage.GetAsync("MOTP_SESSIONID");
             var stored = AppSession.REG_MOTP_SESSIONID;
             if (!string.IsNullOrWhiteSpace(stored))
                 Guid.TryParse(stored, out sessionId);
@@ -883,13 +938,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         try
         {
             await showProgress_Dialog("Verifying...");
-            //await UiPump.Yield();
 
             var result = await xs.XOE_Verify_OTPAsync(TEMP_UID, 0, eridx, sessionId, txtMobileOTP.Text);
             //var result = new XWSBase() { Status = 0};
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
 
             if (result == null)
             {
@@ -904,16 +957,13 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             }
 
             //SUCCESS
-            /*await SecureStorage.SetAsync("MOTP_VERIFIED", "t");
-            //SecureStorage.Remove("MOTP_SESSIONID");
-            await AppSession.SetREG_MOTP_SESSIONIDAsync("");*/
             await AppSession.SetREG_MOTP_SESSIONIDAsync("");
             await AppSession.SetMOTP_VERIFIEDAsync("t");
 
             StopMCountdown();
 
             iconVerifiedMobile.IsVisible = true;
-            iconPendingMobile.IsVisible = false;
+            //iconPendingMobile.IsVisible = false;
             btnMobileOTP.IsVisible = false;
             txtMobileOTP.Text = "";
             txtMobile.InputTransparent = true;
@@ -931,7 +981,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = e.Message;
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", e.Message);
         }
     }
@@ -967,7 +1016,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
 
         try
         {
-            //var stored = await SecureStorage.GetAsync("EOTP_SESSIONID");
             var stored = AppSession.REG_EOTP_SESSIONID;
             if (!string.IsNullOrWhiteSpace(stored))
                 Guid.TryParse(stored, out sessionId);
@@ -1004,13 +1052,11 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         try
         {
             await showProgress_Dialog("Verifying...");
-            //await UiPump.Yield();
 
             var result = await xs.XOE_Verify_OTPAsync(TEMP_UID, 0, eridx, sessionId, txtEmailOTP.Text);
             //var result = new XWSBase() { Status = 0 };
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
 
             if (result == null)
             {
@@ -1025,16 +1071,13 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             }
 
             //SUCCESS
-            /*await SecureStorage.SetAsync("EOTP_VERIFIED", "t");
-            //SecureStorage.Remove("EOTP_SESSIONID");
-            AppSession.SetREG_EOTP_SESSIONIDAsync("");*/
             await AppSession.SetREG_EOTP_SESSIONIDAsync("");
             await AppSession.SetEOTP_VERIFIEDAsync("t");
 
             StopECountdown();
 
             iconVerifiedEmail.IsVisible = true;
-            iconPendingEmail.IsVisible = false;
+            //iconPendingEmail.IsVisible = false;
             btnEmailOTP.IsVisible = false;
             txtEmailOTP.Text = "";
             txtEmail.InputTransparent = true;
@@ -1050,7 +1093,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = e.Message;
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", e.Message);
         }
     }
@@ -1108,7 +1150,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            //var stored = await SecureStorage.GetAsync("PENDING_EUIDX");
             var stored = AppSession.PENDING_EUIDX;
             if (string.IsNullOrEmpty(stored) || !long.TryParse(stored, out var eridx) || eridx == 0)
             {
@@ -1118,7 +1159,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
                 return;
             }
 
-            //string TEMP_UID = await SecureStorage.GetAsync("TEMP_UID");
             string TEMP_UID = AppSession.TEMP_UID;
             if (string.IsNullOrEmpty(TEMP_UID))
             {
@@ -1140,14 +1180,12 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             };
 
             await showProgress_Dialog("Processing...");
-            //await UiPump.Yield();
 
             var xbRegM = await xs.XOE_HasRegistered_MobileEmailAsync(er.MOBILE, "");
             if (xbRegM == null || xbRegM.Status == -1)
             {
                 await ResetVar();
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbRegM?.Message ?? "Error Processing.");
                 await BackToHomePage();
                 return;
@@ -1158,7 +1196,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             {
                 await ResetVar();
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", xbReg?.Message ?? "Error Processing.");
                 await BackToHomePage();
                 return;
@@ -1169,20 +1206,12 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             {
                 await ResetVar();
                 await closeProgress_dialog();
-                //await UiPump.Yield();
                 await ShowAlertSafe("", x4?.Message ?? "Error Processing.");
                 await BackToHomePage();
                 return;
             }
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
-
-            /*SecureStorage.Remove("MOTP_SESSIONID");
-            SecureStorage.Remove("EOTP_SESSIONID");
-            SecureStorage.Remove("MOTP_VERIFIED");
-            SecureStorage.Remove("EOTP_VERIFIED");
-            SecureStorage.Remove("PENDING_EUIDX");*/
 
             await ResetVar();
 
@@ -1194,7 +1223,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
         {
             string s = e.Message;
             await closeProgress_dialog();
-            //await UiPump.Yield();
             await ShowAlertSafe("", e.Message);
         }
     }
@@ -1203,13 +1231,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            //await MainThread.InvokeOnMainThreadAsync(async () =>
-            //{
-            //    await _progressService.ShowAsync(msg);
-            //});
-
-            //await Task.Delay(50);
-
             await _progressService.ShowAsync(msg);
             await Task.Yield();
             await Task.Delay(100);
@@ -1224,11 +1245,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
     {
         try
         {
-            //await MainThread.InvokeOnMainThreadAsync(async () =>
-            //{
-            //    await _progressService.DismissAsync();
-            //});
-
             await _progressService.DismissAsync();
             await Task.Yield();
         }
@@ -1296,7 +1312,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             _ctsM.Cancel();
 
         btnMobileOTP.IsVisible = true;
-        lblMCountdown.IsVisible = false;
+        //lblMCountdown.IsVisible = false;
         txtMobile.InputTransparent = false;
     }
 
@@ -1306,7 +1322,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>
             _ctsE.Cancel();
 
         btnEmailOTP.IsVisible = true;
-        lblECountdown.IsVisible = false;
+        //lblECountdown.IsVisible = false;
         txtEmail.InputTransparent = false;
     }
 
