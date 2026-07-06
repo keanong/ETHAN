@@ -316,12 +316,6 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             {
                 BindingContext = null;
                 string v = string.Empty;
-                /*await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                    {
-                        { "LOGININFO", logininfo },
-                        { "BARCODE", null },
-                        { "DEFAULTTAB", "Settings" },
-                    });*/
                 await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
                     {
                         { "BARCODE", null },

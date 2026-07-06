@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0-android;net10.0-ios26.2</TargetFrameworks>
+		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ETHAN</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -244,6 +244,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="global.json" />
 		<None Remove="Platforms\Android\Resources\xml\file_paths.xml" />
 		<None Remove="Resources\AppIcon\appicon.svg" />
 		<None Remove="Resources\AppIcon\appiconfg.svg" />
