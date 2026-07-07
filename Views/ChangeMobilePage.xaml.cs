@@ -257,7 +257,7 @@ public partial class ChangeMobilePage : ContentPage, IRecipient<AppSleepMessage>
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 BindingContext = null;
-                string v = string.Empty;
+
                 await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
                     {
                         { "BARCODE", null },

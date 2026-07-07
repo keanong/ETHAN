@@ -102,7 +102,95 @@
                         <Button x:Name="btnTopUp" Text="Prepaid" Style="{StaticResource btnStyle}"  
                         Clicked="btnTopUp_Click" IsVisible="False"></Button>
 
-                    </VerticalStackLayout>
+                    <!--<Border x:Name="btnCreateJ"
+                                        Margin="0,5,0,0"
+                                        BackgroundColor="{StaticResource Gray100}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0"
+                                        HeightRequest="50"
+                                        MinimumWidthRequest="160"
+                                        MaximumHeightRequest="200"
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="Fill">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CreateJob_Click" />
+                        </Border.GestureRecognizers>
+                        <Label x:Name="lblCreateJ"
+                                           Text="Create Job"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                    </Border>
+
+                    <Border x:Name="btnManageJ"
+                                        Margin="0,5,0,0"
+                                        BackgroundColor="{StaticResource Gray100}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0"
+                                        HeightRequest="50"
+                                        MinimumWidthRequest="160"
+                                        MaximumHeightRequest="200"
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="Fill">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ManageJob_Click" />
+                        </Border.GestureRecognizers>
+                        <Label x:Name="lblManageJ"
+                                           Text="Manage Job"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                    </Border>
+
+                    <Border x:Name="btnInventory"
+                                        Margin="0,5,0,0"
+                                        BackgroundColor="{StaticResource Gray100}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0"
+                                        HeightRequest="50"
+                                        MinimumWidthRequest="160"
+                                        MaximumHeightRequest="200"
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="Fill">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Inventory_Click" />
+                        </Border.GestureRecognizers>
+                        <Label x:Name="lblInventory"
+                                           Text="Inventory"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                    </Border>
+
+                    <Border x:Name="btnTopUp"
+                                        Margin="0,5,0,0"
+                                        BackgroundColor="{StaticResource Gray100}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="0"
+                                        HeightRequest="50"
+                                        MinimumWidthRequest="160"
+                                        MaximumHeightRequest="200"
+                                        Padding="20,5,20,5"
+                                        HorizontalOptions="Fill">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="btnTopUp_Click" />
+                        </Border.GestureRecognizers>
+                        <Label x:Name="lblPrepaid"
+                                           Text="Prepaid"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                    </Border>-->
+
+                </VerticalStackLayout>
 
                 </ScrollView>
 

@@ -1,4 +1,3 @@
-
 using ETHAN.classes;
 using XDelServiceRef;
 using ETHAN.ProgressDialog;
@@ -172,8 +171,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         if (_progressService != null && _progressService.IsShowing)
             return;
 
-        StopMCountdown();
-        StopECountdown();
+        /*StopMCountdown();
+        StopECountdown();*/
 
         WeakReferenceMessenger.Default.Unregister<AppSleepMessage>(this);
         WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
@@ -183,8 +182,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     {
         if (message.Value)  // true = app backgrounded
         {
-            StopMCountdown();
-            StopECountdown();
+            /*StopMCountdown();
+            StopECountdown();*/
         }
 
     }
@@ -315,7 +314,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
                 BindingContext = null;
-                string v = string.Empty;
+
                 await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
                     {
                         { "BARCODE", null },
@@ -746,8 +745,9 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
                 ok = hasEmail && hasVEOTP && emailOk && hasPwd && hasCfm && minEightOk && lowerOk && upperOk && numOk && matchOk;
 
             btnUpdate.IsEnabled = ok;
-
             btnUpdate.Style = ok ? (Style)Application.Current.Resources["bstyleOrange"] : (Style)Application.Current.Resources["bstyleDisabled"];
+            /*btnUpdate.BackgroundColor = ok ? (Color)Application.Current.Resources["XDelOrange"] : (Color)Application.Current.Resources["Gray100"];
+            btnUpdate.InputTransparent = !ok;*/
         }
         catch (Exception e)
         {
@@ -799,9 +799,9 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         try
         {
             logininfo = AppSession.logininfo;
-            
-            if (logininfo == null 
-                || (logininfo.ETHAN_Receiver == null) 
+
+            if (logininfo == null
+                || (logininfo.ETHAN_Receiver == null)
                 || (logininfo != null && logininfo.ETHAN_Receiver != null && logininfo.ETHAN_Receiver.IDX == 0)
                 || (logininfo != null && logininfo.ETHAN_Receiver != null && string.IsNullOrEmpty(logininfo.ETHAN_Receiver.UID)))
             {
@@ -1062,7 +1062,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             await AppSession.SetFORGOT_MOTP_VERIFIED("t");
             await AppSession.SetFORGOT_MOTP_SESSIONIDAsync("");
 
-            StopMCountdown();
+            //StopMCountdown();
 
             iconVerifiedMobile.IsVisible = true;
             //iconPendingMobile.IsVisible = false;
@@ -1168,7 +1168,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             await AppSession.SetFORGOT_EOTP_VERIFIED("t");
             await AppSession.SetFORGOT_EOTP_SESSIONIDAsync("");
 
-            StopECountdown();
+            //StopECountdown();
 
             iconVerifiedEmail.IsVisible = true;
             //iconPendingEmail.IsVisible = false;
@@ -1216,6 +1216,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     }
 
     async void btnUpdate_Click(System.Object sender, System.EventArgs e)
+    //async void btnUpdate_Click(System.Object sender, TappedEventArgs e)
     {
         await UpdatePwd();
     }
@@ -1260,6 +1261,11 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
 
             await ShowAlertSafe("", "Password update completed.");
             await UiPump.Yield();
+            /*#if IOS
+                await Task.Delay(300); // let the UIAlertController fully dismiss before navigating
+            #else
+                await UiPump.Yield();
+            #endif*/
             await BackToHomePage();
         }
         catch (Exception e)
@@ -1268,7 +1274,7 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         }
     }
 
-    private async Task StartCountdownAsync(
+    /*private async Task StartCountdownAsync(
     Label countdownLabel,
     View inputBlockView,
     View showAgainButton,
@@ -1309,15 +1315,14 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             inputBlockView.InputTransparent = false;
             cts.Cancel();
         }
-    }
+    }*/
 
-    private void StopMCountdown()
+    /*private void StopMCountdown()
     {
         if (_ctsM is { IsCancellationRequested: false })
             _ctsM.Cancel();
 
         btnMobileOTP.IsVisible = true;
-        //lblMCountdown.IsVisible = false;
         txtMobile.InputTransparent = false;
     }
 
@@ -1327,9 +1332,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             _ctsE.Cancel();
 
         btnEmailOTP.IsVisible = true;
-        //lblECountdown.IsVisible = false;
         txtEmail.InputTransparent = false;
-    }
+    }*/
 
     private async Task showProgress_Dialog(string msg)
     {

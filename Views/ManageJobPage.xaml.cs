@@ -29,26 +29,6 @@ public partial class ManageJobPage : ContentPage
     {
         set
         {
-            /*if (vm != null)
-            {
-                vm.PropertyChanged -= Vm_PropertyChanged;
-                vm.Tabs.CollectionChanged -= Tabs_CollectionChanged;
-                TabHeaderLayout.SizeChanged -= TabHeaderLayout_SizeChanged;
-            }
-
-            if (!txtPostal.IsReadOnly && swNewAddress.IsToggled)
-                txtPostalTextChangedSubscribed();
-            else
-                txtPostalTextChangedUnSubscribed();
-
-            if (vm == null || (vm != null && (vm.aDraft == null && vm.aInProgress == null && vm.aAttempted == null && vm.aCompleted == null)))
-                vm = value ?? new ManageJobPageVM();
-            BindingContext = vm;
-
-            vm.PropertyChanged += Vm_PropertyChanged;
-            vm.Tabs.CollectionChanged += Tabs_CollectionChanged;
-            TabHeaderLayout.SizeChanged += TabHeaderLayout_SizeChanged;*/
-
             if (value != null)
             {
                 // Unsubscribe old vm before replacing
@@ -105,13 +85,6 @@ public partial class ManageJobPage : ContentPage
     private static string InProgress = ",0,49,101,103,104,154,155,165,232,233,235,261,321,322,325,340,342,343,344,359,";
     private static string Attempted = ",67,68,77,78,80,108,109,116,117,119,126,127,128,134,136,255,257,372,391,392";
 
-    /*public ManageJobPage()
-    {
-        InitializeComponent();
-        BindingContext = vm;
-        Shell.SetTabBarIsVisible(this, false);
-
-    }*/
     public ManageJobPage(IProgressDialogService progressService)
     {
         InitializeComponent();
@@ -146,23 +119,6 @@ public partial class ManageJobPage : ContentPage
         base.OnAppearing();
         try
         {
-            /*BSOptions.IsVisible = false;
-            BSSS.IsVisible = false;
-            BSINST.IsVisible = false;
-            BSSummary.IsVisible = false;
-            BSResch.IsVisible = false;
-            BSRedir.IsVisible = false;
-
-            if (ltr != null)
-                reloadData();
-
-            if (!txtPostal.IsReadOnly && swNewAddress.IsToggled)
-                txtPostalTextChangedSubscribed();
-            else
-                txtPostalTextChangedUnSubscribed();*/
-
-            // Refresh BindingContext when returning via ".."
-
             if (vm != null)
                 BindingContext = vm;
 
@@ -204,13 +160,6 @@ public partial class ManageJobPage : ContentPage
     {
         base.OnDisappearing();
 
-        /*if (vm != null)
-        {
-            vm.PropertyChanged -= Vm_PropertyChanged;
-            vm.Tabs.CollectionChanged -= Tabs_CollectionChanged;
-        }
-        TabHeaderLayout.SizeChanged -= TabHeaderLayout_SizeChanged;*/
-
         if (vm != null)
         {
             vm.PropertyChanged -= Vm_PropertyChanged;
@@ -251,18 +200,6 @@ public partial class ManageJobPage : ContentPage
 
             if (BSOptionsnotopen && BSSSnotopen && BSINSTnotopen && BSSummarynotopen && BSReschnotopen && BSRedirnotopen)
             {
-                /*MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    BindingContext = null;
-                    string v = string.Empty;
-                    await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                    {
-                        { "LOGININFO", null },
-                        { "BARCODE", null }
-                    });
-                }
-                );*/
-
                 BindingContext = null;
                 await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
             {
@@ -743,6 +680,7 @@ public partial class ManageJobPage : ContentPage
         try
         {
             string mode = AppSession.LoginMode;
+            bool isReceiver = mode.Equals("r");
             var statusDict = new Dictionary<long, string>();
             XDelServiceRef.StatusCodeStructure[] statuscodeStruct = common.getAllStatusCodes(Web_UID, null, mode);
 
@@ -941,29 +879,29 @@ public partial class ManageJobPage : ContentPage
                     ExpType = ExpType,
                     ContentType = ContentType,
                     FromAdd = FromAdd,
-                    PUBLOCK = PUBLOCK,
+                    PUBLOCK = isReceiver ? common.MaskWholeString(PUBLOCK) : PUBLOCK,
                     PUSTREET = PUSTREET,
-                    PUUNIT = PUUNIT,
+                    PUUNIT = isReceiver ? common.MaskWholeString(PUUNIT) : PUUNIT,
                     PUBUILDING = PUBUILDING,
-                    PUPOSTALCODE = PUPOSTALCODE,
+                    PUPOSTALCODE = isReceiver ? common.MaskPostal(PUPOSTALCODE) : PUPOSTALCODE,
                     PURdy = PURdy,
                     PUCompany = PUCompany,
                     Sender = Sender,
-                    PUTel = PUTel,
-                    PUMobile = PUMobile,
+                    PUTel = isReceiver ? common.MaskMobileX(PUTel) : PUTel,
+                    PUMobile = isReceiver ? common.MaskMobileX(PUMobile) : PUMobile,
                     PUInstruction = PUInstruction,
                     PUAvoid = PUAvoid,
                     ToAdd = ToAdd,
-                    DLBLOCK = DLBLOCK,
+                    DLBLOCK = isReceiver ? common.MaskWholeString(DLBLOCK) : DLBLOCK,
                     DLSTREET = DLSTREET,
-                    DLUNIT = DLUNIT,
+                    DLUNIT = isReceiver ? common.MaskWholeString(DLUNIT) : DLUNIT,
                     DLBUILDING = DLBUILDING,
-                    DLPOSTALCODE = DLPOSTALCODE,
+                    DLPOSTALCODE = isReceiver ? common.MaskPostal(DLPOSTALCODE) : DLPOSTALCODE,
                     DLLocationType = DLLocationType,
                     DLCompany = DLCompany,
                     Receiver = Receiver,
-                    DLTel = DLTel,
-                    DLMobile = DLMobile,
+                    DLTel = isReceiver ? common.MaskMobileX(DLTel) : DLTel,
+                    DLMobile = isReceiver ? common.MaskMobileX(DLMobile) : DLMobile,
                     DLInstruction = DLInstruction,
                     DLAvoid = DLAvoid,
                     DateFrom = DateFrom,

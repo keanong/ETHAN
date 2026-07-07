@@ -36,8 +36,7 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
         tabBar.TabSelected += OnTabSelected;
         TabBarHost.Content = tabBar;
 
-        // Prepare default tab
-        LoadTab(_defaultTab);
+        //LoadTab(_defaultTab); ////Let ApplyQueryAttributes / OnAppearing decide the correct tab first.
     }
 
     // This method is called by Shell when you navigate with a Dictionary<string, object>
@@ -49,6 +48,7 @@ public partial class CardShellPage : ContentPage, IQueryAttributable
             if (Shell.Current?.CurrentPage is CardShellPage 
                 || Shell.Current?.CurrentPage is Login 
                 || Shell.Current?.CurrentPage is BarcodeScanningPage
+                || Shell.Current?.CurrentPage is ChangeRPwdPage
                 || Shell.Current?.CurrentPage is ChangeEmailPage
                 || Shell.Current?.CurrentPage is ChangeMobilePage)
             {

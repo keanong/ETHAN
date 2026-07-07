@@ -499,6 +499,69 @@ namespace ETHAN.classes
             }
         }
 
+        public static string MaskMobileX(string mobile)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(mobile))
+                    return mobile;
+
+                ////Takes the last 4 characters using the ^4.. range operator
+                ////Fills the remaining length with *
+                ////Works for any length input, not just 8-digit numbers.
+                if (mobile.Length < 4)
+                    return new string('X', mobile.Length);
+
+                var visible = mobile[^4..];                        // last 4 digits: "2560"
+                var mask = new string('X', mobile.Length - 4);  // "XXXX"
+
+                return $"{mask}{visible}";
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return mobile;
+            }
+        }
+
+        public static string MaskPostal(string postal)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(postal))
+                    return postal;
+
+                if (postal.Length != 6)
+                    return postal; // or throw, depending on how strict you want validation
+
+                var visible = postal[..3];              // first 3 chars, e.g. "018"
+                var mask = new string('0', 3);           // "000"
+
+                return $"{visible}{mask}";
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return postal;
+            }
+        }
+
+        public static string MaskWholeString(string str)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(str))
+                    return str;
+
+                return new string('X', str.Length);
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return str;
+            }
+        }
+
     }
 
 }
