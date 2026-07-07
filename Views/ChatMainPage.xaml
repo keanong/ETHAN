@@ -26,10 +26,10 @@
 
                 <StackLayout Grid.Row="1" Padding="20" Spacing="15">
 
-                    <Border Grid.Row="1" BackgroundColor="{StaticResource XDelOrange}" StrokeShape="RoundRectangle 10" Padding="15">
+                <Border BackgroundColor="White" StrokeShape="RoundRectangle 10" Padding="15" Stroke="Transparent">
                         <VerticalStackLayout>
 
-                            <Label x:Name="lblInfo" Style="{StaticResource textStyle16White}" Text="You can only view the last 90 days of chat history." 
+                        <Label x:Name="lblInfo" Style="{StaticResource textStyle16BlackBold}" Text="You can only view the last 90 days of chat history." 
                                    HorizontalOptions="Start" VerticalOptions="Start" Margin="10,0,0,0" />
                         <ImageButton Padding="0" Source="refresh_80.png" HorizontalOptions="End" Clicked="Refresh_Click"
                              WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"></ImageButton>
@@ -38,7 +38,7 @@
 
                 </StackLayout>
 
-                <Grid Grid.Row="2" Padding="20" RowDefinitions="*">
+                <Grid Grid.Row="2" Padding="20" RowDefinitions="*" Margin="0,-23,0,50">
 
                     <Border Padding="0" StrokeShape="RoundRectangle 10" BackgroundColor="White" Stroke="Transparent">
 

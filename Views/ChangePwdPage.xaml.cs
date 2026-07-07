@@ -1,4 +1,3 @@
-
 using ETHAN.classes;
 using XDelServiceRef;
 using ETHAN.ProgressDialog;
@@ -7,9 +6,6 @@ using System.Text;
 using System;
 
 namespace ETHAN.Views;
-
-//[QueryProperty(nameof(Vmm), "vmm")] // Add a QueryProperty to handle the navigation parameter
-//[QueryProperty(nameof(LOGININFO), "LOGININFO")] // Add a QueryProperty to handle the navigation parameter
 
 public partial class ChangePwdPage : ContentPage
 {

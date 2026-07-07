@@ -175,9 +175,7 @@ public partial class ChangeMobilePage : ContentPage, IRecipient<AppSleepMessage>
             txtEmail.InputTransparent = true;     // Email field stays locked
             btnEmailOTP.IsVisible = false;         // "Get OTP" stays hidden
             hsEmail.IsVisible = false;
-
             iconVerifiedEmail.IsVisible = otpVerified;
-
             GEOTP.IsVisible = true;                 // OTP entry row stays visible
 
             // Refocus OTP entry so keyboard comes up ready

@@ -499,29 +499,53 @@ namespace ETHAN.classes
             }
         }
 
-        public static string MaskMobileX(string mobile)
+        public static string MaskMobileX(string contactnum)
         {
             try
             {
-                if (string.IsNullOrEmpty(mobile))
-                    return mobile;
+                if (string.IsNullOrEmpty(contactnum))
+                    return contactnum;
 
-                ////Takes the last 4 characters using the ^4.. range operator
-                ////Fills the remaining length with *
-                ////Works for any length input, not just 8-digit numbers.
-                if (mobile.Length < 4)
-                    return new string('X', mobile.Length);
+                var parts = contactnum.Split('/');
+                var maskedParts = parts.Select(MaskSinglePart);
 
-                var visible = mobile[^4..];                        // last 4 digits: "2560"
-                var mask = new string('X', mobile.Length - 4);  // "XXXX"
-
-                return $"{mask}{visible}";
+                return string.Join("/", maskedParts);
             }
             catch (Exception e)
             {
                 string s = e.Message;
-                return mobile;
+                return contactnum;
             }
+        }
+
+        private static string MaskSinglePart(string part)
+        {
+            if (string.IsNullOrEmpty(part))
+                return part;
+
+            var chars = part.ToCharArray();
+
+            // Indices of "real" characters (excluding "-")
+            var maskableIndices = new List<int>();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] != '-')
+                    maskableIndices.Add(i);
+            }
+
+            // Extension numbers (assumed length <= 4 real digits) are left untouched
+            if (maskableIndices.Count <= 4)
+                return part;
+
+            int visibleCount = 4;
+            int maskCount = maskableIndices.Count - visibleCount;
+
+            for (int i = 0; i < maskCount; i++)
+            {
+                chars[maskableIndices[i]] = 'X';
+            }
+
+            return new string(chars);
         }
 
         public static string MaskPostal(string postal)
@@ -553,7 +577,55 @@ namespace ETHAN.classes
                 if (string.IsNullOrEmpty(str))
                     return str;
 
+                var chars = str.ToCharArray();
+
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if (chars[i] != '/' && chars[i] != '-')
+                        chars[i] = 'X';
+                }
+
+                return new string(chars);
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return str;
+            }
+        }
+
+        public static string MaskWholeStringReturnX(string str)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(str))
+                    return str;
+
                 return new string('X', str.Length);
+            }
+            catch (Exception e)
+            {
+                string s = e.Message;
+                return str;
+            }
+        }
+
+        public static string MaskBlockUnitString(string str)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(str))
+                    return str;
+
+                var chars = str.ToCharArray();
+
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if (chars[i] != '/' && chars[i] != '-' && !(chars[i] >= 'A' && chars[i] <= 'Z'))
+                        chars[i] = 'X';
+                }
+
+                return new string(chars);
             }
             catch (Exception e)
             {

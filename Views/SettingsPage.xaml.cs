@@ -179,11 +179,6 @@ public partial class SettingsPage : ContentView, IRecipient<AppResumeMessage>
                 return;
             }
 
-            /*if (await AppShell.Current.DisplayAlert("Are you sure?", "You will be logged out.", "Yes", "No"))
-            {
-                SecureStorage.RemoveAll();
-                await Shell.Current.GoToAsync("///Login");
-            }*/
             if (await AppShell.Current.DisplayAlertAsync("Are you sure?", "You will be logged out.", "Yes", "No"))
                 await ForceLogoutAsync();
         }

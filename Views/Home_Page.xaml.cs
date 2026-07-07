@@ -6,25 +6,11 @@ using ZXing.QrCode.Internal;
 
 namespace ETHAN.Views;
 
-//[QueryProperty(nameof(LOGININFO), "LOGININFO")] // Add a QueryProperty to handle the navigation parameter
-//[QueryProperty(nameof(ELOGININFO), "ELOGININFO")] // Add a QueryProperty to handle the navigation parameter
 [QueryProperty(nameof(BARCODE), "BARCODE")] // Add a QueryProperty to handle the navigation parameter
 
 public partial class Home_Page : ContentView
 {
     private LoginInfo? logininfo;
-    /*public LoginInfo? LOGININFO
-    {
-        get => logininfo;
-        set
-        {
-            logininfo = value;
-            if (logininfo != null)
-            {
-                loadLoginInfo();
-            }
-        }
-    }*/
 
     public string barcode;
     public string BARCODE
@@ -39,7 +25,6 @@ public partial class Home_Page : ContentView
         }
     }
 
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
     private ProgressDialogService _progressService;
 
@@ -59,7 +44,6 @@ public partial class Home_Page : ContentView
         }
     }
 
-
     protected override void OnParentSet()
     {
         base.OnParentSet();
@@ -72,20 +56,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            /*string mode = AppSession.LoginMode;
-            if (mode.Equals("s"))
-            {
-                logininfo = AppSession.logininfo;
-            }
-            else if (mode.Equals("r"))
-            {
-                eloginInfo = AppSession.elogininfo;
-            }
-            else
-            {
-                ForceLogoutAsync();
-                return;
-            }*/
             logininfo = AppSession.logininfo;
             loadLoginInfo();
         } catch (Exception e)
@@ -130,40 +100,6 @@ public partial class Home_Page : ContentView
                 bCoy.IsVisible = false;
                 bTrack.IsVisible = false;
             }
-
-            /*if (logininfo != null && logininfo.clientInfo != null)
-            {
-                lblName.Text = "Hi,\r\n" + logininfo.clientInfo.LoggedInUserName;
-                lblCoyName.Text = logininfo.clientInfo.Company;
-                lblAcctNoText.Text = logininfo.clientInfo.Account.ToString();
-
-                if (logininfo.clientInfo.AccountType == TAccountType.atPrePaid && logininfo.PrePaidBalance != null)
-                    lblAvailBal.Text = logininfo.PrePaidBalance == null ? "$0.00" : "$" + logininfo.PrePaidBalance.Value.ToString("F2");
-
-                lblPrepaidAcctText.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
-                lblAvailBal.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
-                lblAvailBalText.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
-                btnTopUp.IsVisible = (logininfo.clientInfo.AccountType == TAccountType.atPrePaid);
-            } 
-            else if (eloginInfo != null)
-            {
-                string FNAME = !string.IsNullOrEmpty(eloginInfo.FNAME) ? eloginInfo.FNAME : "";
-                string LNAME = !string.IsNullOrEmpty(eloginInfo.LNAME) ? " " + eloginInfo.LNAME : "";
-                string NAME = FNAME + LNAME;
-                lblName.Text = "Hi,\r\n" + NAME;
-                lblCoyName.Text = "";
-                lblAcctNoText.Text = "";
-
-                lblPrepaidAcctText.IsVisible = false;
-                lblAvailBal.IsVisible = false;
-                lblAvailBalText.IsVisible = false;
-                
-                btnCreateJ.IsVisible = false;
-                btnInventory.IsVisible = false;
-                btnTopUp.IsVisible = false;
-                bCoy.IsVisible = false;
-            }*/
-
         }
         catch (InvalidOperationException ex)
         {
@@ -214,8 +150,6 @@ public partial class Home_Page : ContentView
             {
                 Application.Current.MainPage = new AppShell(); // destroy all cached pages
             });
-
-            //await Shell.Current.GoToAsync("///Login");
         }
         catch (Exception e)
         {
@@ -237,14 +171,6 @@ public partial class Home_Page : ContentView
                 return;
             }
 
-            /*if (await AppShell.Current.DisplayAlert("Are you sure?", "You will be logged out.", "Yes", "No"))
-            {
-                SecureStorage.RemoveAll();
-                await Shell.Current.GoToAsync("///Login");
-            }*/
-            /*if (await AppShell.Current.DisplayAlert("Are you sure?", "You will be logged out.", "Yes", "No"))
-                await ForceLogoutAsync();*/
-
             if (await AppShell.Current.DisplayAlertAsync("Are you sure?", "You will be logged out.", "Yes", "No"))
                 await ForceLogoutAsync();
         }
@@ -254,7 +180,8 @@ public partial class Home_Page : ContentView
         }
     }
 
-    void CreateJob_Click(System.Object sender, System.EventArgs e)
+    //void CreateJob_Click(System.Object sender, System.EventArgs e)
+    void CreateJob_Click(System.Object sender, TappedEventArgs e)
     {
         try
         {
@@ -270,11 +197,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            /*await Shell.Current.GoToAsync("CreateJob", new Dictionary<string, object>
-                    {
-                        { "vmm", null },
-                        {"LOGININFO",  logininfo}
-                    });*/
             await Shell.Current.GoToAsync("CreateJob", new Dictionary<string, object>
                     {
                         { "vmm", null }
@@ -286,7 +208,8 @@ public partial class Home_Page : ContentView
         }
     }
 
-    void ManageJob_Click(System.Object sender, System.EventArgs e)
+    //void ManageJob_Click(System.Object sender, System.EventArgs e)
+    void ManageJob_Click(System.Object sender, TappedEventArgs e)
     {
         try
         {
@@ -302,11 +225,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            /*await Shell.Current.GoToAsync("/ManageJobPage", new Dictionary<string, object>
-                    {
-                        { "vmm", null },
-                        {"LOGININFO",  logininfo}
-                    });*/
             await Shell.Current.GoToAsync("/ManageJobPage", new Dictionary<string, object>
                     {
                         { "vmm", null }
@@ -318,7 +236,8 @@ public partial class Home_Page : ContentView
         }
     }
 
-    void Inventory_Click(System.Object sender, System.EventArgs e)
+    //void Inventory_Click(System.Object sender, System.EventArgs e)
+    void Inventory_Click(System.Object sender, TappedEventArgs e)
     {
         try
         {
@@ -334,11 +253,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            /*await Shell.Current.GoToAsync("InventoryPage", new Dictionary<string, object>
-                    {
-                        { "vmm", null },
-                        {"LOGININFO",  logininfo}
-                    });*/
             await Shell.Current.GoToAsync("InventoryPage", new Dictionary<string, object>
                     {
                         { "vmm", null }
@@ -350,7 +264,8 @@ public partial class Home_Page : ContentView
         }
     }
 
-    void btnTopUp_Click(System.Object sender, System.EventArgs e)
+    //void btnTopUp_Click(System.Object sender, System.EventArgs e)
+    void btnTopUp_Click(System.Object sender, TappedEventArgs e)
     {
         try
         {
@@ -366,11 +281,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            /*await Shell.Current.GoToAsync("PrepaidListPage", new Dictionary<string, object>
-                    {
-                        { "vmm", null },
-                        {"LOGININFO",  logininfo}
-                    });*/
             await Shell.Current.GoToAsync("PrepaidListPage", new Dictionary<string, object>
                     {
                         { "vmm", null }
@@ -382,7 +292,8 @@ public partial class Home_Page : ContentView
         }
     }
 
-    void btnChat_Click(System.Object sender, System.EventArgs e)
+    //void btnChat_Click(System.Object sender, System.EventArgs e)
+    void btnChat_Click(System.Object sender, TappedEventArgs e)
     {
         try
         {
@@ -422,11 +333,6 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            //await Shell.Current.GoToAsync("/Barcode");
-            /*await Shell.Current.GoToAsync("/Barcode", new Dictionary<string, object>
-                    {
-                        {"LOGININFO",  logininfo}
-                    });*/
             await Shell.Current.GoToAsync("/Barcode");
         }
         catch (Exception ex)
@@ -434,7 +340,5 @@ public partial class Home_Page : ContentView
             string s = ex.Message;
         }
     }
-
-
 
 }

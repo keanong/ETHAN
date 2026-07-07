@@ -830,7 +830,7 @@
         </Setter>
     </Style>
 
-    <Shadow Brush="Black" x:Key="Shadow" Offset="5,10" Radius="10" Opacity="0.9" />
+    <Shadow Brush="{StaticResource Gray200}" x:Key="Shadow" Offset="5,10" Radius="10" Opacity="0.9" />
 
     <Style x:Key="btnTopNavBack" TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource XDelOrange}"></Setter>
@@ -869,6 +869,34 @@
                     <VisualState x:Name="PointerOver">
                     </VisualState>
                     <VisualState x:Name="Disabled">
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="borderBtnStyle" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="White"></Setter>
+        <Setter Property="Shadow" Value="{StaticResource Shadow}"></Setter>
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+        <Setter Property="Stroke" Value="White"></Setter>
+        <Setter Property="Padding" Value="15"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.9" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource XDelOrange}"></Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="PointerOver">
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateGroupList>

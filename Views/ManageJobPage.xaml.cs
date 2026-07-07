@@ -461,7 +461,6 @@ public partial class ManageJobPage : ContentPage
             }
 
             await showProgress_Dialog("Processing...");
-            //await UiPump.Yield();
 
             ClientInfo ci = logininfo.clientInfo;
 
@@ -799,8 +798,8 @@ public partial class ManageJobPage : ContentPage
                         Sender = PL.Contacts[0].NAME;
                     else Sender = "No Information";
 
-                    PUTel = PL.Contacts[0].TEL;
-                    PUMobile = PL.Contacts[0].MOBILE;
+                    PUTel = isReceiver ? common.MaskMobileX(PL.Contacts[0].TEL) : PL.Contacts[0].TEL;
+                    PUMobile = isReceiver ? common.MaskMobileX(PL.Contacts[0].MOBILE) : PL.Contacts[0].MOBILE;
                 }
 
                 PUInstruction = !String.IsNullOrEmpty(job.PUSI) ? job.PUSI : "";
@@ -809,24 +808,24 @@ public partial class ManageJobPage : ContentPage
                 PUCompany = PL != null && !String.IsNullOrEmpty(PL.COMPANY) ? PL.COMPANY : "";
 
                 if (PL != null && !String.IsNullOrEmpty(PL.BLOCK))
-                    FromAdd = PL.BLOCK;
+                    FromAdd = isReceiver ? common.MaskBlockUnitString(PL.BLOCK) : PL.BLOCK;
                 if (PL != null && !String.IsNullOrEmpty(PL.STREET))
                     FromAdd += (!String.IsNullOrEmpty(FromAdd) ? ", " : "") + PL.STREET;
                 if (PL != null && !String.IsNullOrEmpty(PL.UNIT))
-                    FromAdd += (!String.IsNullOrEmpty(FromAdd) ? ", " : "") + PL.UNIT;
+                    FromAdd += (!String.IsNullOrEmpty(FromAdd) ? ", " : "") + "#" + (isReceiver ? common.MaskBlockUnitString(PL.UNIT) : PL.UNIT);
                 if (PL != null && !String.IsNullOrEmpty(PL.BUILDING))
                     FromAdd += (!String.IsNullOrEmpty(FromAdd) ? ", " : "") + PL.BUILDING;
 
                 if (PL != null && !String.IsNullOrEmpty(PL.BLOCK))
-                    PUBLOCK = PL.BLOCK;
+                    PUBLOCK = isReceiver ? common.MaskBlockUnitString(PL.BLOCK) : PL.BLOCK;
                 if (PL != null && !String.IsNullOrEmpty(PL.STREET))
                     PUSTREET = PL.STREET;
                 if (PL != null && !String.IsNullOrEmpty(PL.UNIT))
-                    PUUNIT = PL.UNIT;
+                    PUUNIT = isReceiver ? common.MaskBlockUnitString(PL.UNIT) : PL.UNIT;
                 if (PL != null && !String.IsNullOrEmpty(PL.BUILDING))
                     PUBUILDING = PL.BUILDING;
                 if (PL != null && !String.IsNullOrEmpty(PL.POSTALCODE))
-                    PUPOSTALCODE = PL.POSTALCODE;
+                    PUPOSTALCODE = isReceiver ? common.MaskPostal(PL.POSTALCODE) : PL.POSTALCODE;
 
                 DL = job.DLRedirectedLocation != null ? job.DLRedirectedLocation : job.DLLocation;
 
@@ -836,8 +835,8 @@ public partial class ManageJobPage : ContentPage
                         Receiver = DL.Contacts[0].NAME;
                     else Receiver = "No Information";
 
-                    DLTel = DL.Contacts[0].TEL;
-                    DLMobile = DL.Contacts[0].MOBILE;
+                    DLTel = isReceiver ? common.MaskMobileX(DL.Contacts[0].TEL) : DL.Contacts[0].TEL;
+                    DLMobile = isReceiver ? common.MaskMobileX(DL.Contacts[0].MOBILE) : DL.Contacts[0].MOBILE;
                 }
 
                 DLInstruction = !String.IsNullOrEmpty(job.DLSI) ? job.DLSI : "";
@@ -846,24 +845,24 @@ public partial class ManageJobPage : ContentPage
                 DLCompany = DL != null && !String.IsNullOrEmpty(DL.COMPANY) ? DL.COMPANY : "";
 
                 if (DL != null && !String.IsNullOrEmpty(DL.BLOCK))
-                    ToAdd = DL.BLOCK;
+                    ToAdd = isReceiver ? common.MaskBlockUnitString(DL.BLOCK) : DL.BLOCK;
                 if (DL != null && !String.IsNullOrEmpty(DL.STREET))
                     ToAdd += (!String.IsNullOrEmpty(ToAdd) ? ", " : "") + DL.STREET;
                 if (DL != null && !String.IsNullOrEmpty(DL.UNIT))
-                    ToAdd += (!String.IsNullOrEmpty(ToAdd) ? ", " : "") + DL.UNIT;
+                    ToAdd += (!String.IsNullOrEmpty(ToAdd) ? ", " : "") + "#" + (isReceiver ? common.MaskBlockUnitString(DL.UNIT) : DL.UNIT);
                 if (DL != null && !String.IsNullOrEmpty(DL.BUILDING))
                     ToAdd += (!String.IsNullOrEmpty(ToAdd) ? ", " : "") + DL.BUILDING;
 
                 if (DL != null && !String.IsNullOrEmpty(DL.BLOCK))
-                    DLBLOCK = DL.BLOCK;
+                    DLBLOCK = isReceiver ? common.MaskBlockUnitString(DL.BLOCK) : DL.BLOCK;
                 if (DL != null && !String.IsNullOrEmpty(DL.STREET))
                     DLSTREET = DL.STREET;
                 if (DL != null && !String.IsNullOrEmpty(DL.UNIT))
-                    DLUNIT = DL.UNIT;
+                    DLUNIT = isReceiver ? common.MaskBlockUnitString(DL.UNIT) : DL.UNIT;
                 if (DL != null && !String.IsNullOrEmpty(DL.BUILDING))
                     DLBUILDING = DL.BUILDING;
                 if (DL != null && !String.IsNullOrEmpty(DL.POSTALCODE))
-                    DLPOSTALCODE = DL.POSTALCODE;
+                    DLPOSTALCODE = isReceiver ? common.MaskPostal(DL.POSTALCODE) : DL.POSTALCODE;
 
                 if (DL != null)
                     DLLocationType = DL.LocationType == XDelServiceRef.Location_Type.Residential ? 1 :
@@ -879,29 +878,29 @@ public partial class ManageJobPage : ContentPage
                     ExpType = ExpType,
                     ContentType = ContentType,
                     FromAdd = FromAdd,
-                    PUBLOCK = isReceiver ? common.MaskWholeString(PUBLOCK) : PUBLOCK,
+                    PUBLOCK = PUBLOCK,
                     PUSTREET = PUSTREET,
-                    PUUNIT = isReceiver ? common.MaskWholeString(PUUNIT) : PUUNIT,
+                    PUUNIT = PUUNIT,
                     PUBUILDING = PUBUILDING,
-                    PUPOSTALCODE = isReceiver ? common.MaskPostal(PUPOSTALCODE) : PUPOSTALCODE,
+                    PUPOSTALCODE = PUPOSTALCODE,
                     PURdy = PURdy,
                     PUCompany = PUCompany,
                     Sender = Sender,
-                    PUTel = isReceiver ? common.MaskMobileX(PUTel) : PUTel,
-                    PUMobile = isReceiver ? common.MaskMobileX(PUMobile) : PUMobile,
+                    PUTel = PUTel,
+                    PUMobile = PUMobile,
                     PUInstruction = PUInstruction,
                     PUAvoid = PUAvoid,
                     ToAdd = ToAdd,
-                    DLBLOCK = isReceiver ? common.MaskWholeString(DLBLOCK) : DLBLOCK,
+                    DLBLOCK = DLBLOCK,
                     DLSTREET = DLSTREET,
-                    DLUNIT = isReceiver ? common.MaskWholeString(DLUNIT) : DLUNIT,
+                    DLUNIT = DLUNIT,
                     DLBUILDING = DLBUILDING,
-                    DLPOSTALCODE = isReceiver ? common.MaskPostal(DLPOSTALCODE) : DLPOSTALCODE,
+                    DLPOSTALCODE = DLPOSTALCODE,
                     DLLocationType = DLLocationType,
                     DLCompany = DLCompany,
                     Receiver = Receiver,
-                    DLTel = isReceiver ? common.MaskMobileX(DLTel) : DLTel,
-                    DLMobile = isReceiver ? common.MaskMobileX(DLMobile) : DLMobile,
+                    DLTel = DLTel,
+                    DLMobile = DLMobile,
                     DLInstruction = DLInstruction,
                     DLAvoid = DLAvoid,
                     DateFrom = DateFrom,
@@ -935,8 +934,6 @@ public partial class ManageJobPage : ContentPage
                     case 3: Comp.Add(item); break;
                     default: Dra.Add(item); break;
                 }
-
-
             }
 
             // Sort once at the end

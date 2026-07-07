@@ -17,10 +17,6 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     private bool _loadedOnce = false;
     private LoginInfo? logininfo;
 
-    private CancellationTokenSource? _ctsM;
-    private CancellationTokenSource? _ctsE;
-
-
     public ChangeRPwdPage(IProgressDialogService progressService)
     {
         InitializeComponent();
@@ -151,28 +147,11 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         return Guid.Empty;
     }
 
-    private async Task<Guid> GetStoredGuidAsync(string key)
-    {
-        try
-        {
-            var value = await SecureStorage.GetAsync(key);
-
-            if (!string.IsNullOrWhiteSpace(value) && Guid.TryParse(value, out var g))
-                return g;
-        }
-        catch { }
-
-        return Guid.Empty;
-    }
-
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
         if (_progressService != null && _progressService.IsShowing)
             return;
-
-        /*StopMCountdown();
-        StopECountdown();*/
 
         WeakReferenceMessenger.Default.Unregister<AppSleepMessage>(this);
         WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
@@ -182,10 +161,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
     {
         if (message.Value)  // true = app backgrounded
         {
-            /*StopMCountdown();
-            StopECountdown();*/
-        }
 
+        }
     }
 
     public void Receive(AppResumeMessage message)
@@ -322,7 +299,6 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
                     });
             }
             );
-
         }
         catch (Exception e)
         {
@@ -386,39 +362,20 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         txtCfmPwd.IsPassword = true;
         btnToggleCfmPwd.Source = "eye_show_80.png";
 
-        //lblECountdown.IsVisible = false;
         txtEmail.InputTransparent = false;
         GEOTP.IsVisible = false;
         btnEmailOTP.IsVisible = false;
-        //iconVerifiedEmail.IsVisible = false;
-        //iconPendingEmail.IsVisible = false;
         iconVerifiedEmail.IsVisible = false;
         iconVerifiedEmail2.IsVisible = true;
         hsEmail.IsVisible = false;
-        //lblEmailInvalid.IsVisible = false;
 
-        if (_ctsM is { IsCancellationRequested: false })
-        {
-            //lblMCountdown.IsVisible = true;
-            txtMobile.InputTransparent = true;
-            GMOTP.IsVisible = true;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            //lblMobileInvalid.IsVisible = false;
-        }
-        else
-        {
-            txtMobile.Text = "";
-            txtMobileOTP.Text = "";
-            //lblMCountdown.IsVisible = false;
-            txtMobile.InputTransparent = false;
-            GMOTP.IsVisible = false;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            //lblMobileInvalid.IsVisible = true;
-        }
+        txtMobile.Text = "";
+        txtMobileOTP.Text = "";
+        txtMobile.InputTransparent = false;
+        GMOTP.IsVisible = false;
+        btnMobileOTP.IsVisible = false;
+        iconVerifiedMobile.IsVisible = false;
+        hsMobile.IsVisible = false;
     }
 
     private async void EmailTab_Tapped(object sender, TappedEventArgs e)
@@ -451,39 +408,19 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         txtCfmPwd.IsPassword = true;
         btnToggleCfmPwd.Source = "eye_show_80.png";
 
-        //lblMCountdown.IsVisible = false;
         txtMobile.InputTransparent = false;
         GMOTP.IsVisible = false;
         btnMobileOTP.IsVisible = false;
-        //iconVerifiedMobile.IsVisible = false;
-        //iconPendingMobile.IsVisible = false;
         iconVerifiedMobile.IsVisible = false;
         iconVerifiedMobile2.IsVisible = true;
         hsMobile.IsVisible = false;
-        //lblMobileInvalid.IsVisible = false;
 
-        if (_ctsE is { IsCancellationRequested: false })
-        {
-            //lblECountdown.IsVisible = true;
-            txtEmail.InputTransparent = true;
-            GEOTP.IsVisible = true;
-            btnEmailOTP.IsVisible = false;
-            //iconVerifiedEmail.IsVisible = false;
-            hsEmail.IsVisible = false;
-            //lblEmailInvalid.IsVisible = false;
-        }
-        else
-        {
-            txtEmail.Text = "";
-            txtEmailOTP.Text = "";
-            //lblECountdown.IsVisible = false;
-            txtEmail.InputTransparent = false;
-            GEOTP.IsVisible = false;
-            btnEmailOTP.IsVisible = false;
-            //iconVerifiedEmail.IsVisible = false;
-            hsEmail.IsVisible = false;
-            //lblEmailInvalid.IsVisible = true;
-        }
+        txtEmail.Text = "";
+        txtEmailOTP.Text = "";
+        txtEmail.InputTransparent = false;
+        GEOTP.IsVisible = false;
+        btnEmailOTP.IsVisible = false;
+        hsEmail.IsVisible = false;
     }
 
     bool emailOk = false;
@@ -1273,67 +1210,6 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
             string s = e.Message;
         }
     }
-
-    /*private async Task StartCountdownAsync(
-    Label countdownLabel,
-    View inputBlockView,
-    View showAgainButton,
-    View txtOTP,
-    CancellationTokenSource cts)
-    {
-        inputBlockView.InputTransparent = true;
-        showAgainButton.IsVisible = false;
-        countdownLabel.IsVisible = true;
-
-        await Task.Delay(30);
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            txtOTP.Focus();
-        });
-
-        int seconds = 30;
-
-        try
-        {
-            while (seconds >= 0 && !cts.Token.IsCancellationRequested)
-            {
-                countdownLabel.Text = $"{seconds}s";
-                await Task.Delay(1000, cts.Token);
-                seconds--;
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            //// expected when stopping timer
-        }
-
-        //// finished normally
-        if (!cts.Token.IsCancellationRequested)
-        {
-            showAgainButton.IsVisible = true;
-            countdownLabel.IsVisible = false;
-            inputBlockView.InputTransparent = false;
-            cts.Cancel();
-        }
-    }*/
-
-    /*private void StopMCountdown()
-    {
-        if (_ctsM is { IsCancellationRequested: false })
-            _ctsM.Cancel();
-
-        btnMobileOTP.IsVisible = true;
-        txtMobile.InputTransparent = false;
-    }
-
-    private void StopECountdown()
-    {
-        if (_ctsE is { IsCancellationRequested: false })
-            _ctsE.Cancel();
-
-        btnEmailOTP.IsVisible = true;
-        txtEmail.InputTransparent = false;
-    }*/
 
     private async Task showProgress_Dialog(string msg)
     {

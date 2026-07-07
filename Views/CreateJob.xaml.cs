@@ -22,20 +22,16 @@ namespace ETHAN.Views;
 
 
 [QueryProperty(nameof(Vmm), "vmm")] // Add a QueryProperty to handle the navigation parameter
-//[QueryProperty(nameof(LOGININFO), "LOGININFO")] // Add a QueryProperty to handle the navigation parameter
 [QueryProperty(nameof(LTR), "LTR")] // Add a QueryProperty to handle the navigation parameter
 
 
 public partial class CreateJob : ContentPage
 {
-    //public CreateJobVM? vm { get; set; }
     private CreateJobVM? vm;
     public CreateJobVM Vmm
     {
         set
         {
-            /*vm = value ?? new CreateJobVM();
-            BindingContext = vm; // If null, create a new instance*/
             if (value != null)
             {
                 vm = value;
@@ -56,8 +52,6 @@ public partial class CreateJob : ContentPage
     {
         set
         {
-            /*logininfo = value ?? null;*/
-
             // Only update if value is not null
             // Returning via ".." from AddressBookPage will pass null
             if (value != null)
@@ -71,8 +65,6 @@ public partial class CreateJob : ContentPage
     {
         set
         {
-            /*ltr = value;*/
-
             // Only update if value is not null
             // Returning via ".." from AddressBookPage will pass null
             if (value != null)
@@ -80,11 +72,7 @@ public partial class CreateJob : ContentPage
         }
     }
 
-    //BottomSheetView? bottomSheet;    
-
-    //private XWSSoapClient xs = new XWSSoapClient(XWSSoapClient.EndpointConfiguration.XWSSoap);
     private XOEWSSoapClient xs = new XOEWSSoapClient(XOEWSSoapClient.EndpointConfiguration.XOEWSSoap);
-    //private ProgressDialogService _progressService;
     private readonly IProgressDialogService _progressService;
 
     string[] times = new string[] { "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
@@ -92,7 +80,6 @@ public partial class CreateJob : ContentPage
 
     string[] dateformats = { "dd/MM/yyyy HH:mm", "dd/MM/yyyy", "dd/MM/yyyy HH:mm tt" };
 
-    //List<common.eExpressType>? fakeAllowedExpTypes { get; set; }
     List<XDelServiceRef.eExpressType>? fakeAllowedExpTypes { get; set; }
 
     public CreateJob(IProgressDialogService progressService)
@@ -105,8 +92,6 @@ public partial class CreateJob : ContentPage
             //regWeakReferenceMsger();
 
             BindingContext = vm;
-            //loadValue(); ////shifted to OnAppearing
-            //addTapGestureRecognizer(); ////shifted to OnAppearing
             Shell.SetTabBarIsVisible(this, false);
         }
         catch (Exception ex)
@@ -217,7 +202,6 @@ this.HideSoftInputOnTapped = false;
             if (addGestures)
                 addTapGestureRecognizer();
 
-            //await Shell.Current.DisplayAlert(String.IsNullOrEmpty(title) ? "Alert" : title, msg, "OK");
             await DisplayAlertAsync(String.IsNullOrEmpty(title) ? "" : title, msg, "OK");
         }
         catch (Exception ex)
@@ -270,10 +254,6 @@ this.HideSoftInputOnTapped = false;
     {
         try
         {
-            //string v = string.Empty;
-            //await Shell.Current.GoToAsync($"..?bcval={v}", true);
-            //await Shell.Current.GoToAsync($"///Homepage?bcval={v}", true);
-
             BackToHomePage();
         }
         catch (Exception ex)
@@ -353,31 +333,6 @@ this.HideSoftInputOnTapped = false;
                         });
                 }
                                     );
-
-                /*bool rtnToMJP = (vm != null && vm.job1 != null && vm.job1.JobsIDX != null && vm.job1.JobsIDX > 0);
-
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    string v = string.Empty;
-                    if (rtnToMJP)
-                        await Shell.Current.GoToAsync("ManageJobPage", new Dictionary<string, object>
-                        {
-                            { "LOGININFO", logininfo },
-                            { "BARCODE", null },
-                            { "vmm", null }
-                        });
-                    else
-                    {
-                        BindingContext = null;
-                        await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                        {
-                            { "LOGININFO", logininfo },
-                            { "BARCODE", null }
-                        });
-                    }
-                }
-                                    );*/
-
             }
         }
         catch (Exception e)
@@ -460,41 +415,12 @@ this.HideSoftInputOnTapped = false;
                 js = await xs.SaveTempJobAsync(logininfo.clientInfo.Web_UID, vm.job2);
             }
 
-            /*await Shell.Current.GoToAsync("JobSummary", new Dictionary<string, object>
-                        {
-                            { "vmm", vm },
-                            { "LTR", ltr },
-                            {"LOGININFO",  logininfo}
-                        });*/
             await Shell.Current.GoToAsync("JobSummary", new Dictionary<string, object>
                         {
                             { "vmm", vm },
                             { "LTR", ltr },
                             { "Source", "CreateJobPage" }
                         });
-
-
-            /* if (js == null)
-             {
-
-             } else if (js.Status == 0 && js.JobList != null && js.JobList.Length > 0)
-             {
-                 vm.JobsIDX = js.JobList[0].JobsIDX ?? 0;
-
-                 await Shell.Current.GoToAsync("JobSummary", new Dictionary<string, object>
-                         {
-                             { "vmm", vm },
-                             {"LOGININFO",  logininfo}
-                         });
-             }*/
-
-            //vm.JobsIDX = 9362019;
-
-            //await Shell.Current.GoToAsync("JobSummary", new Dictionary<string, object>
-            //        {
-            //            { "vmm", vm },
-            //            {"LOGININFO",  logininfo}
-            //        });
         } catch (Exception ex)
         {
             string s = ex.Message;
@@ -1329,8 +1255,6 @@ this.HideSoftInputOnTapped = false;
 
             if (itemCount > 0 && (cvContentType.ItemsSource is List<contenttype> items))
             {
-                //selectedvalue = !vm.BSContentType2opened ? vm.ContentType1 : vm.ContentType2;
-                
                 if (string.IsNullOrEmpty(selectedvalue) || selectedvalue.Equals("Select"))
                     selectedvalue = "";
                 if (!String.IsNullOrEmpty(selectedvalue))
@@ -1421,9 +1345,6 @@ this.HideSoftInputOnTapped = false;
         try
         {
             addTapGestureRecognizer();
-
-            //await BSContentType.CloseBottomSheet();
-            //BSContentType.isShowing = false;
             await CloseBottomSheetSafely(BSContentType);
         }
         catch (Exception ex)
@@ -1438,9 +1359,6 @@ this.HideSoftInputOnTapped = false;
         {
             addTapGestureRecognizer();
             ContentTypeSaveUponClose();
-
-            //await BSContentType.CloseBottomSheet();
-            //BSContentType.isShowing = false;
             await CloseBottomSheetSafely(BSContentType);
             validateButton();
         }
@@ -1457,8 +1375,6 @@ this.HideSoftInputOnTapped = false;
         string ets = "TBA";
         try
         {
-            //string et = vm.BSDeliveryTimeopened ? vm.exp1 : vm.exp2; ;
-
             switch (et)
             {
                 case "etNormal":
@@ -1500,7 +1416,6 @@ this.HideSoftInputOnTapped = false;
         try
         {
             string et = vm.BSDeliveryTimeopened ? vm.exp1 : vm.exp2; ;
-            //ets = et.Equals(common.eExpressType.etNormal.ToString()) ? "FIVE THIRTY PLUS" :
 
             switch (et)
             {
