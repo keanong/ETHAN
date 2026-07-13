@@ -17,10 +17,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
     private readonly IProgressDialogService _progressService;
     private bool _loadedOnce = false;
 
-    private CancellationTokenSource? _ctsM;
-    private CancellationTokenSource? _ctsE;
-
-
     public LoginForgotPwd(IProgressDialogService progressService)
 	{
 		InitializeComponent();
@@ -171,9 +167,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         if (_progressService != null && _progressService.IsShowing)
             return;
 
-        StopMCountdown();
-        StopECountdown();
-
         WeakReferenceMessenger.Default.Unregister<AppSleepMessage>(this);
         WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
     }
@@ -182,8 +175,7 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
     {
         if (message.Value)  // true = app backgrounded
         {
-            StopMCountdown();
-            StopECountdown();
+
         }
 
     }
@@ -332,6 +324,30 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         return true;
     }
 
+    private async void CXMOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await MobileTab_ResetFields();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    private async void CXEOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await EmailTab_ResetFields();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
     private void DisableTabs(bool enable)
     {
         try
@@ -375,38 +391,21 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         txtCfmPwd.IsPassword = true;
         btnToggleCfmPwd.Source = "eye_show_80.png";
 
-        //lblECountdown.IsVisible = false;
         txtEmail.InputTransparent = false;
         GEOTP.IsVisible = false;
         btnEmailOTP.IsVisible = false;
-        //iconVerifiedEmail.IsVisible = false;
-        //iconPendingEmail.IsVisible = false;
         iconVerifiedEmail.IsVisible = false;
         iconVerifiedEmail2.IsVisible = true;
         hsEmail.IsVisible = false;
-        //lblEmailInvalid.IsVisible = false;
 
-        if (_ctsM is { IsCancellationRequested: false })
-        {
-            //lblMCountdown.IsVisible = true;
-            txtMobile.InputTransparent = true;
-            GMOTP.IsVisible = true;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            //lblMobileInvalid.IsVisible = false;
-        } else
-        {
-            txtMobile.Text = "";
-            txtMobileOTP.Text = "";
-            //lblMCountdown.IsVisible = false;
-            txtMobile.InputTransparent = false;
-            GMOTP.IsVisible = false;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            //lblMobileInvalid.IsVisible = true;
-        }
+        txtMobile.Text = "";
+        txtMobileOTP.Text = "";
+        txtMobile.InputTransparent = false;
+        GMOTP.IsVisible = false;
+        btnMobileOTP.IsVisible = false;
+        iconVerifiedMobile.IsVisible = false;
+        hsMobile.IsVisible = false;
+        DisableTabs(false);
     }
 
     private async void EmailTab_Tapped(object sender, TappedEventArgs e)
@@ -439,39 +438,20 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         txtCfmPwd.IsPassword = true;
         btnToggleCfmPwd.Source = "eye_show_80.png";
 
-        //lblMCountdown.IsVisible = false;
         txtMobile.InputTransparent = false;
         GMOTP.IsVisible = false;
         btnMobileOTP.IsVisible = false;
-        //iconVerifiedMobile.IsVisible = false;
-        //iconPendingMobile.IsVisible = false;
         iconVerifiedMobile.IsVisible = false;
         iconVerifiedMobile2.IsVisible = true;
         hsMobile.IsVisible = false;
-        //lblMobileInvalid.IsVisible = false;
 
-        if (_ctsE is { IsCancellationRequested: false })
-        {
-            //lblECountdown.IsVisible = true;
-            txtEmail.InputTransparent = true;
-            GEOTP.IsVisible = true;
-            btnEmailOTP.IsVisible = false;
-            //iconVerifiedEmail.IsVisible = false;
-            hsEmail.IsVisible = false;
-            //lblEmailInvalid.IsVisible = false;
-        }
-        else
-        {
-            txtEmail.Text = "";
-            txtEmailOTP.Text = "";
-            //lblECountdown.IsVisible = false;
-            txtEmail.InputTransparent = false;
-            GEOTP.IsVisible = false;
-            btnEmailOTP.IsVisible = false;
-            //iconVerifiedEmail.IsVisible = false;
-            hsEmail.IsVisible = false;
-            //lblEmailInvalid.IsVisible = true;
-        }
+        txtEmail.Text = "";
+        txtEmailOTP.Text = "";
+        txtEmail.InputTransparent = false;
+        GEOTP.IsVisible = false;
+        btnEmailOTP.IsVisible = false;
+        hsEmail.IsVisible = false;
+        DisableTabs(false);
     }
 
     bool emailOk = false;
@@ -703,7 +683,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
     {
         try
         {
-            //lblEmailInvalid.IsVisible = (isOnAppearing && isValid);
             hsEmail.IsVisible = (!isOnAppearing && !isValid);
             btnEmailOTP.IsVisible = (!isOnAppearing && isValid);
         }
@@ -828,7 +807,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             setMobileRuleStatus(true, false);
             showGMOTP();
             btnMobileOTP.IsVisible = false;
-            //iconPendingMobile.IsVisible = true;
             txtMobile.InputTransparent = true;
             txtMobileOTP.Focus();
             DisableTabs(true);
@@ -907,7 +885,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             setEmailRuleStatus(true, false);
             showGEOTP();
             btnEmailOTP.IsVisible = false;
-            //iconPendingEmail.IsVisible = true;
             txtEmail.InputTransparent = true;
             txtEmailOTP.Focus();
             DisableTabs(true);
@@ -999,10 +976,7 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             await AppSession.SetFORGOT_MOTP_VERIFIED("t");
             await AppSession.SetFORGOT_MOTP_SESSIONIDAsync("");
 
-            StopMCountdown();
-
             iconVerifiedMobile.IsVisible = true;
-            //iconPendingMobile.IsVisible = false;
             btnMobileOTP.IsVisible = false;
             txtMobileOTP.Text = "";
             txtMobile.InputTransparent = true;
@@ -1105,10 +1079,7 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
             await AppSession.SetFORGOT_EOTP_VERIFIED("t");
             await AppSession.SetFORGOT_EOTP_SESSIONIDAsync("");
 
-            StopECountdown();
-
             iconVerifiedEmail.IsVisible = true;
-            //iconPendingEmail.IsVisible = false;
             btnEmailOTP.IsVisible = false;
             txtEmailOTP.Text = "";
             txtEmail.InputTransparent = true;
@@ -1203,69 +1174,6 @@ public partial class LoginForgotPwd : ContentPage, IRecipient<AppSleepMessage>, 
         {
             string s = e.Message;
         }
-    }
-
-    private async Task StartCountdownAsync(
-    Label countdownLabel,
-    View inputBlockView,
-    View showAgainButton,
-    View txtOTP,
-    CancellationTokenSource cts)
-    {
-        inputBlockView.InputTransparent = true;
-        showAgainButton.IsVisible = false;
-        countdownLabel.IsVisible = true;
-
-        await Task.Delay(30);
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            txtOTP.Focus();
-        });
-
-        int seconds = 30;
-
-        try
-        {
-            while (seconds >= 0 && !cts.Token.IsCancellationRequested)
-            {
-                countdownLabel.Text = $"{seconds}s";
-                await Task.Delay(1000, cts.Token);
-                seconds--;
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            //// expected when stopping timer
-        }
-
-        //// finished normally
-        if (!cts.Token.IsCancellationRequested)
-        {
-            showAgainButton.IsVisible = true;
-            countdownLabel.IsVisible = false;
-            inputBlockView.InputTransparent = false;
-            cts.Cancel();
-        }
-    }
-
-    private void StopMCountdown()
-    {
-        if (_ctsM is { IsCancellationRequested: false })
-            _ctsM.Cancel();
-
-        btnMobileOTP.IsVisible = true;
-        //lblMCountdown.IsVisible = false;
-        txtMobile.InputTransparent = false;
-    }
-
-    private void StopECountdown()
-    {
-        if (_ctsE is { IsCancellationRequested: false })
-            _ctsE.Cancel();
-
-        btnEmailOTP.IsVisible = true;
-        //lblECountdown.IsVisible = false;
-        txtEmail.InputTransparent = false;
     }
 
     private async Task showProgress_Dialog(string msg)

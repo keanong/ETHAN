@@ -93,7 +93,6 @@
 
                                     </Grid>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" x:Name="gbMobile" ColumnSpacing="5" HorizontalOptions="Fill">-->
                                     <Grid RowDefinitions="*,*,*" x:Name="gbMobile" ColumnSpacing="5" HorizontalOptions="Fill">
 
                                         <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
@@ -108,46 +107,18 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" x:Name="lblMobileInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
-                                        </Label>-->
-
                                         <HorizontalStackLayout Grid.Row="1" x:Name="hsMobile" Margin="0,5,0,0" Spacing="5" IsVisible="False" WidthRequest="82" >
-                                            <!--<Label x:Name="iconMobile" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />-->
                                             <Label x:Name="lblMobile" Text="&#x2716; Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         </HorizontalStackLayout>
-
-                                        <!--<Label Grid.Column="1" x:Name="lblMCountdown" Text="" IsVisible="false" WidthRequest="82" FontAttributes="Bold" 
-                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Black}" />-->
-
-                                        <!--<Label Grid.Column="1" x:Name="btnMobileOTP" HorizontalOptions="Fill" FontAttributes="Bold" 
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82" IsVisible="False">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Get OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
-                                                        <Span.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="RequestMobileOTP" />
-                                                        </Span.GestureRecognizers>
-                                                    </Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
 
                                         <Button Grid.Row="2" Grid.Column="0" x:Name="btnMobileOTP" Clicked="RequestMobileOTP" Text="Get OTP" VerticalOptions="Center" 
                                             Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,10,0,5" IsVisible="False" />
 
-                                        <!--<Label Grid.Column="1" x:Name="iconVerifiedMobile" Text="&#x2714;" IsVisible="false" WidthRequest="82" 
-                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
-
-                                        <Label Grid.Column="1" x:Name="iconPendingMobile" Text="&#x23F3;" IsVisible="false" WidthRequest="82" 
-                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />-->
-
                                     </Grid>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">-->
-                                    <Grid RowDefinitions="*,*" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+                                    <Grid x:Name="GMOTP" RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
 
-                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55" Grid.Column="0" Grid.ColumnSpan="2">
 
                                             <Grid RowDefinitions="*,*">
                                                 <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -157,25 +128,14 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" x:Name="btnMobileVerify" HorizontalOptions="Center" FontAttributes="Bold" 
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center"  WidthRequest="82">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Verify OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
-                                                        <Span.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="IsValidMobileOTP" />
-                                                        </Span.GestureRecognizers>
-                                                    </Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
+                                        <Button Grid.Row="1" Grid.Column="0" x:Name="btnMobileOTPCX" Clicked="CXMOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
-                                        <Button Grid.Row="1" x:Name="btnMobileVerify" Clicked="IsValidMobileOTP" Text="Verify OTP" VerticalOptions="Center" 
+                                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnMobileVerify" Clicked="IsValidMobileOTP" Text="Verify OTP" VerticalOptions="Center" 
                                             Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
                                     </Grid>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" x:Name="gbEmail" ColumnSpacing="5" HorizontalOptions="Fill">-->
                                     <Grid RowDefinitions="*,*,*" x:Name="gbEmail" ColumnSpacing="5" HorizontalOptions="Fill">
 
                                         <Border Grid.Row="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
@@ -190,45 +150,18 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" x:Name="lblEmailInvalid" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
-                                        </Label>-->
-
                                         <HorizontalStackLayout Grid.Row="1" x:Name="hsEmail" Margin="0,5,0,0" Spacing="5" IsVisible="False" WidthRequest="82">
                                             <Label x:Name="lblEmail" Text="&#x2716; Invalid" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         </HorizontalStackLayout>
 
-                                        <!--<Label Grid.Column="1" x:Name="lblECountdown" Text="" IsVisible="false" WidthRequest="82" FontAttributes="Bold" 
-                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Black}" />-->
-
-                                        <!--<Label Grid.Column="1" x:Name="btnEmailOTP" HorizontalOptions="Fill" FontAttributes="Bold" 
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82" IsVisible="False">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Get OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
-                                                        <Span.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="RequestEmailOTP" />
-                                                        </Span.GestureRecognizers>
-                                                    </Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
-
                                         <Button Grid.Row="2" Grid.Column="0" x:Name="btnEmailOTP" Clicked="RequestEmailOTP" Text="Get OTP" VerticalOptions="Center" 
                                             Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,10,0,5" IsVisible="False" />
 
-                                        <!--<Label Grid.Column="1" x:Name="iconVerifiedEmail" Text="&#x2714;" IsVisible="false" WidthRequest="82" 
-                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />
-
-                                        <Label Grid.Column="1" x:Name="iconPendingEmail" Text="&#x23F3;" IsVisible="false" WidthRequest="82" 
-                                           VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource textStyle16Green}" />-->
-
                                     </Grid>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">-->
-                                    <Grid RowDefinitions="*,*" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
+                                    <Grid x:Name="GEOTP" RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False">
 
-                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55" Grid.Column="0" Grid.ColumnSpan="2">
 
                                             <Grid RowDefinitions="*,*">
                                                 <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -238,20 +171,10 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" x:Name="btnEmailVerify" HorizontalOptions="Center" FontAttributes="Bold" 
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="82">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontFamily="Consolas" FontAttributes="Bold" Text="Verify OTP" TextColor="{StaticResource XDelOrange}" TextDecorations="Underline">
-                                                        <Span.GestureRecognizers>
-                                                            <TapGestureRecognizer Tapped="IsValidEmailOTP" />
-                                                        </Span.GestureRecognizers>
-                                                    </Span>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
+                                        <Button Grid.Row="1" Grid.Column="0" x:Name="btnEmailOTPCX" Clicked="CXEOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
-                                        <Button Grid.Row="1" x:Name="btnEmailVerify" Clicked="IsValidEmailOTP" Text="Verify OTP" VerticalOptions="Center" 
+                                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnEmailVerify" Clicked="IsValidEmailOTP" Text="Verify OTP" VerticalOptions="Center" 
                                             Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
                                     </Grid>
@@ -285,7 +208,6 @@
                                         HorizontalOptions="Fill" VerticalOptions="Center" LineBreakMode="WordWrap" />
                                     </HorizontalStackLayout>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">-->
                                     <Grid RowDefinitions="*" ColumnSpacing="5" HorizontalOptions="Fill">
 
                                         <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
@@ -300,12 +222,8 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
-                                        </Label>-->
                                     </Grid>
 
-                                    <!--<Grid ColumnDefinitions="*,Auto" ColumnSpacing="5" HorizontalOptions="Fill">-->
                                     <Grid RowDefinitions="*" ColumnSpacing="5" HorizontalOptions="Fill" Margin="0,5,0,5">
 
                                         <Border Grid.Column="0" Style="{StaticResource bbtxt}" HeightRequest="55" HorizontalOptions="Fill">
@@ -320,9 +238,6 @@
 
                                         </Border>
 
-                                        <!--<Label Grid.Column="1" HorizontalOptions="Fill" FontAttributes="Bold" WidthRequest="82"  
-                                           FontFamily="Consolas" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="" TextColor="{StaticResource Red}">
-                                        </Label>-->
                                     </Grid>
 
                                     <Button Margin="0,5,0,0" x:Name="btnUpdate" Clicked="btnUpdate_Click" Text="Update Password" VerticalOptions="Center" 

@@ -319,6 +319,30 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         return true;
     }
 
+    private async void CXMOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await MobileTab_ResetFields();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    private async void CXEOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await EmailTab_ResetFields();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
     private void DisableTabs(bool enable)
     {
         try
@@ -376,6 +400,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         btnMobileOTP.IsVisible = false;
         iconVerifiedMobile.IsVisible = false;
         hsMobile.IsVisible = false;
+
+        DisableTabs(false);
     }
 
     private async void EmailTab_Tapped(object sender, TappedEventArgs e)
@@ -421,6 +447,8 @@ public partial class ChangeRPwdPage : ContentPage, IRecipient<AppSleepMessage>, 
         GEOTP.IsVisible = false;
         btnEmailOTP.IsVisible = false;
         hsEmail.IsVisible = false;
+
+        DisableTabs(false);
     }
 
     bool emailOk = false;

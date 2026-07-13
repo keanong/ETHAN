@@ -283,6 +283,48 @@ public partial class ChangeMobilePage : ContentPage, IRecipient<AppSleepMessage>
         return true;
     }
 
+    private async void CXMOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //await AppSession.SetTEMP_UID("");
+            //await AppSession.SetFORGOT_EUIDX("");
+            await AppSession.SetFORGOT_MOTP_SESSIONIDAsync("");
+
+            setMobileRuleStatus(false, false);
+            showGMOTP();
+            txtMobile.InputTransparent = false;
+            txtMobile.Text = "";
+            txtMobileOTP.Text = "";
+            txtMobile.Focus();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    private async void CXEOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await AppSession.SetTEMP_UID("");
+            await AppSession.SetFORGOT_EUIDX("");
+            await AppSession.SetFORGOT_EOTP_SESSIONIDAsync("");
+
+            setEmailRuleStatus(false, false);
+            showGEOTP();
+            txtEmail.InputTransparent = false;
+            txtEmail.Text = "";
+            txtEmailOTP.Text = "";
+            txtEmail.Focus();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
     bool emailOk = false;
     bool mobileOk = false;
 

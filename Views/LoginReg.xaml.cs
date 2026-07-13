@@ -18,10 +18,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
     private readonly IProgressDialogService _progressService;
     private bool _loadedOnce = false;
 
-    private CancellationTokenSource? _ctsM;
-    private CancellationTokenSource? _ctsE;
-
-
     public LoginReg(IProgressDialogService progressService)
 	{
 		InitializeComponent();
@@ -159,9 +155,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
         if (_progressService != null && _progressService.IsShowing)
             return;
 
-        StopMCountdown();
-        StopECountdown();
-
         WeakReferenceMessenger.Default.Unregister<AppSleepMessage>(this);
         WeakReferenceMessenger.Default.Unregister<AppResumeMessage>(this);
     }
@@ -170,8 +163,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
     {
         if (message.Value)  // true = app backgrounded
         {
-            StopMCountdown();
-            StopECountdown();
+
         }
             
     }
@@ -310,6 +302,63 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
         }
         return true;
     }
+
+    private async void CXMOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await AppSession.SetPENDING_EUIDXAsync("");
+            await AppSession.SetTEMP_UID("");
+            await AppSession.SetREG_MOTP_SESSIONIDAsync("");
+
+            setMobileRuleStatus(false, false);
+            showGMOTP();
+            txtMobile.InputTransparent = false;
+            txtMobile.Text = "";
+            txtMobileOTP.Text = "";
+            txtMobile.Focus();
+
+            txtPwd.Text = "";
+            txtPwd.IsPassword = true;
+            btnTogglePwd.Source = "eye_show_80.png";
+            txtCfmPwd.Text = "";
+            txtCfmPwd.IsPassword = true;
+            btnToggleCfmPwd.Source = "eye_show_80.png";
+
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    private async void CXEOtp_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            await AppSession.SetREG_EOTP_SESSIONIDAsync("");
+
+            setEmailRuleStatus(false, false);
+            showGEOTP();
+            txtEmail.InputTransparent = false;
+            txtEmail.Text = "";
+            txtEmailOTP.Text = "";
+            txtEmail.Focus();
+
+            txtPwd.Text = "";
+            txtPwd.IsPassword = true;
+            btnTogglePwd.Source = "eye_show_80.png";
+            txtCfmPwd.Text = "";
+            txtCfmPwd.IsPassword = true;
+            btnToggleCfmPwd.Source = "eye_show_80.png";
+
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
 
     bool fnameOk = false;
     bool lnameOk = false;
@@ -497,7 +546,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
     {
         try
         {
-            //lblMobileInvalid.IsVisible = (isOnAppearing && isValid);
             hsMobile.IsVisible = (!isOnAppearing && !isValid);
             btnMobileOTP.IsVisible = (!isOnAppearing && isValid);
         }
@@ -760,7 +808,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             setMobileRuleStatus(true, false);
             showGMOTP();
             btnMobileOTP.IsVisible = false;
-            //iconPendingMobile.IsVisible = true;
             txtMobile.InputTransparent = true;
             txtMobileOTP.Focus();
         }
@@ -859,7 +906,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             setEmailRuleStatus(true, false);
             showGEOTP();
             btnEmailOTP.IsVisible = false;
-            //iconPendingEmail.IsVisible = true;
             txtEmail.InputTransparent = true;
             txtEmailOTP.Focus();
         }
@@ -940,7 +986,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             await showProgress_Dialog("Verifying...");
 
             var result = await xs.XOE_Verify_OTPAsync(TEMP_UID, 0, eridx, sessionId, txtMobileOTP.Text);
-            //var result = new XWSBase() { Status = 0};
 
             await closeProgress_dialog();
 
@@ -960,10 +1005,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             await AppSession.SetREG_MOTP_SESSIONIDAsync("");
             await AppSession.SetMOTP_VERIFIEDAsync("t");
 
-            StopMCountdown();
-
             iconVerifiedMobile.IsVisible = true;
-            //iconPendingMobile.IsVisible = false;
             btnMobileOTP.IsVisible = false;
             txtMobileOTP.Text = "";
             txtMobile.InputTransparent = true;
@@ -1054,7 +1096,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             await showProgress_Dialog("Verifying...");
 
             var result = await xs.XOE_Verify_OTPAsync(TEMP_UID, 0, eridx, sessionId, txtEmailOTP.Text);
-            //var result = new XWSBase() { Status = 0 };
 
             await closeProgress_dialog();
 
@@ -1074,10 +1115,7 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
             await AppSession.SetREG_EOTP_SESSIONIDAsync("");
             await AppSession.SetEOTP_VERIFIEDAsync("t");
 
-            StopECountdown();
-
             iconVerifiedEmail.IsVisible = true;
-            //iconPendingEmail.IsVisible = false;
             btnEmailOTP.IsVisible = false;
             txtEmailOTP.Text = "";
             txtEmail.InputTransparent = true;
@@ -1261,69 +1299,6 @@ public partial class LoginReg : ContentPage, IRecipient<AppSleepMessage>, IRecip
 
         return MainThread.InvokeOnMainThreadAsync(() =>
             DisplayAlertAsync(title, message, button));
-    }
-
-
-    private async Task StartCountdownAsync(
-    Label countdownLabel,
-    View inputBlockView,
-    View showAgainButton,
-    View txtOTP,
-    CancellationTokenSource cts)
-    {
-        inputBlockView.InputTransparent = true;
-        showAgainButton.IsVisible = false;
-        countdownLabel.IsVisible = true;
-
-        await Task.Delay(30);
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            txtOTP.Focus();
-        });
-
-        int seconds = 30;
-
-        try
-        {
-            while (seconds >= 0 && !cts.Token.IsCancellationRequested)
-            {
-                countdownLabel.Text = $"{seconds}s";
-                await Task.Delay(1000, cts.Token);
-                seconds--;
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            // expected when stopping timer
-        }
-
-        // finished normally
-        if (!cts.Token.IsCancellationRequested)
-        {
-            showAgainButton.IsVisible = true;
-            countdownLabel.IsVisible = false;
-            inputBlockView.InputTransparent = false;
-        }
-    }
-
-    private void StopMCountdown()
-    {
-        if (_ctsM is { IsCancellationRequested: false })
-            _ctsM.Cancel();
-
-        btnMobileOTP.IsVisible = true;
-        //lblMCountdown.IsVisible = false;
-        txtMobile.InputTransparent = false;
-    }
-
-    private void StopECountdown()
-    {
-        if (_ctsE is { IsCancellationRequested: false })
-            _ctsE.Cancel();
-
-        btnEmailOTP.IsVisible = true;
-        //lblECountdown.IsVisible = false;
-        txtEmail.InputTransparent = false;
     }
 
 }

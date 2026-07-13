@@ -89,9 +89,9 @@
 
                                     </Grid>
 
-                                    <Grid RowDefinitions="*,*" x:Name="GMOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False" Margin="0,5,0,0">
+                                    <Grid x:Name="GMOTP" RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False" Margin="0,5,0,0">
 
-                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55" Grid.Column="0" Grid.ColumnSpan="2">
 
                                             <Grid RowDefinitions="*,*">
                                                 <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -101,8 +101,11 @@
 
                                         </Border>
 
-                                        <Button Grid.Row="1" x:Name="btnMobileVerify" Clicked="IsValidMobileOTP" Text="Verify OTP" VerticalOptions="Center" 
-                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,10,0,5" />
+                                        <Button Grid.Row="1" Grid.Column="0" x:Name="btnMobileOTPCX" Clicked="CXMOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
+
+                                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnMobileVerify" Clicked="IsValidMobileOTP" Text="Verify OTP" VerticalOptions="Center" 
+                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
                                     </Grid>
 
@@ -132,9 +135,9 @@
 
                                     </Grid>
 
-                                    <Grid RowDefinitions="*,*" x:Name="GEOTP" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False" Margin="0,5,0,0">
+                                    <Grid x:Name="GEOTP" RowDefinitions="*,*" ColumnDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill" IsVisible="False" Margin="0,5,0,0">
 
-                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55">
+                                        <Border Style="{StaticResource bbtxt}" HeightRequest="55" Grid.Column="0" Grid.ColumnSpan="2">
 
                                             <Grid RowDefinitions="*,*">
                                                 <Label Grid.Row="0" Text="OTP" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,0,0,0" />
@@ -144,7 +147,10 @@
 
                                         </Border>
 
-                                        <Button Grid.Row="1" x:Name="btnEmailVerify" Clicked="IsValidEmailOTP" Text="Verify OTP" VerticalOptions="Center" 
+                                        <Button Grid.Row="1" Grid.Column="0" x:Name="btnEmailOTPCX" Clicked="CXEOtp_Click" Text="Cancel" VerticalOptions="Center" 
+                                            Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
+
+                                        <Button Grid.Row="1" Grid.Column="1" x:Name="btnEmailVerify" Clicked="IsValidEmailOTP" Text="Verify OTP" VerticalOptions="Center" 
                                             Style="{StaticResource bstyleOrange}" HorizontalOptions="Fill" Margin="0,5,0,5" />
 
                                     </Grid>
