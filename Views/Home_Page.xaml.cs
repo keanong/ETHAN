@@ -292,6 +292,30 @@ public partial class Home_Page : ContentView
         }
     }
 
+    void btnFeedback_Click(System.Object sender, TappedEventArgs e)
+    {
+        try
+        {
+            FeedbackClick();
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
+    async void FeedbackClick()
+    {
+        try
+        {
+            
+        }
+        catch (Exception ex)
+        {
+            string s = ex.Message;
+        }
+    }
+
     //void btnChat_Click(System.Object sender, System.EventArgs e)
     void btnChat_Click(System.Object sender, TappedEventArgs e)
     {

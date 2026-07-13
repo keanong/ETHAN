@@ -86,18 +86,6 @@
 
                         </Border>
                         
-                        <!--<Button x:Name="btnCreateJ" Text="Create Job" Style="{StaticResource btnStyle}" 
-                        Clicked="CreateJob_Click"></Button>
-
-                        <Button x:Name="btnManageJ" Text="Manage Job" Style="{StaticResource btnStyle}"  
-                        Clicked="ManageJob_Click"></Button>
-
-                        <Button x:Name="btnInventory" Text="Inventory" Style="{StaticResource btnStyle}"  
-                        Clicked="Inventory_Click"></Button>
-
-                        <Button x:Name="btnTopUp" Text="Prepaid" Style="{StaticResource btnStyle}"  
-                        Clicked="btnTopUp_Click" IsVisible="False"></Button>-->
-
                     <Border x:Name="btnCreateJ" Style="{StaticResource borderBtnStyle}">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="CreateJob_Click" />
@@ -124,6 +112,13 @@
                             <TapGestureRecognizer Tapped="btnTopUp_Click" />
                         </Border.GestureRecognizers>
                         <Label x:Name="lblPrepaid" Text="Prepaid" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Border>
+
+                    <Border x:Name="btnFeedback" Style="{StaticResource borderBtnStyle}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="btnFeedback_Click" />
+                        </Border.GestureRecognizers>
+                        <Label x:Name="lblFeedback" Text="Prepaid" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Border>
 
                 </VerticalStackLayout>
