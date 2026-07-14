@@ -310,6 +310,11 @@ namespace XDelServiceRef
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
         System.Threading.Tasks.Task<XDelServiceRef.SettingsInfo> XOE_GetStatusDefinitionsAsync(string UID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://www.xdel.com/XWS/XOE_SendFeedback", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(XDelBaseObject))]
+        System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_SendFeedbackAsync(string UID, string feedback);
     }
     
     /// <remarks/>
@@ -5165,6 +5170,8 @@ namespace XDelServiceRef
         
         private string cNURLField;
         
+        private string aDDITIONAL_DATAField;
+        
         private InventoryEntry[] inventoryItemsField;
         
         private string[] barcodeTagsField;
@@ -5902,7 +5909,21 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=51)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=51)]
+        public string ADDITIONAL_DATA
+        {
+            get
+            {
+                return this.aDDITIONAL_DATAField;
+            }
+            set
+            {
+                this.aDDITIONAL_DATAField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=52)]
         public InventoryEntry[] InventoryItems
         {
             get
@@ -5916,7 +5937,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=52)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=53)]
         public string[] BarcodeTags
         {
             get
@@ -5930,7 +5951,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=53)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=54)]
         public string[] BarcodeTagsExt
         {
             get
@@ -5944,7 +5965,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=54)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=55)]
         public ExtraCharges[] ExtraCharges
         {
             get
@@ -5958,7 +5979,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=55)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=56)]
         public string[] CheckList
         {
             get
@@ -5972,7 +5993,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=56)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
         public string IDVerification
         {
             get
@@ -5986,7 +6007,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=57)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=58)]
         public Locker_Station LockerStation
         {
             get
@@ -6000,7 +6021,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=58)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=59)]
         public Volumetric[] Volumetric_Info
         {
             get
@@ -6014,7 +6035,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=59)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
         public string CostCenter
         {
             get
@@ -6028,7 +6049,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=60)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
         public int MobileStatus
         {
             get
@@ -6042,7 +6063,7 @@ namespace XDelServiceRef
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=61)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=62)]
         public int SlotFlag
         {
             get
@@ -6455,6 +6476,10 @@ namespace XDelServiceRef
         
         private int aCTIVEField;
         
+        private string aCCOUNTField;
+        
+        private string cOST_CENTERField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
         public long IDX
@@ -6578,6 +6603,34 @@ namespace XDelServiceRef
             set
             {
                 this.aCTIVEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string ACCOUNT
+        {
+            get
+            {
+                return this.aCCOUNTField;
+            }
+            set
+            {
+                this.aCCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string COST_CENTER
+        {
+            get
+            {
+                return this.cOST_CENTERField;
+            }
+            set
+            {
+                this.cOST_CENTERField = value;
             }
         }
     }
@@ -7403,6 +7456,11 @@ namespace XDelServiceRef
         public System.Threading.Tasks.Task<XDelServiceRef.SettingsInfo> XOE_GetStatusDefinitionsAsync(string UID)
         {
             return base.Channel.XOE_GetStatusDefinitionsAsync(UID);
+        }
+        
+        public System.Threading.Tasks.Task<XDelServiceRef.XWSBase> XOE_SendFeedbackAsync(string UID, string feedback)
+        {
+            return base.Channel.XOE_SendFeedbackAsync(UID, feedback);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()

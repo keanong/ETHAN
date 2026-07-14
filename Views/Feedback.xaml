@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ETHAN.Views.Feedback"
+             Title="Feedback"
+             HideSoftInputOnTapped="True"
+             BackgroundColor="Transparent"
+             Shell.BackgroundColor="Transparent"
+             Shell.NavBarIsVisible="False"
+             Padding="0"
+             SafeAreaEdges="All">
+
+    <ContentPage.Resources>
+
+        <Style TargetType="Border" x:Key="bbtxt">
+            <Setter Property="StrokeShape" Value="RoundRectangle 10"></Setter>
+            <Setter Property="Stroke" Value="{StaticResource Gray200}"></Setter>
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- SAFE AREA CONTAINER -->
+        <Grid Padding="{OnPlatform iOS='0,0,0,0', Android='0'}">
+            <Border x:Name="AppContainer" VerticalOptions="Fill" HorizontalOptions="Center" BackgroundColor="{StaticResource Gray50}" 
+                    Padding="0" Stroke="{StaticResource Gray200}" MaximumWidthRequest="{OnIdiom Phone=99999, Tablet=500}">
+                <!-- This Grid acts as a z-stack -->
+                <Grid>
+                    <!-- Internal layout of the card -->
+                    <Grid RowDefinitions="Auto,*" BackgroundColor="Transparent">
+
+                        <Grid HeightRequest="60" BackgroundColor="{StaticResource Gray50}" 
+                              HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
+
+                            <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center" 
+                                         WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                            <Label x:Name="btnTitle" Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BackToHome"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <ScrollView Padding="0,0" Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="0" x:Name="svMain" HorizontalOptions="Fill">
+
+                            <VerticalStackLayout Padding="10" Spacing="10">
+
+                                <VerticalStackLayout Padding="22">
+                                    <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
+                                    <Label Text="Feedback" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
+                                    <Label Text="We value your feedback. Please let us know how we can improve." Style="{StaticResource textStyle16BlackBold}" FontFamily="Consolas" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Padding="22" Spacing="5" Margin="0,-40,0,0">
+
+                                    <Border Style="{StaticResource bbtxt}">
+
+                                        <Grid RowDefinitions="Auto,*">
+                                            <Label Grid.Row="0" Text="Your Feedback" HorizontalOptions="Fill" VerticalOptions="Center" TextColor="Gray" Margin="10,5,0,0" />
+                                            <Editor Grid.Row="1" x:Name="txtFeedback"
+                                        HeightRequest="250"
+                                        FontSize="16"
+                                        TextColor="Black"
+                                        BackgroundColor="White"
+                                        AutoSize="Disabled"
+                                        Keyboard="Text"
+                                        MaxLength="2000"
+                                        Placeholder="Enter your feedback here..."
+                                        PlaceholderColor="{StaticResource Gray400}"
+                                        TextChanged="txtFeedback_TextChanged"
+                                        Margin="6,0,6,5" />
+                                        </Grid>
+
+                                    </Border>
+
+                                    <Grid ColumnDefinitions="*" HorizontalOptions="Fill" ColumnSpacing="5" Margin="0,5,0,0">
+                                        <Button x:Name="btnSubmit" Text="Submit Feedback" HorizontalOptions="Fill" Style="{StaticResource bstyleOrange}" Clicked="btnSubmit_Click" />
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </ScrollView>
+
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

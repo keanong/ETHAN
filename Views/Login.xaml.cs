@@ -316,7 +316,6 @@ this.HideSoftInputOnTapped = false;
             }
 
             await closeProgress_dialog();
-            //await UiPump.Yield();
             SenderLoginBtn.InputTransparent = false;
 
             if (ci != null && ci.Status == 0)
@@ -336,7 +335,6 @@ this.HideSoftInputOnTapped = false;
                 GSOTP.IsVisible = false;
                 DisableTabs(false);
                 ValidateSenderLoginButton();
-                //hsSPwd.IsVisible = false;
                 await UiPump.Yield();
 
                 if (ci != null && ci.Status != 0)
@@ -351,7 +349,6 @@ this.HideSoftInputOnTapped = false;
             string s = e.Message;
             await UiPump.Yield();
             await closeProgress_dialog();
-            //await DisplayAlertAsync("Error", s + "" + e.StackTrace.ToString(), "Ok");
         }
     }
 
@@ -405,26 +402,6 @@ this.HideSoftInputOnTapped = false;
                         ci.Status = -11;
                         ci.Message = "Unable to request One-Time-Pin (OTP). Please login again.";
                     }
-
-                    /*if (me.Equals("m"))
-                    {
-                        sessionid = await xs.XOE_Request_2FAAsync(ci.Web_UID, 0, ci.CNIDX, txt.Trim().ToString(), "");
-                        await AppSession.SetLOGIN_EUIDX(ci.CNIDX.ToString());
-                        await AppSession.SetTEMP_UID(ci.Web_UID);
-                        await AppSession.SetLOGIN_MOTP_SESSIONIDAsync(sessionid.ToString());
-                    }
-                    else if (me.Equals("e"))
-                    {
-                        sessionid = await xs.XOE_Request_2FAAsync(ci.Web_UID, 0, ci.CNIDX, "", txt.Trim().ToString());
-                        await AppSession.SetLOGIN_EUIDX(ci.CNIDX.ToString());
-                        await AppSession.SetTEMP_UID(ci.Web_UID);
-                        await AppSession.SetLOGIN_EOTP_SESSIONIDAsync(sessionid.ToString());
-                    }
-                    else
-                    {
-                        ci.Status = -11;
-                        ci.Message = "Unable to request One-Time-Pin (OTP). Please login again.";
-                    }*/
                 }
                 else
                 {
@@ -442,10 +419,6 @@ this.HideSoftInputOnTapped = false;
                 txtSPassword.Text = "";
                 txtEmailMobile.Text = "";
                 GSOTP.IsVisible = false;
-                /*GMOTP.IsVisible = me.Equals("m");
-                GEOTP.IsVisible = me.Equals("e");*/
-                /*GMOTP.IsVisible = false;
-                GEOTP.IsVisible = false;*/
                 GOTP.IsVisible = true;
                 txtOTP.Placeholder = me.Equals("m") ? "Enter OTP sent via SMS" : me.Equals("e") ? "Enter OTP sent via Email" : "";
                 DisableTabs(true);
@@ -460,8 +433,6 @@ this.HideSoftInputOnTapped = false;
                 txtSPassword.Text = "";
                 txtRPassword.Text = "";
                 GSOTP.IsVisible = false;
-                /*GMOTP.IsVisible = false;
-                GEOTP.IsVisible = false;*/
                 GOTP.IsVisible = false;
                 DisableTabs(false);
                 ValidateReceiverLoginBtnNew();
@@ -484,107 +455,7 @@ this.HideSoftInputOnTapped = false;
         }
     }
 
-    /*private async Task EUAuth()
-    {
-        ClientInfo? ci = null;
-        XDelServiceRef.XWSBase xb = new XDelServiceRef.XWSBase();
-        string me = lblMobileEmail.Text;
-        try
-        {
-            ReceiverLoginBtn.InputTransparent = true;
-            await showProgress_Dialog("Processing...");
-
-            ci = await xs.XOE_Pre_AuthenticateXOEAsync(
-                me.Equals("m") ? txtMobile.Text.Trim().ToString() : "",
-                me.Equals("e") ? txtEmail.Text.Trim().ToString() : "",
-                txtRPassword.Text.Trim().ToString());
-
-            if(ci != null && ci.Status == 0 && ci.CNIDX > 0)
-            {
-                Guid sessionid = Guid.Empty;
-                Guid pending_sessionid = Guid.Empty;
-
-                pending_sessionid = await xs.XOE_Get_Pending_2FAAsync(ci.Web_UID, 0, ci.CNIDX, "", "");
-                if (pending_sessionid != Guid.Empty)
-                    xb = await xs.XOE_Update_2FA_Status_By_SessionIDAsync(ci.Web_UID, 0, ci.CNIDX, pending_sessionid, 1);
-
-                if (xb.Status == 0)
-                {
-                    if (me.Equals("m"))
-                    {
-                        sessionid = await xs.XOE_Request_2FAAsync(ci.Web_UID, 0, ci.CNIDX, txtMobile.Text.Trim().ToString(), "");
-                        await AppSession.SetLOGIN_EUIDX(ci.CNIDX.ToString());
-                        await AppSession.SetTEMP_UID(ci.Web_UID);
-                        await AppSession.SetLOGIN_MOTP_SESSIONIDAsync(sessionid.ToString());
-                    }
-                    else if (me.Equals("e"))
-                    {
-                        sessionid = await xs.XOE_Request_2FAAsync(ci.Web_UID, 0, ci.CNIDX, "", txtEmail.Text.Trim().ToString());
-                        await AppSession.SetLOGIN_EUIDX(ci.CNIDX.ToString());
-                        await AppSession.SetTEMP_UID(ci.Web_UID);
-                        await AppSession.SetLOGIN_EOTP_SESSIONIDAsync(sessionid.ToString());
-                    }
-                    else
-                    {
-                        ci.Status = -11;
-                        ci.Message = "Unable to request One-Time-Pin (OTP). Please login again.";
-                    }                    
-                }
-                else
-                {
-                    ci.Status = -11;
-                    ci.Message = "There has been an internal error.";
-                }
-            }
-
-            await closeProgress_dialog();
-            ReceiverLoginBtn.InputTransparent = false;
-
-            if (ci != null && ci.Status == 0)
-            {
-                txtSUsername.Text = "";
-                txtSPassword.Text = "";
-                txtMobile.Text = "";
-                txtEmail.Text = "";
-                GSOTP.IsVisible = false;
-                GMOTP.IsVisible = me.Equals("m");
-                GEOTP.IsVisible = me.Equals("e");
-                ShowReceiverLogin(false);
-
-                AppSession.SetLoginInfo(null);
-            }
-            else if ((ci != null && ci.Status != 0) || ci == null)
-            {
-                AppSession.SetLoginInfo(null);
-                txtSUsername.Text = "";
-                txtSPassword.Text = "";
-                txtRPassword.Text = "";
-                GSOTP.IsVisible = false;
-                GMOTP.IsVisible = false;
-                GEOTP.IsVisible = false;
-                ValidateReceiverLoginBtn();
-                hsSPwd.IsVisible = false;
-                hsMobile.IsVisible = false;
-                hsEmail.IsVisible = false;
-                await UiPump.Yield();
-
-                if (ci != null && ci.Status != 0)
-                    await DisplayAlertAsync("", ci.Message, "Ok");
-                else
-                    await DisplayAlertAsync("", "Authentication failed or insufficient rights to perform action.\nPlease call +65 6376 1838 to verify your account details.", "Ok");
-            }
-        }
-        catch (Exception e)
-        {
-            ReceiverLoginBtn.InputTransparent = false;
-            string s = e.Message;
-            await UiPump.Yield();
-            await closeProgress_dialog();
-            await ShowAlertSafe("", e.Message);
-        }
-    }*/
-
-    // Track visibility per field
+    //// Track visibility per field
     bool PwdVisible = false;
     bool PwdVisibleS = false;
     bool PwdVisibleR = false;
@@ -684,16 +555,6 @@ this.HideSoftInputOnTapped = false;
         ReceiverPanel.IsVisible = true;
     }
 
-    /*private void MobileTab_Tapped(object sender, TappedEventArgs e)
-    {
-        lblSenderReceiver.Text = "r";
-        string mobileemail = lblMobileEmail.Text;
-        if (!string.IsNullOrEmpty(mobileemail) && mobileemail.Equals("m"))
-            return;
-
-        MobileTab_ResetFields();
-    }*/
-
     private async void EmailMobile_ResetFields()
     {
         await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
@@ -709,96 +570,6 @@ this.HideSoftInputOnTapped = false;
 
         ShowReceiverLoginNew(true);
     }
-
-    /*private async void MobileTab_ResetFields()
-    {
-        await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-        SecureStorage.Remove("LOGIN_EUIDX");
-        SecureStorage.Remove("LOGIN_MOTP_SESSIONID");
-        SecureStorage.Remove("LOGIN_MOTP_VERIFIED");
-        SecureStorage.Remove("LOGIN_EOTP_SESSIONID");
-        SecureStorage.Remove("LOGIN_EOTP_VERIFIED");
-        lblMobileEmail.Text = "m";
-
-        ShowReceiverLogin(true);
-
-        iconPendingEmail.IsVisible = false;
-        txtEmail.InputTransparent = false;
-        lblECountdown.IsVisible = false;
-        btnEmailOTP.IsVisible = false;
-
-        if (_ctsM is { IsCancellationRequested: false })
-        {
-            lblMCountdown.IsVisible = true;
-            txtMobile.InputTransparent = true;
-            GMOTP.IsVisible = true;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            lblMobileInvalid.IsVisible = false;
-        }
-        else
-        {
-            txtMobile.Text = "";
-            txtMobileOTP.Text = "";
-            lblMCountdown.IsVisible = false;
-            txtMobile.InputTransparent = false;
-            GMOTP.IsVisible = false;
-            btnMobileOTP.IsVisible = false;
-            iconVerifiedMobile.IsVisible = false;
-            hsMobile.IsVisible = false;
-            lblMobileInvalid.IsVisible = true;
-        }
-    }*/
-
-    /*private void EmailTab_Tapped(object sender, TappedEventArgs e)
-    {
-        lblSenderReceiver.Text = "r";
-        string mobileemail = lblMobileEmail.Text;
-        if (!string.IsNullOrEmpty(mobileemail) && mobileemail.Equals("e"))
-            return;
-        EmailTab_ResetFields();
-    }*/
-
-    /*private async void EmailTab_ResetFields()
-    {
-        await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-        SecureStorage.Remove("LOGIN_EUIDX");
-        SecureStorage.Remove("LOGIN_MOTP_SESSIONID");
-        SecureStorage.Remove("LOGIN_MOTP_VERIFIED");
-        SecureStorage.Remove("LOGIN_EOTP_SESSIONID");
-        SecureStorage.Remove("LOGIN_EOTP_VERIFIED");
-        lblMobileEmail.Text = "e";
-
-        ShowReceiverLogin(true);
-
-        iconVerifiedMobile.IsVisible = false;
-        iconPendingMobile.IsVisible = false;
-        txtMobile.InputTransparent = false;
-        lblMCountdown.IsVisible = false;
-        btnMobileOTP.IsVisible = false;
-
-        if (_ctsE is { IsCancellationRequested: false })
-        {
-            lblECountdown.IsVisible = true;
-            txtEmail.InputTransparent = true;
-            GEOTP.IsVisible = true;
-            btnEmailOTP.IsVisible = false;
-            hsEmail.IsVisible = false;
-            lblEmailInvalid.IsVisible = false;
-        }
-        else
-        {
-            txtEmail.Text = "";
-            txtEmailOTP.Text = "";
-            lblECountdown.IsVisible = false;
-            txtEmail.InputTransparent = false;
-            GEOTP.IsVisible = false;
-            btnEmailOTP.IsVisible = false;
-            hsEmail.IsVisible = false;
-            lblEmailInvalid.IsVisible = true;
-        }
-    }*/
 
     bool emailOk = false;
     bool mobileOk = false;
@@ -908,74 +679,6 @@ this.HideSoftInputOnTapped = false;
         }
     }
 
-    /*void ShowReceiverLogin(bool show)
-    {
-        try
-        {
-            string mobileemail = lblMobileEmail.Text;
-            txtRPassword.Text = "";
-            txtRPassword.IsPassword = true;
-            
-            btnRTogglePwd.Source = "eye_show_80.png";
-
-            ReceiverLoginBtn.IsEnabled = false;
-            ReceiverLoginBtn.Style = (Style)Application.Current.Resources["bstyleDisabled"];
-            if (mobileemail.Equals("m"))
-            {
-                gbMobile.IsVisible = show;
-                gbEmail.IsVisible = false;
-                txtMobile.Text = "";
-                txtMobileOTP.Text = "";
-            }
-                
-            if (mobileemail.Equals("e"))
-            {
-                gbMobile.IsVisible = false;
-                gbEmail.IsVisible = show;
-                txtEmail.Text = "";
-                txtEmailOTP.Text = "";
-            }
-
-            GRPassword.IsVisible = show;
-
-            lblRForgotPassword.IsVisible = show;
-            lblRRegister.IsVisible = show;
-            ReceiverLoginBtn.IsVisible = show;
-            ReceiverLoginBtn.InputTransparent = !show;
-
-            if (show)
-            {
-                if (mobileemail.Equals("m"))
-                {
-                    lblMobileInvalid.IsVisible = true;
-                    hsMobile.IsVisible = false;
-                    lblRForgotPassword.IsVisible = true;
-                    hsPwd.IsVisible = false;
-                    lblRPasswordInvalid.IsVisible = true;
-                    GMOTP.IsVisible = false;
-                    GEOTP.IsVisible = false;
-                }
-                    
-
-                if (mobileemail.Equals("e"))
-                {
-                    lblEmailInvalid.IsVisible = true;
-                    hsEmail.IsVisible = false;
-                    lblRForgotPassword.IsVisible = true;
-                    hsPwd.IsVisible = false;
-                    lblRPasswordInvalid.IsVisible = true;
-                    GMOTP.IsVisible = false;
-                    GEOTP.IsVisible = false;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            ReceiverLoginBtn.InputTransparent = false;
-            string s = e.Message;
-        }
-    }*/
-
     void ValidateReceiverLoginBtnNew()
     {
         string me = lblMobileEmail.Text;
@@ -1017,46 +720,6 @@ this.HideSoftInputOnTapped = false;
         }
     }
 
-    /*void ValidateReceiverLoginBtn()
-    {
-        string me = lblMobileEmail.Text;
-        bool ok = false;
-        try
-        {
-
-            if (!string.IsNullOrEmpty(me) && me.Equals("m"))
-            {
-                bool hasMobile = !string.IsNullOrWhiteSpace(txtMobile.Text);
-                bool hasSPassword = !string.IsNullOrWhiteSpace(txtRPassword.Text);
-                var stored = AppSession.LOGIN_MOTP_SESSIONID;
-                bool hasPMOTP = !string.IsNullOrWhiteSpace(stored);
-
-                ok = !hasPMOTP && hasMobile && hasSPassword && mobileOk && pwdOk && minEightOk && lowerOk && upperOk && numOk;
-
-                ReceiverLoginBtn.IsEnabled = ok;
-
-                ReceiverLoginBtn.Style = ok ? (Style)Application.Current.Resources["bstyleOrange"] : (Style)Application.Current.Resources["bstyleDisabled"];
-            }
-            if (!string.IsNullOrEmpty(me) && me.Equals("e"))
-            {
-                bool hasEmail = !string.IsNullOrWhiteSpace(txtEmail.Text);
-                bool hasSPassword = !string.IsNullOrWhiteSpace(txtRPassword.Text);
-                var stored = AppSession.LOGIN_EOTP_SESSIONID;
-                bool hasPEOTP = !string.IsNullOrWhiteSpace(stored);
-
-                ok = !hasPEOTP && hasEmail && hasSPassword && emailOk && pwdOk && minEightOk && lowerOk && upperOk && numOk;
-
-                ReceiverLoginBtn.IsEnabled = ok;
-
-                ReceiverLoginBtn.Style = ok ? (Style)Application.Current.Resources["bstyleOrange"] : (Style)Application.Current.Resources["bstyleDisabled"];
-            }
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
-
     void onSUsernameFieldChanged(object sender, TextChangedEventArgs e)
     {
         ValidateSUsernameRule();
@@ -1084,7 +747,6 @@ this.HideSoftInputOnTapped = false;
 
     void setSUsernameRuleStatus(bool isValid, bool isOnAppearing)
     {
-        //lblSUsernameInvalid.IsVisible = isValid;
         hsSUsername.IsVisible = (!isOnAppearing && !isValid);
     }
 
@@ -1123,7 +785,6 @@ this.HideSoftInputOnTapped = false;
     {
         try
         {
-            //lblSPasswordInvalid.IsVisible = isValid;
             hsSPwd.IsVisible = (!isOnAppearing && !isValid);
         }
         catch (Exception e)
@@ -1170,7 +831,6 @@ this.HideSoftInputOnTapped = false;
     {
         try
         {
-            //lblEmailMobileInvalid.IsVisible = (isValid);
             hsEmailMobile.IsVisible = (!isOnAppearing && !isValid);
         }
         catch (Exception e)
@@ -1178,27 +838,6 @@ this.HideSoftInputOnTapped = false;
             string s = e.Message;
         }
     }
-
-
-    /*void onMobileFieldChanged(object sender, TextChangedEventArgs e)
-    {
-        ValidateMobileRule();
-        ValidateReceiverLoginBtn();
-    }*/
-
-    /*void ValidateMobileRule()
-    {
-        try
-        {
-            string txt = txtMobile.Text;
-            mobileOk = IsValidMobile(txt);
-            setMobileRuleStatus(mobileOk, false);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
 
     bool IsDigitOnly(string mobile)
     {
@@ -1218,92 +857,6 @@ this.HideSoftInputOnTapped = false;
         return Regex.IsMatch(mobile, @"^[89][0-9]{7}$");
     }
 
-    /*void setMobileRuleStatus(bool isValid, bool isOnAppearing)
-    {
-        try
-        {
-            lblMobileInvalid.IsVisible = (isValid);
-            hsMobile.IsVisible = (!isOnAppearing && !isValid);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
-
-    /*async void showGMOTP()
-    {
-        Guid stored_MOTP_SESSIONID = Guid.Empty;
-        try
-        {
-            var value = AppSession.LOGIN_MOTP_SESSIONID;
-
-            if (!string.IsNullOrWhiteSpace(value) && Guid.TryParse(value, out var parsed))
-                stored_MOTP_SESSIONID = parsed;
-        }
-        catch (Exception ex)
-        {
-            //// iOS can throw if keychain access fails
-            System.Diagnostics.Debug.WriteLine($"SecureStorage error: {ex.Message}");
-        }
-
-        try
-        {
-            GMOTP.IsVisible = !(stored_MOTP_SESSIONID == Guid.Empty);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
-
-    /*async void showGEOTP()
-    {
-        Guid stored_EOTP_SESSIONID = Guid.Empty;
-        try
-        {
-            var value = AppSession.LOGIN_EOTP_SESSIONID;
-
-            if (!string.IsNullOrWhiteSpace(value) && Guid.TryParse(value, out var parsed))
-                stored_EOTP_SESSIONID = parsed;
-        }
-        catch (Exception ex)
-        {
-            //// iOS can throw if keychain access fails
-            System.Diagnostics.Debug.WriteLine($"SecureStorage error: {ex.Message}");
-        }
-
-        try
-        {
-            GEOTP.IsVisible = !(stored_EOTP_SESSIONID == Guid.Empty);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
-
-    /*void onEmailFieldChanged(object sender, TextChangedEventArgs e)
-    {
-        ValidateEmailRule();
-        ValidateRules();
-        ValidateReceiverLoginBtn();
-    }*/
-
-    /*void ValidateEmailRule()
-    {
-        try
-        {
-            string txt = txtEmail.Text;
-            emailOk = IsValidEmail(txt);
-            setEmailRuleStatus(emailOk, false);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
-
     bool IsValidEmail(string email)
     {
         if (string.IsNullOrEmpty(email))
@@ -1312,19 +865,6 @@ this.HideSoftInputOnTapped = false;
         return Regex.IsMatch(email,
                 @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$");
     }
-
-    /*void setEmailRuleStatus(bool isValid, bool isOnAppearing)
-    {
-        try
-        {
-            lblEmailInvalid.IsVisible = isValid;
-            hsEmail.IsVisible = (!isOnAppearing && !isValid);
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-        }
-    }*/
 
     void OnPwdFieldChanged(object sender, TextChangedEventArgs e)
     {
@@ -1369,395 +909,6 @@ this.HideSoftInputOnTapped = false;
         }
     }
 
-
-    /*async void RequestMobileOTP(object sender, EventArgs e)
-    {
-        try
-        {
-            await GetMobileOTP();
-        }
-        catch (Exception ex)
-        {
-            string s = ex.Message;
-        }
-    }*/
-
-    /*private async Task GetMobileOTP()
-    {
-        Guid sessionid = Guid.Empty;
-        long eridx = 0;
-        string TEMP_UID = "";
-        XOE_ETHAN_Receiver x = new XOE_ETHAN_Receiver();
-        string MOBILE = txtMobile.Text.Trim().ToString();
-        try
-        {
-
-            await showProgress_Dialog("Processing...");
-
-            x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync(MOBILE, "");
-            if (x == null || x.Status == -1)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", x?.Message ?? "Error Processing.");
-                return;
-            }
-
-            eridx = x.IDX;
-            TEMP_UID = x.TEMP_UID;
-            if (eridx == 0)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\neridx not found.");
-                return;
-            }
-
-            sessionid = await xs.XOE_Request_2FAAsync(TEMP_UID, 0, eridx, MOBILE, "");
-            if (sessionid == Guid.Empty)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\nTEMP_UID not found.");
-                return;
-            }
-
-            await AppSession.SetTEMP_UID(TEMP_UID);
-            await AppSession.SetLOGIN_EUIDX(eridx.ToString());
-            await SecureStorage.SetAsync("LOGIN_MOTP_SESSIONID", sessionid.ToString());
-
-            await closeProgress_dialog();
-            await ShowAlertSafe("", "Your One-Time-Pin (OTP) SMS sent!");
-
-            setMobileRuleStatus(true, false);
-            showGMOTP();
-            btnMobileOTP.IsVisible = false;
-            iconPendingMobile.IsVisible = true;
-            txtMobile.InputTransparent = true;
-            txtMobileOTP.Focus();
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-            await closeProgress_dialog();
-            await ShowAlertSafe("", e.Message);
-        }
-    }*/
-
-    /*async void RequestEmailOTP(object sender, EventArgs e)
-    {
-        try
-        {
-            await GetEmailOTP();
-        }
-        catch (Exception ex)
-        {
-            string s = ex.Message;
-        }
-    }*/
-
-    /*private async Task GetEmailOTP()
-    {
-        Guid sessionid = Guid.Empty;
-        long eridx = 0;
-        string TEMP_UID = "";
-        XOE_ETHAN_Receiver x = new XOE_ETHAN_Receiver();
-        string EMAIL = txtEmail.Text.Trim().ToString();
-        try
-        {
-
-            await showProgress_Dialog("Processing...");
-
-            x = await xs.XOE_Get_ETHAN_ReceiverIDX_By_MobileEmailAsync("", EMAIL);
-            if (x == null || x.Status == -1)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", x?.Message ?? "Error requesting One-Time-Pin (OTP).");
-                return;
-            }
-
-            eridx = x.IDX;
-            TEMP_UID = x.TEMP_UID;
-            if (eridx == 0)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP).\neridx not found.");
-                return;
-            }
-
-            sessionid = await xs.XOE_Request_2FAAsync(x.TEMP_UID, 0, eridx, "", EMAIL);
-            if (sessionid == Guid.Empty)
-            {
-                await closeProgress_dialog();
-                await ShowAlertSafe("", "Error requesting One-Time-Pin (OTP). Please try again.");
-                return;
-            }
-
-            await AppSession.SetTEMP_UID(TEMP_UID);
-            await AppSession.SetLOGIN_EUIDX(eridx.ToString());
-            await SecureStorage.SetAsync("LOGIN_EOTP_SESSIONID", sessionid.ToString());
-
-            await closeProgress_dialog();
-            await ShowAlertSafe("", "Your One-Time-Pin (OTP) Email sent!");
-
-            setEmailRuleStatus(true, false);
-            showGEOTP();
-            btnEmailOTP.IsVisible = false;
-            iconPendingEmail.IsVisible = true;
-            txtEmail.InputTransparent = true;
-            txtEmailOTP.Focus();
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-            await closeProgress_dialog();
-            await ShowAlertSafe("", e.Message);
-        }
-    }*/
-
-    /*async void IsValidMobileOTP(object sender, EventArgs e)
-    {
-        try
-        {
-            if (string.IsNullOrEmpty(txtMobileOTP.Text))
-                await DisplayAlertAsync("", "Please enter the One-Time-Pin (OTP) sent to your Mobile.", "Ok");
-            else
-                await ValidateMobileOTP();
-        }
-        catch (Exception ex)
-        {
-            string s = ex.Message;
-        }
-    }*/
-
-    /*private async Task ValidateMobileOTP()
-    {
-        Guid sessionId = Guid.Empty;
-
-        try
-        {
-            var stored = AppSession.LOGIN_MOTP_SESSIONID;
-            if (!string.IsNullOrWhiteSpace(stored))
-                Guid.TryParse(stored, out sessionId);
-        }
-        catch { }
-
-        if (sessionId == Guid.Empty)
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). Session not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-
-        string TEMP_UID = AppSession.TEMP_UID;
-        if (string.IsNullOrEmpty(TEMP_UID))
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). TEMP_UID not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-
-        string _eridx = AppSession.LOGIN_EUIDX;
-        if (string.IsNullOrEmpty(_eridx))
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). _eridx not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-        long eridx = long.Parse(_eridx);
-
-        ClientInfo? ci = null;
-        DecimalReturn? PrePaidBalance = null;
-        XDelServiceRef.AddressStructure? defAddress = null;
-        XDelServiceRef.SettingsInfo csi = null;
-        XDelServiceRef.SettingsInfo CNSettingsInfo = null;
-        LoginInfo loginInfo = new LoginInfo();
-
-        try
-        {
-            await showProgress_Dialog("Verifying...");
-            ci = await xs.XOE_Verify_OTP_Async(TEMP_UID, 0, eridx, sessionId, txtMobileOTP.Text);
-
-            await closeProgress_dialog();
-
-            if (ci == null)
-            {
-                await AppSession.SetTEMP_UID("");
-                await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-                await ShowAlertSafe("", "Error verifying One-Time-Pin (OTP).");
-                ShowReceiverLoginNew(true);
-                return;
-            }
-
-            if (ci.Status != 0)
-            {
-                await ShowAlertSafe("", ci.Message);
-                if (ci.Status == -2) ////expired
-                {
-                    await AppSession.SetLOGIN_EUIDX("");
-                    await AppSession.SetTEMP_UID("");
-                    await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-                    ShowReceiverLoginNew(true);
-                }
-                return;
-            }
-
-            ////SUCCESS
-            await SecureStorage.SetAsync("LOGIN_MOTP_VERIFIED", "t");
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_MOTP_SESSIONIDAsync("");
-
-            loginInfo.clientInfo = ci;
-
-            AppSession.SetLoginInfo(loginInfo);
-
-            await AppSession.SetLoginModeAsync("r");
-            await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                {
-                    { "BARCODE", null },
-                    { "LOGIN", "Y" },
-                    { "DEFAULTTAB", "Home" },
-                });
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-            await closeProgress_dialog();
-            await ShowAlertSafe("", e.Message);
-        }
-    }*/
-
-    /*async void IsValidEmailOTP(object sender, EventArgs e)
-    {
-        try
-        {
-            if (string.IsNullOrEmpty(txtEmailOTP.Text))
-                await DisplayAlertAsync("", "Please enter the One-Time-Pin (OTP) sent to your Email Address.", "Ok");
-            else
-                await ValidateEmailOTP();
-        }
-        catch (Exception ex)
-        {
-            string s = ex.Message;
-        }
-    }*/
-
-    /*private async Task ValidateEmailOTP()
-    {
-        Guid sessionId = Guid.Empty;
-
-        try
-        {
-            var stored = AppSession.LOGIN_EOTP_SESSIONID;
-            if (!string.IsNullOrWhiteSpace(stored))
-                Guid.TryParse(stored, out sessionId);
-        }
-        catch { }
-
-        if (sessionId == Guid.Empty)
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). Session not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-
-        string TEMP_UID = AppSession.TEMP_UID;
-        if (string.IsNullOrEmpty(TEMP_UID))
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). TEMP_UID not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-
-        string _eridx = AppSession.LOGIN_EUIDX;
-        if (string.IsNullOrEmpty(_eridx))
-        {
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-            await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). _eridx not found.");
-            ShowReceiverLoginNew(true);
-            return;
-        }
-        long eridx = long.Parse(_eridx);
-
-        ClientInfo? ci = null;
-        DecimalReturn? PrePaidBalance = null;
-        XDelServiceRef.AddressStructure? defAddress = null;
-        XDelServiceRef.SettingsInfo csi = null;
-        XDelServiceRef.SettingsInfo CNSettingsInfo = null;
-        LoginInfo loginInfo = new LoginInfo();
-
-        try
-        {
-            await showProgress_Dialog("Verifying...");
-
-            ci = await xs.XOE_Verify_OTP_Async(TEMP_UID, 0, eridx, sessionId, txtEmailOTP.Text);
-
-            await closeProgress_dialog();
-
-            if (ci == null)
-            {
-                await AppSession.SetLOGIN_EUIDX("");
-                await AppSession.SetTEMP_UID("");
-                await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-                await ShowAlertSafe("", "Error verifying One-Time-Pin (OTP).");
-                ShowReceiverLoginNew(true);
-                return;
-            }
-
-            if (ci.Status != 0)
-            {
-                await ShowAlertSafe("", ci.Message);
-                if (ci.Status == -2) ////expired
-                {
-                    await AppSession.SetLOGIN_EUIDX("");
-                    await AppSession.SetTEMP_UID("");
-                    await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-                    ShowReceiverLoginNew(true);
-                }
-                return;
-            }
-
-            ////SUCCESS
-            await SecureStorage.SetAsync("LOGIN_EOTP_VERIFIED", "t");
-            await AppSession.SetLOGIN_EUIDX("");
-            await AppSession.SetTEMP_UID("");
-            await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
-
-            loginInfo.clientInfo = ci;
-
-            AppSession.SetLoginInfo(loginInfo);
-
-            await AppSession.SetLoginModeAsync("r");
-            await Shell.Current.GoToAsync("///CardShellPage", new Dictionary<string, object>
-                {
-                    { "BARCODE", null },
-                    { "LOGIN", "Y" },
-                    { "DEFAULTTAB", "Home" },
-                });
-        }
-        catch (Exception e)
-        {
-            string s = e.Message;
-            await closeProgress_dialog();
-            await ShowAlertSafe("", e.Message);
-        }
-    }*/
-
     async void IsValidROTP(object sender, EventArgs e)
     {
         try
@@ -1767,7 +918,6 @@ this.HideSoftInputOnTapped = false;
             {
                 await AppSession.SetLOGIN_EUIDX("");
                 await AppSession.SetTEMP_UID("");
-                //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
                 await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
                 await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). Please login again.");
                 ShowReceiverLoginNew(true);
@@ -1801,7 +951,6 @@ this.HideSoftInputOnTapped = false;
         {
             await AppSession.SetLOGIN_EUIDX("");
             await AppSession.SetTEMP_UID("");
-            //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
             await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
             await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). Session not found.");
             ShowReceiverLoginNew(true);
@@ -1813,7 +962,6 @@ this.HideSoftInputOnTapped = false;
         {
             await AppSession.SetLOGIN_EUIDX("");
             await AppSession.SetTEMP_UID("");
-            //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
             await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
             await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). TEMP_UID not found.");
             ShowReceiverLoginNew(true);
@@ -1825,7 +973,6 @@ this.HideSoftInputOnTapped = false;
         {
             await AppSession.SetLOGIN_EUIDX("");
             await AppSession.SetTEMP_UID("");
-            //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
             await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
             await ShowAlertSafe("", "Unable to verify One-Time-Pin (OTP). _eridx not found.");
             ShowReceiverLoginNew(true);
@@ -1853,7 +1000,6 @@ this.HideSoftInputOnTapped = false;
             {
                 await AppSession.SetLOGIN_EUIDX("");
                 await AppSession.SetTEMP_UID("");
-                //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
                 await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
                 await ShowAlertSafe("", "Error verifying One-Time-Pin (OTP).");
                 ShowReceiverLoginNew(true);
@@ -1867,7 +1013,6 @@ this.HideSoftInputOnTapped = false;
                 {
                     await AppSession.SetLOGIN_EUIDX("");
                     await AppSession.SetTEMP_UID("");
-                    //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
                     await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
                     ShowReceiverLoginNew(true);
                 }
@@ -1878,7 +1023,6 @@ this.HideSoftInputOnTapped = false;
             await SecureStorage.SetAsync("LOGIN_EOTP_VERIFIED", "t");
             await AppSession.SetLOGIN_EUIDX("");
             await AppSession.SetTEMP_UID("");
-            //await AppSession.SetLOGIN_EOTP_SESSIONIDAsync("");
             await AppSession.SetLOGIN_SOTP_SESSIONIDAsync("");
 
             ETHAN_Receiver = await xs.XOE_Get_ETHAN_ReceiverAsync(ci.Web_UID);
@@ -2090,71 +1234,6 @@ this.HideSoftInputOnTapped = false;
             string s = ex.Message;
         }
     }
-
-
-    /*private async Task StartCountdownAsync(
-    Label countdownLabel,
-    View inputBlockView,
-    View showAgainButton,
-    View txtOTP,
-    CancellationTokenSource cts)
-    {
-        inputBlockView.InputTransparent = true;
-        showAgainButton.IsVisible = false;
-        countdownLabel.IsVisible = true;
-
-        await Task.Delay(30);
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            txtOTP.Focus();
-        });
-
-        int seconds = 30;
-
-        try
-        {
-            while (seconds >= 0 && !cts.Token.IsCancellationRequested)
-            {
-                countdownLabel.Text = $"{seconds}s";
-                await Task.Delay(1000, cts.Token);
-                seconds--;
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            //// expected when stopping timer
-        }
-
-        //// finished normally
-        if (!cts.Token.IsCancellationRequested)
-        {
-            showAgainButton.IsVisible = true;
-            countdownLabel.IsVisible = false;
-            inputBlockView.InputTransparent = false;
-            cts.Cancel();
-        }
-    }*/
-
-    /*private void StopMCountdown()
-    {
-        if (_ctsM is { IsCancellationRequested: false })
-            _ctsM.Cancel();
-
-        btnMobileOTP.IsVisible = true;
-        lblMCountdown.IsVisible = false;
-        txtMobile.InputTransparent = false;
-    }*/
-
-    /*private void StopECountdown()
-    {
-        if (_ctsE is { IsCancellationRequested: false })
-            _ctsE.Cancel();
-
-        btnEmailOTP.IsVisible = true;
-        lblECountdown.IsVisible = false;
-        txtEmail.InputTransparent = false;
-    }*/
-
 
     private async Task showProgress_Dialog(string msg)
     {

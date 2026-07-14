@@ -52,16 +52,17 @@
                             </Label>
                         </Grid>
 
-                        <ScrollView Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="10,0,10,10" HorizontalOptions="Fill">
+                        <ScrollView Padding="0,0" Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="0" HorizontalOptions="Fill">
 
-                            <VerticalStackLayout Padding="22" Spacing="10">
-                                <VerticalStackLayout Padding="10">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+                                
+                                <VerticalStackLayout Padding="22">
                                     <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
                                     <Label Text="Password Reset" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
                                     <Label Text="Enter your Username and click Submit." Style="{StaticResource textStyle16BlackBold}" FontFamily="Consolas" />
                                 </VerticalStackLayout>
 
-                                <VerticalStackLayout Spacing="10">
+                                <VerticalStackLayout Padding="22" Spacing="5" Margin="0,-40,0,0">
 
                                     <Grid RowDefinitions="*,*" ColumnSpacing="5" HorizontalOptions="Fill">
 

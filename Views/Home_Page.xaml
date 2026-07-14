@@ -118,7 +118,7 @@
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="btnFeedback_Click" />
                         </Border.GestureRecognizers>
-                        <Label x:Name="lblFeedback" Text="Prepaid" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Label x:Name="lblFeedback" Text="App Feedback" Style="{StaticResource textStyle18BlackBold}" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Border>
 
                 </VerticalStackLayout>

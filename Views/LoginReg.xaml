@@ -53,9 +53,10 @@
                             </Label>
                         </Grid>
 
-                        <ScrollView Grid.Row="1" BackgroundColor="{StaticResource Gray50}" Margin="10,0,10,10" HorizontalOptions="Fill">
+                        <ScrollView Padding="0,0" Grid.Row="1" Margin="0" BackgroundColor="{StaticResource Gray50}" HorizontalOptions="Fill">
 
-                            <VerticalStackLayout Spacing="10">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+                                
                                 <VerticalStackLayout Padding="22">
                                     <Image Source="xdelicon.png" HeightRequest="80" IsVisible="True" HorizontalOptions="Center" />
                                     <Label Text="REGISTRATION" Style="{StaticResource textStyle12OrangeBold}" FontFamily="Consolas" />
@@ -200,27 +201,27 @@
                                     <Label HorizontalOptions="Start" VerticalOptions="Start" Margin="10,5,0,0" 
                                 Style="{StaticResource textStyle16Black}" Text="Password must contain the following:" />
 
-                                    <HorizontalStackLayout x:Name="hsMinEight" Margin="10,0,0,0" Spacing="5">
+                                    <HorizontalStackLayout x:Name="hsMinEight" Margin="0,0,0,0" Spacing="5">
                                         <Label x:Name="iconMinEight" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         <Label x:Name="lblminEight" Text="Minimum 8 characters" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout x:Name="hsLowerC" Margin="10,0,0,0" Spacing="5">
+                                    <HorizontalStackLayout x:Name="hsLowerC" Margin="0,0,0,0" Spacing="5">
                                         <Label x:Name="iconLowerC" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         <Label x:Name="lblLowerC" Text="A lowercase letter" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout x:Name="hsUpperC" Margin="10,0,0,0" Spacing="5">
+                                    <HorizontalStackLayout x:Name="hsUpperC" Margin="0,0,0,0" Spacing="5">
                                         <Label x:Name="iconUpperC" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         <Label x:Name="lblUpperC" Text="A capital (uppercase) letter" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout x:Name="hsNum" Margin="10,0,0,0" Spacing="5">
+                                    <HorizontalStackLayout x:Name="hsNum" Margin="0,0,0,0" Spacing="5">
                                         <Label x:Name="iconNum" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         <Label x:Name="lblNum" Text="A number" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}"/>
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout x:Name="hsPwdMatch" Margin="10,0,0,10" Spacing="5">
+                                    <HorizontalStackLayout x:Name="hsPwdMatch" Margin="0,0,0,10" Spacing="5">
                                         <Label x:Name="iconPwdMatch" Text="&#x2716;" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" />
                                         <Label x:Name="lblPwdMatch" Text="Please enter and confirm password" VerticalTextAlignment="Center" Style="{StaticResource textStyle16Red}" 
                                        HorizontalOptions="Fill" VerticalOptions="Center" LineBreakMode="WordWrap" />

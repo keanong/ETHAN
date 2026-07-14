@@ -131,6 +131,14 @@ builder.ConfigureMauiHandlers(handlers =>
 });
 #endif
 
+#if ANDROID
+                Microsoft.Maui.Handlers.EditorHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+                {
+                    handler.PlatformView.BackgroundTintList =
+                        Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+                });
+#endif
+
                 return builder.Build();
             } catch (Exception e)
             {

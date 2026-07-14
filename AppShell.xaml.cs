@@ -34,6 +34,7 @@ namespace ETHAN
             Routing.RegisterRoute("ChangeRPwdPage", typeof(ChangeRPwdPage));
             Routing.RegisterRoute("ChangeMobilePage", typeof(ChangeMobilePage));
             Routing.RegisterRoute("ChangeEmailPage", typeof(ChangeEmailPage));
+            Routing.RegisterRoute("Feedback", typeof(Feedback));
         }
     }
 }

@@ -308,7 +308,10 @@ public partial class Home_Page : ContentView
     {
         try
         {
-            
+            await Shell.Current.GoToAsync("Feedback", new Dictionary<string, object>
+                    {
+                        { "vmm", null }
+                    });
         }
         catch (Exception ex)
         {

@@ -42,7 +42,7 @@
                           HorizontalOptions="Start" VerticalOptions="Start" ColumnDefinitions="Auto,*" Padding="0,0">
 
                             <ImageButton Source="arrow_left_80.png" Clicked="BackToHome" BackgroundColor="Transparent" VerticalOptions="Center"
-                                                                 WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
+                                    WidthRequest="{OnIdiom Phone=30, Tablet=40}" HeightRequest="{OnIdiom Phone=30, Tablet=40}"/>
                             <Label Grid.Column="1" Text="Return" FontSize="20" FontAttributes="Bold" 
                                TextColor="{StaticResource XDelOrange}" VerticalOptions="Center" VerticalTextAlignment="Center">
                                 <Label.GestureRecognizers>
