@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
+	<Import Project="signing.props" Condition="Exists('signing.props')" />
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android;net10.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
@@ -36,9 +36,7 @@
 	<!-- Debug Android -->
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
 		<AndroidKeyStore>True</AndroidKeyStore>
-		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
-		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
 		<ApplicationId>com.xdel.ethan</ApplicationId>
 		<AndroidEnableFastDeployment>true</AndroidEnableFastDeployment>
 		<AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
@@ -48,6 +46,11 @@
 		<UseInterpreter>true</UseInterpreter>
 		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
 		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
+		<ApplicationDisplayVersion>1.6</ApplicationDisplayVersion>
+		<ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<!-- Debug iOS -->
@@ -61,21 +64,27 @@
 		<BuildIpa>false</BuildIpa>
 		<MtouchDebug>true</MtouchDebug>
 		<Optimize>false</Optimize>
+		<ApplicationDisplayVersion>1.6</ApplicationDisplayVersion>
+		<ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 
 	<!-- Release Android -->
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
-		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidPackageFormat>aab</AndroidPackageFormat>
 		<AndroidKeyStore>True</AndroidKeyStore>
-		<AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>Ethan</AndroidSigningKeyAlias>
-		<AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
 		<ApplicationId>com.xdel.ethan</ApplicationId>
 		<AndroidEnableFastDeployment>false</AndroidEnableFastDeployment>
 		<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
 		<AndroidLinkMode>SdkOnly</AndroidLinkMode>
 		<RunAOTCompilation>true</RunAOTCompilation>
 		<JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<AndroidLinkTool>r8</AndroidLinkTool>
+		<ApplicationDisplayVersion>1.6</ApplicationDisplayVersion>
+		<ApplicationVersion>6</ApplicationVersion>
+		<AndroidGenerateNativeDebugSymbols>true</AndroidGenerateNativeDebugSymbols>
 	</PropertyGroup>
 
 	<!-- Release iOS -->
@@ -88,6 +97,8 @@
 		<UseInterpreter>true</UseInterpreter>
 		<MtouchDebug>false</MtouchDebug>
 		<BuildIpa>true</BuildIpa>
+		<ApplicationDisplayVersion>1.6</ApplicationDisplayVersion>
+		<ApplicationVersion>6</ApplicationVersion>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
@@ -374,7 +385,7 @@
 		<!--<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.4" />-->
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.*" />
 		<!--<PackageReference Include="The49.Maui.BottomSheet" Version="8.0.3" />-->
-		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.10.3" />
 	</ItemGroup>
 
 	<ItemGroup>

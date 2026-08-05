@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <AndroidSigningStorePass>12321qwE</AndroidSigningStorePass>
+    <AndroidSigningKeyPass>12321qwE</AndroidSigningKeyPass>
+  </PropertyGroup>
+</Project>
